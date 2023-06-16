@@ -1,8 +1,8 @@
 from django.db import models
 
 # Create your models here.
+
 class Profile(models.Model):
-     
      #user = models.OneToOneField(User, on_delete=models.CASCADE)
      avatar = models.ImageField(upload_to="images/", default="images/default.jpg")
      level = models.IntegerField()
@@ -17,29 +17,31 @@ class Profile(models.Model):
 class Club (models.Model):
     #category = models.ForeignKey(Category,on_delete=models.CASCADE,default=None)
     name = models.CharField(max_length=200)
-    type = models.CharField(max_length=200 , default=None)
+    type = models.CharField(max_length=200 , default=None) # نغيرها إلى تشويس
     decription = models.TextField()
     city = models.CharField(max_length=200)
+    discrit = models.CharField(max_length=200)
     image = models.ImageField(upload_to="images/", default="images/default.jpg")
+    is_enrolled = models.BooleanField(default=False) # set to true if the club accept the subscriber.
 
-class Offers (models.Model):
+'''class Offers (models.Model):
     club = models.ForeignKey(Club, on_delete=models.CASCADE)
     discount = models.IntegerField()
+    description = models.TextField()
 
 class Package (models.Model):
     club = models.ForeignKey(Club, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
     price = models.FloatField()
     details = models.TextField()
-    duration = models.CharField(max_length=200)
+    duration = models.CharField(max_length=200)'''
+    
 
-class Subscriber(models.Model):
+'''class Subscriber(models.Model):
     club = models.ForeignKey(Club, on_delete=models.CASCADE)
     #user = models.ForeignKey(User, on_delete=models.CASCADE)
     age = models.CharField(max_length=200)
-    package = models.ForeignKey(Package, on_delete=models.CASCADE)
-    start_date = models.DateField()
-    end_date = models.DateField()
+    package = models.ForeignKey(Package, on_delete=models.CASCADE)'''
 
 class Coach (models.Model):
     club = models.ForeignKey(Club, on_delete=models.CASCADE)
@@ -48,33 +50,38 @@ class Coach (models.Model):
     image = models.ImageField(upload_to="images/", default="images/default.jpg")
     social_account = models.CharField(max_length=200)
     experience = models.CharField(max_length=200) #عدد  سنوات الخبرة للمدرب
+    phone_number = models.IntegerField()
 
-class Tournament(models.Model):
-    package = models.ForeignKey(Package, on_delete=models.CASCADE)
-    subscriber = models.ForeignKey(Subscriber, on_delete=models.CASCADE)
+'''class Tournament(models.Model):
+    club = models.ForeignKey(Club, on_delete=models.CASCADE)
     tournament_name = models.CharField(max_length=200)
-    date = models.DateTimeField()
+    start_date = models.DateField()
+    end_date = models.DateField()
+    image = models.ImageField(upload_to="images/", default="images/default.jpg")
+'''
 
-class Enroll(models.Model):
-    club = models.ForeignKey(Club, on_delete=models.CASCADE)
-    package = models.ForeignKey(Package, on_delete=models.CASCADE)
-    is_enrolled = models.BooleanField(default=False)
 
-class Payment(models.Model):
+'''class Enroll(models.Model):
     club = models.ForeignKey(Club, on_delete=models.CASCADE)
     subscriber = models.ForeignKey(Subscriber, on_delete=models.CASCADE)
+    is_enrolled = models.BooleanField(default=False)'''
+
+
+'''class Payment(models.Model):
+    #club = models.ForeignKey(Club, on_delete=models.CASCADE)
+    #subscriber = models.ForeignKey(Subscriber, on_delete=models.CASCADE)
     card_number = models.CharField(max_length=200)
     card_holder_name = models.CharField(max_length=400)
     expired_date = models.DateField()
     cvv = models.IntegerField()
-    is_paid = models.BooleanField(default=False)
+    # is_paid = models.BooleanField(default=False)'''
 
-class Review(models.Model):
+'''class Review(models.Model):
     club = models.ForeignKey(Club, on_delete=models.CASCADE)
     subscriber = models.ForeignKey(Subscriber, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     content = models.TextField()
-    rating = models.FloatField()
+    rating = models.FloatField()'''
 
 
 class Contact (models.Model):

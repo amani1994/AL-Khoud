@@ -16,9 +16,7 @@ def search_page(request:HttpRequest):
     clubs = Club.objects.filter(name__contains=search_phrase) #search by club name
 
     return render(request, "main_app/search.html", {"clubs" : clubs})
-'''
-def add_category(request:HttpRequest):
-    return render(request,'main_app/add_category.html')'''
+
 
 def add_club(request:HttpRequest):
     '''this method adds a new club in a given type of category'''

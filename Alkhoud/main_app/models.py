@@ -2,18 +2,29 @@ from django.db import models
 
 # Create your models here.
 class Profile(models.Model):
-     #user = models.ForeignKey(User, on_delete=models.CASCADE)
+     
+     #user = models.OneToOneField(User, on_delete=models.CASCADE)
      avatar = models.ImageField(upload_to="images/", default="images/default.jpg")
      level = models.IntegerField()
      age = models.IntegerField()
      city = models.CharField(max_length=200)
      
-   
-class Club (models.Model):
+'''class Category(models.Model):
     name = models.CharField(max_length=200)
-    type = models.CharField(max_length=200)
+    image = models.ImageField(upload_to="images/", default="images/default.jpg")
+    decription = models.TextField()'''
+
+class Club (models.Model):
+    #category = models.ForeignKey(Category,on_delete=models.CASCADE,default=None)
+    name = models.CharField(max_length=200)
+    type = models.CharField(max_length=200 , default=None)
     decription = models.TextField()
     city = models.CharField(max_length=200)
+    image = models.ImageField(upload_to="images/", default="images/default.jpg")
+
+class Offers (models.Model):
+    club = models.ForeignKey(Club, on_delete=models.CASCADE)
+    discount = models.IntegerField()
 
 class Package (models.Model):
     club = models.ForeignKey(Club, on_delete=models.CASCADE)
@@ -36,7 +47,7 @@ class Coach (models.Model):
     bio = models.TextField()
     image = models.ImageField(upload_to="images/", default="images/default.jpg")
     social_account = models.CharField(max_length=200)
-    expert = models.CharField(max_length=200) #عدد  سنوات الخبرة للمدرب
+    experience = models.CharField(max_length=200) #عدد  سنوات الخبرة للمدرب
 
 class Tournament(models.Model):
     package = models.ForeignKey(Package, on_delete=models.CASCADE)

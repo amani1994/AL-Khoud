@@ -1,10 +1,12 @@
-{% extends 'main_app/base.html' %}
+{% extends 'main_app/home.html' %}
 {% load static %}
 
-{%block title%} {%endblock%}
+{%block title%}About{%endblock%}
 
 
 {% block content %}
+
+      <!-- Nav Bar End -->
 
 
         <!-- Page Header Start -->
@@ -12,12 +14,11 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12">
-                        <h2> Add Coach</h2>
+                        <h2>Sign In</h2>
                     </div>
                     <div class="col-12">
                         <a href="">Home</a>
-                        <a href="">Clube</a>
-                        <a href="">Add Coach</a>
+                        <a href="">Contact</a>
                     </div>
                 </div>
             </div>
@@ -29,8 +30,8 @@
         <div class="contact">
             <div class="container">
                 <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
-                    <p>Add Coach Page</p>
-                    <h2>Add Coach</h2>
+                    <p>Sign In Page</p>
+                    <h2>Sign In</h2>
                 </div>
                 <div class="row">
                     <div class="col-12">
@@ -41,19 +42,12 @@
                             <div id="success"></div>
                             <form name="sentMessage" id="contactForm" novalidate="novalidate">
                                 <div class="control-group">
-                                    <input type="tect" class="form-control" id="name" placeholder=" Name" required="required" data-validation-required-message="Please coach Name" />
+                                    <input type="email" class="form-control" id="email" placeholder="Your Email" required="required" data-validation-required-message="Please enter your email" />
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="control-group">
-                                    <input type="text" class="form-control" id="experience" placeholder="Experience" required="required" data-validation-required-message="Experience" />
+                                    <input type="text" class="form-control" id="passowrd" placeholder="Your passowrd" required="required" data-validation-required-message="Please enter a passowrd" />
                                     <p class="help-block text-danger"></p>
-                                </div>
-                                <div class="control-group">
-                                    <input type="text" class="form-control" id="description" placeholder="phone number" required="required" data-validation-required-message="Phone Number" />
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                                <div class="control-group">
-                                  <textarea name="description" rows="8" cols="80"></textarea>
                                 </div>
                                 <div>
                                     <button class="btn" type="submit" id="sendMessageButton">Log In</button>

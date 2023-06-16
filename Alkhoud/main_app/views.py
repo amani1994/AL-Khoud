@@ -9,6 +9,56 @@ from .models import Club, Review, Subscriber, Contact
 def home_page(request:HttpRequest):
     return render (request,'main_app/home.html')
 
+def about(request:HttpRequest):
+    return render (request,'main_app/about.html')
+
+def contact(request:HttpRequest):
+    return render (request,'main_app/contact.html')
+
+def service(request:HttpRequest):
+    return render (request,'main_app/service.html')
+
+def sign_up(request:HttpRequest):
+    return render (request,'main_app/sign_up.html')
+
+def sign_in(request:HttpRequest):
+    return render (request,'main_app/sign_in.html')
+
+def club_home(request:HttpRequest):
+    return render (request,'main_app/club_home.html')
+
+def add_package(request:HttpRequest):
+    return render (request,'main_app/add_package.html')
+
+def add_coach(request:HttpRequest):
+    return render (request,'main_app/add_coach.html')
+
+def add_tournament(request:HttpRequest):
+    return render (request,'main_app/add_tournament.html')
+
+def add_ad(request:HttpRequest):
+    return render (request,'main_app/add_ad.html')
+
+def clube_tournament(request:HttpRequest):
+    return render (request,'main_app/mytournament.html')
+
+def clube_subscriper(request:HttpRequest):
+    return render (request,'main_app/clube_subscriper.html')
+
+def tournament_sbscriper(request:HttpRequest):
+    return render (request,'main_app/tournament_sbscriper.html')
+
+def club_coach(request:HttpRequest):
+    return render (request,'main_app/club_coach.html')
+
+def clube_packages(request:HttpRequest):
+    return render (request,'main_app/clube_packages.html')
+
+def club_ad(request:HttpRequest):
+    return render (request,'main_app/club_ad.html')
+
+
+
 
 def search_page(request:HttpRequest):
     '''this method search by club name then returns the search result'''

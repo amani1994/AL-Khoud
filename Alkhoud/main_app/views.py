@@ -24,6 +24,9 @@ def sign_up(request:HttpRequest):
 def sign_in(request:HttpRequest):
     return render (request,'main_app/sign_in.html')
 
+def clubs(request:HttpRequest):
+    return render (request,'main_app/clubs.html')
+
 def club_home(request:HttpRequest):
     return render (request,'main_app/club_home.html')
 
@@ -56,9 +59,6 @@ def clube_packages(request:HttpRequest):
 
 def club_ad(request:HttpRequest):
     return render (request,'main_app/club_ad.html')
-
-
-
 
 def search_page(request:HttpRequest):
     '''this method search by club name then returns the search result'''
@@ -126,11 +126,3 @@ def contact_us (request:HttpRequest):
         return redirect("main_app:home_page") # لازم نطلع مسج لليوزر أن رسالته راحت
     
     return render (request, "main_app/home.html")
-
-
-
-
-
-
-
- 

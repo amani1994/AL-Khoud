@@ -1,4 +1,4 @@
-{% extends 'main_app/base.html' %}
+{% extends 'main_app/home.html' %}
 {% load static %}
 
 {%block title%} {%endblock%}
@@ -6,6 +6,79 @@
 
 {% block content %}
 
+        <!-- Page Header Start -->
+        <div class="page-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2>Sign Up</h2>
+                    </div>
+                    <div class="col-12">
+                        <a href="">Home</a>
+                        <a href="">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Page Header End -->
+
+
+        <!-- Contact Start -->
+        <div class="contact">
+            <div class="container">
+                <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
+                    <p>Add Clubs Page</p>
+                    <h2>Add Clubs</h2>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="row">
+                    </div>
+
+
+<form method="POST" role="form" enctype="multipart/form-data">
+    {% csrf_token %}
+  <div class="form-group">
+    <label for="exampleFormControlInput1">Name</label>
+    <input type="text" class="form-control" id="exampleFormControlInput1" name="name" placeholder="name">
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlInput1">decription</label>
+    <input type="text" class="form-control" id="exampleFormControlInput1" name="decription" placeholder="decription">
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlInput1">img</label>
+    <input type="file" class="form-control" id="exampleFormControlInput1" name="image" placeholder="image">
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Sport Type</label>
+    <select class="form-control" id="exampleFormControlSelect1" name="type">
+      <option value="Gym">Gym</option>
+      <option value="Self_defense">Self_defense</option>
+      <option value="Equestrian">Equestrian</option>
+
+    </select>
+
+
+    <div class="form-group">
+      <label for="exampleFormControlSelect1">Cities</label>
+      <select class="form-control" id="exampleFormControlSelect1" name="city">
+        <option value="Riyadh">Riyadh</option>
+        <option value="Jeddah">Jeddah</option>
+        <option value="Hail">Hail</option>
+        <option value="Dammam">Dammam</option>
+
+  
+      </select>
+  
+  <div class="col-lg-6 col-md-10 col-8 mx-auto">
+    <button type="submit" class="form-control">Add</button>
+</div>
+</form>
+
+
+
+        <!-- Contact End -->
 
 
 {%endblock%}

@@ -1,13 +1,13 @@
 from django.db import models
 
 # Create your models here.
-class Profile(models.Model):
+'''class Profile(models.Model):
      
      #user = models.OneToOneField(User, on_delete=models.CASCADE)
      avatar = models.ImageField(upload_to="images/", default="images/default.jpg")
      level = models.IntegerField()
      age = models.IntegerField()
-     city = models.CharField(max_length=200)
+     city = models.CharField(max_length=200)'''
      
 '''class Category(models.Model):
     name = models.CharField(max_length=200)
@@ -16,12 +16,15 @@ class Profile(models.Model):
 
 class Club (models.Model):
     #category = models.ForeignKey(Category,on_delete=models.CASCADE,default=None)
+    type_choices = models.TextChoices("Club Type", ["Gym", "Self_defense ","Equestrian"])
+    #city_choices = models.TextChoices("Club Type", ["Riyadh", "Jeddah ","Hail", 'Dammam'])
     name = models.CharField(max_length=200)
-    type = models.CharField(max_length=200 , default=None)
     decription = models.TextField()
-    city = models.CharField(max_length=200)
+    #city = models.CharField(max_length=64,default='Jeddah', choices=type_choices.choices)
     image = models.ImageField(upload_to="images/", default="images/default.jpg")
+    type = models.CharField(max_length=64,default='Equestrian', choices=type_choices.choices)
 
+'''
 class Offers (models.Model):
     club = models.ForeignKey(Club, on_delete=models.CASCADE)
     discount = models.IntegerField()
@@ -82,4 +85,4 @@ class Contact (models.Model):
     title = models.CharField(max_length=200)
     name = models.CharField(max_length=200)
     email = models.EmailField()
-    message = models.TextField()
+    message = models.TextField()'''

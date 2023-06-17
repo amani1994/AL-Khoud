@@ -29,7 +29,13 @@ class Club (models.Model):
 class Say (models.Model):
     name = models.CharField(max_length=200)
     decription = models.TextField()
-    #image = models.ImageField(upload_to="images/", default="images/default.jpg")
+    image = models.ImageField(upload_to="images/", default="images/default.jpg")
+
+class Offers (models.Model):
+    name = models.CharField(max_length=200)
+    price = models.IntegerField()
+    discount = models.IntegerField()
+    description = models.TextField()
 
 '''
 class Offers (models.Model):

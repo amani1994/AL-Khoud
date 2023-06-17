@@ -1,15 +1,15 @@
 from django.shortcuts import render, redirect
 from django.http import HttpRequest
-from .models import Club, Say
+from .models import Club, Say, Offers
 #Review, Subscriber, Contact
 
 
 # Create your views here.
 
-
 def home_page(request:HttpRequest):
     all_comment = Say.objects.all()
-    return render (request,'main_app/home.html', {"all_comment":all_comment})
+    all_offers = Offers.objects.all()
+    return render (request,'main_app/home.html', {"all_comment":all_comment, "all_offers":all_offers})
 
 def about(request:HttpRequest):
     return render (request,'main_app/about.html')
@@ -19,7 +19,7 @@ def contact(request:HttpRequest):
 
 def comment(request:HttpRequest):
     if request.method == "POST":
-            all_comment = Say(name=request.POST["name"], decription=request.POST["decription"])
+            all_comment = Say(name=request.POST["name"], decription=request.POST["decription"], image = request.FILES['image'])
             all_comment.save() 
             return redirect ('main_app:home_page')
     return render (request,'main_app/client_say.html')
@@ -148,7 +148,7 @@ def add_club(request:HttpRequest):
             elif request.POST["type"] == "Self_defense" and request.POST["city"] == 'Jeddah':
                 return redirect("main_app:club_self_jeddah")
             elif request.POST["type"] == "Self_defense" and request.POST["city"] == 'Dammam':
-                return redirect("main_app:club_self_dammam")
+                return redirect("main_app:club_self_dammam")# خلصنا منها 
             
             elif request.POST["type"] == "Equestrian" and request.POST["city"] == 'Riyadh':
                 return redirect("main_app:club_equestrian")
@@ -157,7 +157,7 @@ def add_club(request:HttpRequest):
             elif request.POST["type"] == "Equestrian" and request.POST["city"] == 'Jeddah':
                 return redirect("main_app:club_equestrian_jeddah")
             elif request.POST["type"] == "Equestrian" and request.POST["city"] == 'Dammam':
-                return redirect("main_app:club_equestrian_dammam")
+                return redirect("main_app:club_equestrian_dammam")# خلصنا منها 
             
     return render (request, "main_app/add_club.html")
 
@@ -165,8 +165,13 @@ def add_club(request:HttpRequest):
 
 
 def add_offer(request:HttpRequest):
-    '''this method add offer in each club'''
-    return render(request,'main_app/add_offer.html')
+    if request.method == "POST":
+            all_offers = Offers(name = request.POST["name"], price = request.POST['price'], discount = request.POST['discount'],description = request.POST["description"])
+            all_offers.save() 
+            return redirect ('main_app:home_page')
+    return render (request,'main_app/add_ad.html')
+
+  
 
 def add_package(request:HttpRequest):
     '''this method add package in each club'''

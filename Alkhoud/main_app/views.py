@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpRequest
-from .models import Club
+from .models import Club, Say
 #Review, Subscriber, Contact
 
 
@@ -8,13 +8,22 @@ from .models import Club
 
 
 def home_page(request:HttpRequest):
-    return render (request,'main_app/home.html')
+    all_comment = Say.objects.all()
+    return render (request,'main_app/home.html', {"all_comment":all_comment})
 
 def about(request:HttpRequest):
     return render (request,'main_app/about.html')
 
 def contact(request:HttpRequest):
     return render (request,'main_app/contact.html')
+
+def comment(request:HttpRequest):
+    if request.method == "POST":
+            all_comment = Say(name=request.POST["name"], decription=request.POST["decription"])
+            all_comment.save() 
+            return redirect ('main_app:home_page')
+    return render (request,'main_app/client_say.html')
+
 
 def service(request:HttpRequest):
     return render (request,'main_app/service.html')
@@ -26,16 +35,51 @@ def sign_in(request:HttpRequest):
     return render (request,'main_app/sign_in.html')
 
 def clubs(request:HttpRequest):
-    all_club = Club.objects.filter(type='Gym')
+    all_club = Club.objects.filter(type='Gym' , city = 'Riyadh')
     return render (request, "main_app/clubs.html", {"all_club" : all_club})
+def clubs_hail(request:HttpRequest):
+    all_club = Club.objects.filter(type='Gym' , city = 'Hail')
+    return render (request, "main_app/clubs_hail.html", {"all_club" : all_club})
+def clubs_jeddah(request:HttpRequest):
+    all_club = Club.objects.filter(type='Gym' , city = 'Jeddah')
+    return render (request, "main_app/clubs_jeddah.html", {"all_club" : all_club})
+def clubs_dammam(request:HttpRequest):
+    all_club = Club.objects.filter(type='Gym' , city = 'Dammam')
+    return render (request, "main_app/clubs_jeddah.html", {"all_club" : all_club})
+
+
 
 def club_self(request:HttpRequest):
-    all_club = Club.objects.filter(type='Self_defense')
-    return render (request, "main_app/clubs.html", {"all_club" : all_club})
+    all_club = Club.objects.filter(type='Self_defense',  city = 'Riyadh')
+    return render (request, "main_app/club_self.html", {"all_club" : all_club})
+def club_self_jeddah(request:HttpRequest):
+    all_club = Club.objects.filter(type='Self_defense',  city = 'Jeddah')
+    return render (request, "main_app/club_self_jeddah.html", {"all_club" : all_club})
+def club_self_hail(request:HttpRequest):
+    all_club = Club.objects.filter(type='Self_defense',  city = 'Hail')
+    return render (request, "main_app/club_self_hail.html", {"all_club" : all_club})
+def club_self_dammam(request:HttpRequest):
+    all_club = Club.objects.filter(type='Self_defense',  city = 'Dammam')
+    return render (request, "main_app/club_self_dammam.html", {"all_club" : all_club})
+
+
+
 
 def club_equestrian(request:HttpRequest):
-    all_club = Club.objects.filter(type='Equestrian')
-    return render (request, "main_app/clubs.html", {"all_club" : all_club})
+    all_club = Club.objects.filter(type='Equestrian',  city = 'Riyadh')
+    return render (request, "main_app/club_equestrian.html", {"all_club" : all_club})
+def club_equestrian_jeddah(request:HttpRequest):
+    all_club = Club.objects.filter(type='Equestrian',  city = 'Jeddah')
+    return render (request, "main_app/club_equestrian_jeddah.html", {"all_club" : all_club})
+def club_equestrian_hail(request:HttpRequest):
+    all_club = Club.objects.filter(type='Equestrian',  city = 'Hail')
+    return render (request, "main_app/club_equestrian_hail.html", {"all_club" : all_club})
+def club_equestrian_dammam(request:HttpRequest):
+    all_club = Club.objects.filter(type='Equestrian',  city = 'Dammam')
+    return render (request, "main_app/club_equestrian_dammam.html", {"all_club" : all_club})
+
+
+
 
 def club_home(request:HttpRequest):
     return render (request,'main_app/club_home.html')
@@ -85,14 +129,36 @@ def add_category(request:HttpRequest):
 
 def add_club(request:HttpRequest):
     if request.method == "POST":
-            all_club = Club(name=request.POST["name"], decription=request.POST["decription"],image = request.FILES["image"], type = request.POST['type'])
+            all_club = Club(name=request.POST["name"], decription=request.POST["decription"],image = request.FILES["image"], type = request.POST['type'], city = request.POST['city'])
             all_club.save() 
-            if request.POST["type"] == "Gym":
+            if request.POST["type"] == "Gym" and request.POST["city"] == 'Riyadh':
                 return redirect("main_app:clubs")
-            elif request.POST["type"] == "Self_defense":
+            elif request.POST["type"] == "Gym" and request.POST["city"] == 'Hail':
+                return redirect("main_app:clubs_hail")
+            elif request.POST["type"] == "Gym" and request.POST["city"] == 'Jeddah':
+                return redirect("main_app:clubs_jeddah")
+            elif request.POST["type"] == "Gym" and request.POST["city"] == 'Dammam':
+                return redirect("main_app:clubs_dammam")  # خلصنا منها 
+            
+
+            elif request.POST["type"] == "Self_defense" and request.POST["city"] == 'Riyadh':
                 return redirect("main_app:club_self")
-            elif request.POST["type"] == "Equestrian":
+            elif request.POST["type"] == "Self_defense" and request.POST["city"] == 'Hail':
+                return redirect("main_app:club_self_hail")
+            elif request.POST["type"] == "Self_defense" and request.POST["city"] == 'Jeddah':
+                return redirect("main_app:club_self_jeddah")
+            elif request.POST["type"] == "Self_defense" and request.POST["city"] == 'Dammam':
+                return redirect("main_app:club_self_dammam")
+            
+            elif request.POST["type"] == "Equestrian" and request.POST["city"] == 'Riyadh':
                 return redirect("main_app:club_equestrian")
+            elif request.POST["type"] == "Equestrian" and request.POST["city"] == 'Hail':
+                return redirect("main_app:club_equestrian_hail")
+            elif request.POST["type"] == "Equestrian" and request.POST["city"] == 'Jeddah':
+                return redirect("main_app:club_equestrian_jeddah")
+            elif request.POST["type"] == "Equestrian" and request.POST["city"] == 'Dammam':
+                return redirect("main_app:club_equestrian_dammam")
+            
     return render (request, "main_app/add_club.html")
 
  

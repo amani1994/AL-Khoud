@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpRequest
-from .models import Club, Review, Subscriber, Contact
+from .models import Club
+#Review, Subscriber, Contact
 
 
 # Create your views here.
@@ -23,6 +24,18 @@ def sign_up(request:HttpRequest):
 
 def sign_in(request:HttpRequest):
     return render (request,'main_app/sign_in.html')
+
+def clubs(request:HttpRequest):
+    all_club = Club.objects.filter(type='Gym')
+    return render (request, "main_app/clubs.html", {"all_club" : all_club})
+
+def club_self(request:HttpRequest):
+    all_club = Club.objects.filter(type='Self_defense')
+    return render (request, "main_app/clubs.html", {"all_club" : all_club})
+
+def club_equestrian(request:HttpRequest):
+    all_club = Club.objects.filter(type='Equestrian')
+    return render (request, "main_app/clubs.html", {"all_club" : all_club})
 
 def club_home(request:HttpRequest):
     return render (request,'main_app/club_home.html')
@@ -57,9 +70,6 @@ def clube_packages(request:HttpRequest):
 def club_ad(request:HttpRequest):
     return render (request,'main_app/club_ad.html')
 
-
-
-
 def search_page(request:HttpRequest):
     '''this method search by club name then returns the search result'''
     search_phrase = request.GET.get("search", "")
@@ -67,10 +77,27 @@ def search_page(request:HttpRequest):
 
     return render(request, "main_app/search.html", {"clubs" : clubs})
 
+'''
+def add_category(request:HttpRequest):
+    return render(request,'main_app/add_category.html')'''
+    #category = models.ForeignKey(Category,on_delete=models.CASCADE,default=None)
+    #category = models.ForeignKey(Category,on_delete=models.CASCADE,default=None)
+   # city_choices = models.TextChoices("Club Type", ["Riyadh", "Jeddah ","Hail", 'Dammam'])
 
 def add_club(request:HttpRequest):
-    '''this method adds a new club in a given type of category'''
-    return render(request,'main_app/add_club.html')
+    if request.method == "POST":
+            all_club = Club(name=request.POST["name"], decription=request.POST["decription"],image = request.FILES["image"], type = request.POST['type'])
+            all_club.save() 
+            if request.POST["type"] == "Gym":
+                return redirect("main_app:clubs")
+            elif request.POST["type"] == "Self_defense":
+                return redirect("main_app:club_self")
+            elif request.POST["type"] == "Equestrian":
+                return redirect("main_app:club_equestrian")
+    return render (request, "main_app/add_club.html")
+
+ 
+
 
 def add_offer(request:HttpRequest):
     '''this method add offer in each club'''
@@ -124,11 +151,3 @@ def contact_us (request:HttpRequest):
         return redirect("main_app:home_page") # لازم نطلع مسج لليوزر أن رسالته راحت
     
     return render (request, "main_app/home.html")
-
-
-
-
-
-
-
- 

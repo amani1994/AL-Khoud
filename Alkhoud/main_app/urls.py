@@ -35,22 +35,22 @@ urlpatterns = [
 
     path('club_home/',views.club_home,name='club_home'),
     path('add_package/',views.add_package,name='add_package'),
-    path('add_coach/',views.add_coach,name='add_coach'),
+    path('Clubs/<club_id>/coaches/add',views.add_coach,name='add_coach'),
+    path('Clubs/details/<club_id>', views.club_details, name='club_details'),
     path('add_tournament/',views.add_tournament,name='add_tournament'),
-    path('add_ad/',views.add_ad,name='add_ad'),
     path('add_club/',views.add_club,name='add_club'),
-    path('clube_tournament/',views.clube_tournament,name='clube_tournament'),
-    path('clube_subscriper/',views.clube_subscriper,name='clube_subscriper'),
-    path('tournament_sbscriper/',views.tournament_sbscriper,name='tournament_sbscriper'),
-    path('club_coach/',views.club_coach,name='club_coach'),
-    path('clube_packages/',views.clube_packages,name='clube_packages'),
     path('club_ad/',views.club_ad,name='club_ad'),
     path('add_offer', views.add_offer, name='add_offer'),
     path('Packges/add-package/', views.add_package, name='add_package'),
     path('Subscribers/add-subscriber/', views.add_subscriber, name='add_subscriber'),
-    path('Coaches/add-coach/', views.add_coach, name='add_coach'),
-    path('Tournaments/add-tournament/', views.add_tournament, name='add_tournament'),
     path('payment/', views.payment_page, name='payment_page'),
+
+
+    path('Clubs/<club_id>/coaches/add/', views.add_coach, name='add_coach')
+
+   
+
     path('Clubs/details/<club_id>', views.club_details, name='club_details'),
     path("Clubs/<club_id>/review/add/", views.add_review, name="add_review"), 
+
 ]

@@ -109,23 +109,20 @@ transform: rotate(45deg);
                           <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Add</a>
                         
                             <div class="dropdown-menu">
-                              <a href="{% url 'main_app:add_package' %}" class="dropdown-item">Add Packages</a>
-                               <a href="{% url 'main_app:add_coach' %}" class="dropdown-item">Add Coach</a>
-                                    <a href="{% url 'main_app:add_tournament' %}" class="dropdown-item">Add Tournament</a>
-                                 <a href="{% url 'main_app:add_offer' %}" class="dropdown-item">Add Ad</a></li>
-                                 <a href="{% url 'main_app:add_club' %}" class="dropdown-item">Add Club</a></li>
+                                {% if request.user.is_authenticate %}
+                                <a href="{% url 'main_app:add_coach' club_object.id %}" class="dropdown-item">Add Coach</a>
+                                <a href="{% url 'main_app:add_package' %}" class="dropdown-item">Add Packages</a>
+                                <a href="{% url 'main_app:add_tournament' %}" class="dropdown-item">Add Tournament</a>
+                                <a href="{% url 'main_app:add_offer' %}" class="dropdown-item">Add Ad</a></li>
+                                <a href="{% url 'main_app:add_club' %}" class="dropdown-item">Add Club</a></li>
+                                {% endif %}
                             </div>
                    
                         </div>
                         <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">my Users</a>
                             <div class="dropdown-menu">
-                                <a href="{% url 'main_app:clube_tournament' %}" class="dropdown-item">My Tournament</a>
-                               <a href="{% url 'main_app:clube_subscriper' %}" class="dropdown-item">My subscriber</a>
-                             <a href="{% url 'main_app:tournament_sbscriper' %}" class="dropdown-item">My subscriber Tournament</a>
-                              <a href="{% url 'main_app:club_coach' %}" class="dropdown-item">My Coaches</a></li>
-                               <a href="{% url 'main_app:clube_packages' %}" class="dropdown-item">My Packages</a>
-                              <a href="{% url 'main_app:club_ad' %}" class="dropdown-item">My Ad</a>
+                            
                             </div>
                             
                         </div>

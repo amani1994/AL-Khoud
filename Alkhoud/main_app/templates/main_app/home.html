@@ -84,7 +84,7 @@ transform: rotate(45deg);
         <!-- Nav Bar Start -->
         <div class="navbar navbar-expand-lg bg-dark navbar-dark">
             <div class="container-fluid">
-                <img style="height:60px; width: 200px; " src="{% static 'img/project-Logo.png' %}" alt="">
+                <img style="height:70px; width: 200px; " src="{% static 'img/project-Logo.png' %}" alt="">
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -107,7 +107,7 @@ transform: rotate(45deg);
                             <div class="dropdown-menu">
                               <a href="{% url 'main_app:add_package' %}" class="dropdown-item">Add Packages</a>
                                     <a href="{% url 'main_app:add_tournament' %}" class="dropdown-item">Add Tournament</a>
-                                 <a href="{% url 'main_app:add_ad' %}" class="dropdown-item">Add Ad</a></li>
+                                 <a href="{% url 'main_app:add_offer' %}" class="dropdown-item">Add Ad</a></li>
                                  <a href="{% url 'main_app:add_club' %}" class="dropdown-item">Add Club</a></li>
                             </div>
                    
@@ -126,8 +126,9 @@ transform: rotate(45deg);
                         </div>
                        <a href="{% url 'main_app:sign_in' %}" class="nav-item nav-link">Sign in</a>
                           <a href="{% url 'main_app:sign_up' %}" class="nav-item nav-link">Sign Up</a>
-                    
-                                <a href="{% url 'main_app:contact' %}" class="nav-item nav-link">Contact</a>
+                          <a href="{% url 'main_app:contact' %}" class="nav-item nav-link">Contact</a>
+                          <a href="{% url 'main_app:comment' %}" class="nav-item nav-link">Leave Comment</a>
+
                    
                     </div>
 
@@ -141,9 +142,6 @@ transform: rotate(45deg);
                 <!-- Hero Start -->
                 <div class="hero">
                     <div class="container-fluid">
-                    <!---  <video class="w-100" autoplay loop muted>
-                      <source src="https://cdn.mt.gov.sa/mtportal/mt-fe-production/resources/videos/home/mt-home-video-092021-2.webm" type="video/mp4" />
-                    </video> --->
                         <div class="row align-items-center">
                             <div class="col-sm-12 col-md-6">
                                 <div class="hero-text">
@@ -161,7 +159,16 @@ transform: rotate(45deg);
                             </div>
                             <div class="col-sm-12 col-md-6 d-none d-md-block">
                                 <div class="hero-image">
-                                    <img src="{% static 'img/hero.png'%}" alt="Hero Image">
+                                 <img src="{% static 'img/hero.png'%}" alt="Hero Image">-
+                                  <div class="hero-image">
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <!--  <video style="border-radius: 5%;" class="w-100" autoplay loop muted>
+                                        <source src="{% static ' img/ videoplayback.webm' %}" type="video/mp4" />
+                                      </video>   -->                             
+                                     </div>
+                                     </div>
                                 </div>
                             </div>
                         </div>
@@ -212,7 +219,7 @@ transform: rotate(45deg);
                                     <div class="service-icon">
                                         <i class="flaticon-workout"></i>
                                     </div>
-                                    <a href="{% url 'main_app:clubs' %}"><h3>Self defense sport</h3></a>
+                                    <a href="{% url 'main_app:club_self' %}"><h3>Self defense sport</h3></a>
                                     <p>
                                       Martial arts ; An investment in oneself and a healthy and athletic future
                                     </p>
@@ -223,7 +230,7 @@ transform: rotate(45deg);
                                     <div class="service-icon">
                                         <i class="flaticon-workout-1"></i>
                                     </div>
-                                    <h3>Equestrian clubs</h3>
+                                   <a href="{% url 'main_app:club_equestrian' %}"> <h3>Equestrian clubs</h3></a>
                                     <p>
                                       Because the beginning of a professional jockey is a step, we have collected everything you need for you in one place
                                     </p>
@@ -234,7 +241,7 @@ transform: rotate(45deg);
                                     <div class="service-icon">
                                         <i class="flaticon-workout-2"></i>
                                     </div>
-                                    <h3> Gyms</h3>
+                                   <a href="{% url 'main_app:clubs' %}"> <h3> Gyms</h3></a>
                                     <p>
                                       Controlling and controlling your body efficiently starts here
                                     </p>
@@ -274,25 +281,26 @@ transform: rotate(45deg);
                             <h2>Discounts and Offers</h2>
                         </div>
                         <div class="row">
+                            {%for offer in all_offers%}
                           <div class="col-md-4 wow fadeInUp" data-wow-delay="0.3s">
                               <div class="price-item featured-item">
                                   <div class="price-header">
                                       <div class="price-status">
                                         <div class="ribbon">
-                                        <span>70%</span>
+                                        <span>{{offer.discount}}%</span>
                                       </div>
                                       </div>
                                       <div class="price-title">
-                                          <h2>Club 1</h2>
+                                          <h2>{{offer.name}}</h2>
                                       </div>
                                       <div class="price-prices">
-                                          <h2><small>$</small>700<span>/ mo</span></h2>
+                                          <h2><small>$</small>{{offer.price}}<span>/ mo</span></h2>
                                       </div>
                                   </div>
                                   <div class="price-body">
                                       <div class="price-description">
                                           <ul>
-                                              <li>Personal Trainer</li>
+                                              <li>{{offer.description}}</li>
                                               <li>Group Training</li>
                                           </ul>
                                       </div>
@@ -303,6 +311,7 @@ transform: rotate(45deg);
                                       </div>
                                   </div>
                               </div>
+                                {%endfor%}
                           </div>
                           <div class="col-md-4 wow fadeInUp" data-wow-delay="0.3s">
                               <div class="price-item featured-item">
@@ -505,18 +514,20 @@ transform: rotate(45deg);
                             <h2>Our Client Say!</h2>
                         </div>
                         <div class="owl-carousel testimonials-carousel">
+                            {% for word in all_comment%}
                             <div class="testimonial-item">
                                 <div class="testimonial-img">
-                                    <img src="img/project-Logo.png" alt="Image">
+                                    <img src="{{word.image.url}}" alt="Image">
                                 </div>
                                 <div class="testimonial-text">
                                     <p>
-                                        Lorem ipsum dolor sit amet consec adipis elit. Etiam accums lacus eget velit tincid, quis suscip justo dictum.
+                                        {{word.decription}}
                                     </p>
-                                    <h3>Customer Name</h3>
+                                    <h3> {{word.name}}</h3>
                                     <h4>Profession</h4>
                                 </div>
                             </div>
+                            {%endfor%}
                             <div class="testimonial-item">
                                 <div class="testimonial-img">
                                 <img src="img/project-Logo.png" alt="Image">

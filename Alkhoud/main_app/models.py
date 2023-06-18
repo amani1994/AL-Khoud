@@ -18,7 +18,7 @@ from django.db import models
 class Club (models.Model):
     #category = models.ForeignKey(Category,on_delete=models.CASCADE,default=None)
     type_choices = models.TextChoices("Club Type", ["Gym", "Self_defense ","Equestrian"])
-    #city_choices = models.TextChoices("Club Type", ["Riyadh", "Jeddah ","Hail", 'Dammam'])
+    city_choices = models.TextChoices("Club Type", ["Riyadh", "Jeddah ","Hail", 'Dammam'])
     name = models.CharField(max_length=200)
     type = models.CharField(max_length=200 , default=None) # نغيرها إلى تشويس
     decription = models.TextField()
@@ -31,7 +31,6 @@ class Club (models.Model):
     decription = models.TextField()
     #city = models.CharField(max_length=64,default='Jeddah', choices=type_choices.choices)
     image = models.ImageField(upload_to="images/", default="images/default.jpg")
-    type = models.CharField(max_length=64,default='Equestrian', choices=type_choices.choices)
 
 
 class Offers (models.Model):
@@ -50,7 +49,7 @@ class Subscriber(models.Model):
     club = models.ForeignKey(Club, on_delete=models.CASCADE)
     #user = models.ForeignKey(User, on_delete=models.CASCADE)
     age = models.CharField(max_length=200)
-    package = models.ForeignKey(Package, on_delete=models.CASCADE)'''
+    package = models.ForeignKey(Package, on_delete=models.CASCADE)
 
 class Coach (models.Model):
     club = models.ForeignKey(Club, on_delete=models.CASCADE)

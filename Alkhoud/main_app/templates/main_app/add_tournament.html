@@ -1,4 +1,4 @@
-{% extends 'main_app/base.html' %}
+{% extends 'main_app/home.html' %}
 {% load static %}
 
 {%block title%} {%endblock%}
@@ -38,29 +38,24 @@
                     <div class="col-12 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="contact-form">
                             <div id="success"></div>
-                            <form name="sentMessage" id="contactForm" novalidate="novalidate">
+                            <form action="{% url 'main_app:add_tournament' club.id %}" method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
                                 <div class="control-group">
-                                    <input type="tect" class="form-control" id="name" placeholder=" Name" required="required" data-validation-required-message=" Name" />
-                                    <p class="help-block text-danger"></p>
+                                    <input type="tect" class="form-control" id="name" placeholder="Tournament Name" required="required" data-validation-required-message="Name" name="tournament_name" />
                                 </div>
 
                                 <div class="control-group">
-                                    <input type="date" class="form-control" id="date" placeholder="start date" required="required" data-validation-required-message="start date" />
-                                    <p class="help-block text-danger"></p>
+                                    <input type="date" class="form-control" id="date" placeholder="Tournament start date" required="required" data-validation-required-message="start date" name="start_date" />
                                 </div>
                                 <div class="control-group">
-                                    <input type="date" class="form-control" id="date" placeholder="end date" required="required" data-validation-required-message="end date" />
-                                    <p class="help-block text-danger"></p>
+                                    <input type="date" class="form-control" id="date" placeholder="Tournament end date" required="required" data-validation-required-message="end date" name="end_date" />
                                 </div>
                                 <div class="control-group">
-                                    <input type="file" class="form-control" id="img" placeholder="img" required="required" data-validation-required-message="img" />
-                                    <p class="help-block text-danger"></p>
+                                    <input type="file" class="form-control" id="img" placeholder="Tournament image" required="required" data-validation-required-message="img" name="image" />
                                 </div>
-                                <div class="control-group">
-                                  <textarea name="description" rows="8" cols="80"></textarea>
-                                </div>
+                              
                                 <div>
-                                    <button class="btn" type="submit" id="sendMessageButton">Add</button>
+                                    <button class="btn" type="submit" id="sendMessageButton">Add Tournamemt</button>
                                 </div>
                             </form>
                         </div>

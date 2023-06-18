@@ -1,7 +1,7 @@
-{% extends 'main_app/base.html' %}
+{% extends 'main_app/home.html' %}
 {% load static %}
 
-{%block title%} {%endblock%}
+{%block title%} Add Coach{%endblock%}
 
 
 {% block content %}
@@ -16,7 +16,7 @@
                     </div>
                     <div class="col-12">
                         <a href="">Home</a>
-                        <a href="">Clube</a>
+                        <a href="">Club</a>
                         <a href="">Add Coach</a>
                     </div>
                 </div>
@@ -39,24 +39,35 @@
                     <div class="col-12 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="contact-form">
                             <div id="success"></div>
-                            <form name="sentMessage" id="contactForm" novalidate="novalidate">
+                            <form action="{% url 'main_app:add_coach' club.id %}" method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+
                                 <div class="control-group">
-                                    <input type="tect" class="form-control" id="name" placeholder=" Name" required="required" data-validation-required-message="Please coach Name" />
-                                    <p class="help-block text-danger"></p>
+                                    <input type="tect" class="form-control" id="name" placeholder=" Coach name" required="required" data-validation-required-message="coach Name" />
+                                </div>
+                                <br> <br>
+                                <div class="control-group">
+                                    <textarea name="bio" rows="8" cols="80" placeholder="Coach Bio"></textarea>
                                 </div>
                                 <div class="control-group">
-                                    <input type="text" class="form-control" id="experience" placeholder="Experience" required="required" data-validation-required-message="Experience" />
-                                    <p class="help-block text-danger"></p>
+                                    <input type="text" class="form-control" id="experience" placeholder="Years of Experience     " required="required" data-validation-required-message="Experience" />
                                 </div>
+
                                 <div class="control-group">
-                                    <input type="text" class="form-control" id="description" placeholder="phone number" required="required" data-validation-required-message="Phone Number" />
-                                    <p class="help-block text-danger"></p>
+                                    <input type="file" name=" Coach image" class="form-control" />
                                 </div>
+                                <br> <br>
+                  
                                 <div class="control-group">
-                                  <textarea name="description" rows="8" cols="80"></textarea>
+                                    <input type="text" class="form-control" id="descri   ption" placeholder="phone number" required="required" data-validation-required-message="Phone Number" />
                                 </div>
+                                <br>
+                                <div class="control-group">
+                                    <input type="tect" class="form-control" id="social_account" placeholder="social account" required="required" data-validation-required-message="social account" />
+                                </div>
+                               <br>
                                 <div>
-                                    <button class="btn" type="submit" id="sendMessageButton">Log In</button>
+                                    <button class="btn" type="submit" value="Create Coach">Add Coach</button>
                                 </div>
                             </form>
                         </div>

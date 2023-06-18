@@ -50,5 +50,7 @@ urlpatterns = [
     path('Subscribers/add-subscriber/', views.add_subscriber, name='add_subscriber'),
     path('payment/', views.payment_page, name='payment_page'),
 
+    path('Clubs/<club_id>/coaches/add/', views.add_coach, name='add_coach')
+
    
 ]

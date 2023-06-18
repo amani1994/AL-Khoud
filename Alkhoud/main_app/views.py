@@ -6,10 +6,13 @@ from .models import Club, Coach, Tournament, Say, Offers
 
 # Create your views here.
 
-def home_page(request:HttpRequest):
+def home_page(request:HttpRequest, club_id):
     all_comment = Say.objects.all()
     all_offers = Offers.objects.all()
-    return render (request,'main_app/home.html', {"all_comment":all_comment, "all_offers":all_offers})
+    club_object = Club.objects.get(id=club_id)
+
+    
+    return render (request,'main_app/home.html', {"all_comment":all_comment, "all_offers":all_offers, "club_object":club_object})
 
 def about(request:HttpRequest):
     return render (request,'main_app/about.html')
@@ -154,7 +157,7 @@ def add_coach(request:HttpRequest, club_id):
         new_coach = Coach(club=club_object, name=request.POST['name'], bio=request.POST['bio'], image=request.FILES['image'],social_account=request.POST['social_account'],experience=request.POST['experience'], phone_number=request.POST['phone_number'])
         new_coach.save()
 
-    return redirect ('main_app:club_details', club_id=club_id) 
+    return redirect ('main_app:add_coach', club_id=club_id) 
 
 
 
@@ -176,9 +179,6 @@ def add_subscriber(request:HttpRequest): #لا تنسين تربطينه بال�
     return render(request,'main_app/add_subscriber.html')
 
 
-def add_tournament(request:HttpRequest):
-
-    return render(request,'main_app/add_tournament.html')
 
 def payment_page(request:HttpRequest):
     return render(request,'main_app/payment.html')

@@ -27,14 +27,14 @@ class Club (models.Model):
     image = models.ImageField(upload_to="images/", default="images/default.jpg")
     is_enrolled = models.BooleanField(default=False) # set to true if the club accept the subscriber.
 
-'''class Offers (models.Model):
+class Say (models.Model):
+    name = models.CharField(max_length=200)
     decription = models.TextField()
-    #city = models.CharField(max_length=64,default='Jeddah', choices=type_choices.choices)
     image = models.ImageField(upload_to="images/", default="images/default.jpg")
 
-
 class Offers (models.Model):
-    club = models.ForeignKey(Club, on_delete=models.CASCADE)
+    name = models.CharField(max_length=200)
+    price = models.IntegerField()
     discount = models.IntegerField()
     description = models.TextField()
 
@@ -52,6 +52,7 @@ class Subscriber(models.Model):
     package = models.ForeignKey(Package, on_delete=models.CASCADE)
 
 class Coach (models.Model):
+    #user = user = models.ForeignKey(User, on_delete=models.CASCADE)
     club = models.ForeignKey(Club, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
     bio = models.TextField()

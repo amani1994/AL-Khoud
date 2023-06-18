@@ -128,7 +128,6 @@ transform: rotate(45deg);
                        <a href="{% url 'main_app:sign_in' %}" class="nav-item nav-link">Sign in</a>
                           <a href="{% url 'main_app:sign_up' %}" class="nav-item nav-link">Sign Up</a>
                           <a href="{% url 'main_app:contact' %}" class="nav-item nav-link">Contact</a>
-                          <a href="{% url 'main_app:comment' %}" class="nav-item nav-link">Leave Comment</a>
 
                    
                     </div>
@@ -565,9 +564,13 @@ transform: rotate(45deg);
                                 </div>
                             </div>
                         </div>
+                        <div class="hero-btn">
+                            <a class="btn" href="{% url 'main_app:comment' %}">Leave comments</a>
+                        </div>
                     </div>
                 </div>
-       
+         
+
 
         
         

@@ -18,16 +18,11 @@ urlpatterns = [
     path('sign_in/',views.sign_in,name='sign_in'),
 
 
-    path('clubs/,',views.clubs,name='clubs'),
-    path('clubs_hail/,',views.clubs_hail,name='clubs_hail'),
-    path('clubs_jeddah/,',views.clubs_jeddah,name='clubs_jeddah'),
-    path('clubs_dammam/,',views.clubs_dammam,name='clubs_dammam'),
+    path('clubs/',views.clubs,name='clubs'),
 
 
     path('club_self/',views.club_self,name='club_self'),
-    path('club_self_jeddah/',views.club_self_jeddah,name='club_self_jeddah'),
-    path('club_self_hail/',views.club_self_hail,name='club_self_hail'),
-    path('club_self_dammam/',views.club_self_dammam,name='club_self_dammam'),
+
 
 
 
@@ -50,7 +45,12 @@ urlpatterns = [
     path('Subscribers/add-subscriber/', views.add_subscriber, name='add_subscriber'),
     path('payment/', views.payment_page, name='payment_page'),
 
+
     path('Clubs/<club_id>/coaches/add/', views.add_coach, name='add_coach')
 
    
+
+    path('Clubs/details/<club_id>', views.club_details, name='club_details'),
+    path("Clubs/<club_id>/review/add/", views.add_review, name="add_review"), 
+
 ]

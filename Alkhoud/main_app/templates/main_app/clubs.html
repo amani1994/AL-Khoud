@@ -40,10 +40,10 @@
                 <div class="row">
                     <div class="col-12">
                         <ul id="class-filter">
-                            <a href="{% url 'main_app:clubs' %}"><li  class="filter-active" data-filter=".filter-1">Riyadh</li></a>
-                            <a href="{% url 'main_app:clubs_jeddah' %}"> <li data-filter=".filter-2">Jeddah</li></a>
-                            <a href="{% url 'main_app:clubs_hail' %}"><li data-filter=".filter-3">Hail</li></a>
-                            <a href="{% url 'main_app:clubs_dammam' %}"><li data-filter=".filter-4">Dammam</li></a>
+                            <a href="{% url 'main_app:clubs' %}?city=Riyadh"><li  class="{% if request.GET.city == 'Riyadh' %}filter-active{% endif%}" data-filter=".filter-1">Riyadh</li></a>
+                            <a href="{% url 'main_app:clubs' %}?city=Jeddah"> <li class="{% if request.GET.city == 'Jeddah' %}filter-active{% endif%}"  data-filter=".filter-2">Jeddah</li></a>
+                            <a href="{% url 'main_app:clubs' %}?city=Hail"><li class="{% if request.GET.city == 'Hail' %}filter-active{% endif%}" data-filter=".filter-3">Hail</li></a>
+                            <a href="{% url 'main_app:clubs' %}?city=Dammam"><li class="{% if request.GET.city == 'Dammam' %}filter-active{% endif%}" data-filter=".filter-4">Dammam</li></a>
                         </ul>
                     </div>
                 </div>
@@ -64,10 +64,12 @@
                                 </div>
                             </div>
                         </div>
+                        
                     </div>
                     {%endfor%}
+
                 </div>
-               
+
 
             </div>
         </div>

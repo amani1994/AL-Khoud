@@ -84,7 +84,11 @@ transform: rotate(45deg);
         <!-- Nav Bar Start -->
         <div class="navbar navbar-expand-lg bg-dark navbar-dark">
             <div class="container-fluid">
+<<<<<<< HEAD
+                <a href="{% url 'main_app:home_page'%}" class="navbar-brand"><img src="{%static 'img/project-Logo.png'%}" alt="logo"></a>
+=======
                 <img style="height:70px; width: 200px; " src="{% static 'img/project-Logo.png' %}" alt="">
+>>>>>>> 813ae291425d1bed10674fe7dcdf3f2323ab6abc
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -125,7 +129,6 @@ transform: rotate(45deg);
                        <a href="{% url 'main_app:sign_in' %}" class="nav-item nav-link">Sign in</a>
                           <a href="{% url 'main_app:sign_up' %}" class="nav-item nav-link">Sign Up</a>
                           <a href="{% url 'main_app:contact' %}" class="nav-item nav-link">Contact</a>
-                          <a href="{% url 'main_app:comment' %}" class="nav-item nav-link">Leave Comment</a>
 
                    
                     </div>
@@ -562,9 +565,13 @@ transform: rotate(45deg);
                                 </div>
                             </div>
                         </div>
+                        <div class="hero-btn">
+                            <a class="btn" href="{% url 'main_app:comment' %}">Leave comments</a>
+                        </div>
                     </div>
                 </div>
-       
+         
+
 
         
         

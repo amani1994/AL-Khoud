@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Club, Say, Offers, Package
+from .models import Club, Say, Offers
 
 # Register your models here.
 
@@ -24,4 +24,4 @@ class PackageAdmin (admin.ModelAdmin):
 admin.site.register(Club, ClubAdmin)
 admin.site.register(Say, SayAdmin)
 admin.site.register(Offers, OffersAdmin)
-admin.site.register(Package, PackageAdmin)
+#admin.site.register(Package, PackageAdmin)

@@ -105,11 +105,13 @@ transform: rotate(45deg);
                           <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Add</a>
                         
                             <div class="dropdown-menu">
-                                <a href="{% url 'main_app:add_coach'%}" class="dropdown-item">Add Coach</a>
+                                {% if request.user.is_authenticate %}
+                                <a href="{% url 'main_app:add_coach' club_object.id %}" class="dropdown-item">Add Coach</a>
                                 <a href="{% url 'main_app:add_package' %}" class="dropdown-item">Add Packages</a>
                                 <a href="{% url 'main_app:add_tournament' %}" class="dropdown-item">Add Tournament</a>
                                 <a href="{% url 'main_app:add_offer' %}" class="dropdown-item">Add Ad</a></li>
                                 <a href="{% url 'main_app:add_club' %}" class="dropdown-item">Add Club</a></li>
+                                {% endif %}
                             </div>
                    
                         </div>

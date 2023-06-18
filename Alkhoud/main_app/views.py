@@ -6,10 +6,12 @@ from .models import Club, Coach, Tournament, Say, Offers
 
 # Create your views here.
 
-def home_page(request:HttpRequest, club_id):
+def home_page(request:HttpRequest):
     all_comment = Say.objects.all()
     all_offers = Offers.objects.all()
-    club_object = Club.objects.get(id=club_id)
+    club_object = None
+    if request.user.is_authenticated:
+        club_object = Club.objects.get(user=request.user)
 
     
     return render (request,'main_app/home.html', {"all_comment":all_comment, "all_offers":all_offers, "club_object":club_object})

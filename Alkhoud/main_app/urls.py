@@ -52,7 +52,5 @@ urlpatterns = [
     path('Tournaments/add-tournament/', views.add_tournament, name='add_tournament'),
     path('payment/', views.payment_page, name='payment_page'),
     path('Clubs/details/<club_id>', views.club_details, name='club_details'),
-    path("Clubs/<club_id>/review/add/", views.add_review, name="add_review"),
-
-   
+    path("Clubs/<club_id>/review/add/", views.add_review, name="add_review"), 
 ]

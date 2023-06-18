@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -16,7 +17,7 @@ from django.db import models
     decription = models.TextField()'''
 
 class Club (models.Model):
-    #category = models.ForeignKey(Category,on_delete=models.CASCADE,default=None)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     type_choices = models.TextChoices("Club Type", ["Gym", "Self_defense ","Equestrian"])
     city_choices = models.TextChoices("Club Type", ["Riyadh", "Jeddah ","Hail", 'Dammam'])
     name = models.CharField(max_length=200)
@@ -35,7 +36,7 @@ class Offers (models.Model):
     price = models.IntegerField()
     discount = models.IntegerField()
     description = models.TextField()
-
+'''
 class Package (models.Model):
     club = models.ForeignKey(Club, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
@@ -68,7 +69,7 @@ class Tournament(models.Model):
 
 
 
-'''class Enroll(models.Model):
+class Enroll(models.Model):
     club = models.ForeignKey(Club, on_delete=models.CASCADE)
     subscriber = models.ForeignKey(Subscriber, on_delete=models.CASCADE)
     is_enrolled = models.BooleanField(default=False)

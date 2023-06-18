@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpRequest
-from .models import Club, Coach, Tournament, Say, Offers
+from .models import Club, Say, Offers
+
 #Review, Subscriber, Contact
 
 
@@ -9,12 +10,10 @@ from .models import Club, Coach, Tournament, Say, Offers
 def home_page(request:HttpRequest):
     all_comment = Say.objects.all()
     all_offers = Offers.objects.all()
-    club_object = None
-    if request.user.is_authenticated:
-        club_object = Club.objects.get(user=request.user)
+
 
     
-    return render (request,'main_app/home.html', {"all_comment":all_comment, "all_offers":all_offers, "club_object":club_object})
+    return render (request,'main_app/home.html', {"all_comment":all_comment, "all_offers":all_offers})
 
 def about(request:HttpRequest):
     return render (request,'main_app/about.html')

@@ -105,28 +105,32 @@ transform: rotate(45deg);
                           <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Add</a>
                         
                             <div class="dropdown-menu">
-                                {% if request.user.is_authenticate %}
-                                <a href="{% url 'main_app:add_coach' club_object.id %}" class="dropdown-item">Add Coach</a>
+                               
                                 <a href="{% url 'main_app:add_package' %}" class="dropdown-item">Add Packages</a>
                                 <a href="{% url 'main_app:add_tournament' %}" class="dropdown-item">Add Tournament</a>
                                 <a href="{% url 'main_app:add_offer' %}" class="dropdown-item">Add Ad</a></li>
                                 <a href="{% url 'main_app:add_club' %}" class="dropdown-item">Add Club</a></li>
-                                {% endif %}
                             </div>
                    
                         </div>
                         <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">my Users</a>
                             <div class="dropdown-menu">
-                            
                             </div>
-                            
                         </div>
+                        {% if request.user.is_authenticated %}
+                        <li class="nav-item ms-3">
+                            <a class="nav-link custom-btn custom-border-btn custom-btn-bg-white btn" href="#">Welcome {{ request.user.username }}</a>
+                            <a  class="nav-link custom-btn custom-border-btn custom-btn-bg-white btn" href="{% url 'accounts:log_out' %}">Log Out</a>
+                        </li>
+
+                        {% else %}
+
                        <a href="{% url 'accounts:sign_in' %}" class="nav-item nav-link">Sign in</a>
                           <a href="{% url 'accounts:sign_up' %}" class="nav-item nav-link">Sign Up</a>
-                          <a href="{% url 'main_app:contact' %}" class="nav-item nav-link">Contact</a>
+                  {%endif%}
 
-                   
+
                     </div>
 
                 </div>

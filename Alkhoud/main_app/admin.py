@@ -15,10 +15,10 @@ class SayAdmin(admin.ModelAdmin):
 class OffersAdmin(admin.ModelAdmin):
     list_display=('name','price','discount','description')
 
-class PackageAdmin (admin.ModelAdmin):
+'''class PackageAdmin (admin.ModelAdmin):
     list_display=('club','name','price','duration')
     list_filter=('club',)
-
+'''
 
 
 admin.site.register(Club, ClubAdmin)

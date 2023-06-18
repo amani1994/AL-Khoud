@@ -10,30 +10,28 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="single-content wow fadeInUp">
-                        <img src="img/pelatis.jpeg" />
+                        <img src="{{club_detail_id.image.url}}" />
                     </div>
                     <div class="single-bio wow fadeInUp">
                         <div class="single-bio-text">
-                            <h3>Clube Name</h3>
+                            <h3>{{club_detail_id.name}}</h3>
                             <p>
                                 Lorem ipsum dolor sit amet elit. Integer lorem augue purus mollis sapien, non eros leo in nunc. Donec a nulla vel turpis tempor ac vel justo. In hac platea dictumst.
                             </p>
                                 <h3>Description</h3>
                                 <p>
-                                    Lorem ipsum dolor sit amet elit. Integer lorem augue purus mollis sapien, non eros leo in nunc. Donec a nulla vel turpis tempor ac vel justo. In hac platea dictumst.
+                                    {{club_detail_id.decription}}
                                 </p>
                                 <h3>location</h3>
                                 <p>
-                                    Lorem ipsum dolor sit amet elit. Integer lorem augue purus mollis sapien, non eros leo in nunc. Donec a nulla vel turpis tempor ac vel justo. In hac platea dictumst.
+                                    {{club_detail_id.city}}
                                 </p>
                                 <h3>Time Work</h3>
                                 <p>
-                                    Lorem ipsum dolor sit amet elit. Integer lorem augue purus mollis sapien, non eros leo in nunc. Donec a nulla vel turpis tempor ac vel justo. In hac platea dictumst.
+
                                 </p>
-                                <h3>Awards</h3>
-                                <p>
-                                    Lorem ipsum dolor sit amet elit. Integer lorem augue purus mollis sapien, non eros leo in nunc. Donec a nulla vel turpis tempor ac vel justo. In hac platea dictumst.
-                                </p>
+                                <h3>Sport Type</h3>
+                                <p>{{club_detail_id.type}}</p>
                         </div>
                     </div>
 
@@ -145,12 +143,13 @@
                                 <h2>Discounts and Offers</h2>
                             </div>
                             <div class="row">
+                                {% for offer in all_offers%}
                                 <div class="col-md-4 wow fadeInUp" data-wow-delay="0.3s">
                                     <div class="price-item featured-item">
                                         <div class="price-header">
                                             <div class="price-status">
                                                 <div class="ribbon">
-                                                <span>70%</span>
+                                                <span>{{offer.price}}%</span>
                                             </div>
                                             </div>
                                             <div class="price-title">
@@ -177,6 +176,7 @@
 
                             </div>
                         </div>
+                        {%endfor%}
                     </div>
                     <!-- Price End -->
 

@@ -56,7 +56,7 @@
                                 <a href="#"><img src="{{club.image.url}}" alt="Image"></a>
                             </div>
                             <div class="class-text">
-                              <a href="single.html"> <h2>{{club.name}}</h2></a>
+                              <a href="{% url 'main_app:club_details' club.id%}"> <h2>{{club.name}}</h2></a>
                               <a href="single.html"> <h2>{{club.city}}</h2></a>
                                 <div class="class-meta">
                                     <p><i class="far fa-calendar-alt"></i>Sun, Tue, Thu</p>

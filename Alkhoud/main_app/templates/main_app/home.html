@@ -108,23 +108,30 @@ transform: rotate(45deg);
                                
                                 <a href="{% url 'main_app:add_package' %}" class="dropdown-item">Add Packages</a>
                                 <a href="{% url 'main_app:add_tournament' %}" class="dropdown-item">Add Tournament</a>
-                                <a href="{% url 'main_app:add_offer' %}" class="dropdown-item">Add Ad</a></li>
+                                <a href="{% url 'main_app:add_offer' %}" class="dropdown-item">Add Offer</a></li>
                                 <a href="{% url 'main_app:add_club' %}" class="dropdown-item">Add Club</a></li>
                             </div>
                    
                         </div>
                         <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">my Users</a>
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">my Users</a>
                             <div class="dropdown-menu">
+                              <a href="mytournament.html" class="dropdown-item">My Tournament</a>
+                              <a href="clubeSubscriper.html" class="dropdown-item">My subscriber</a>
+                              <a href="tournamentSubscriper.html" class="dropdown-item">My subscriber Tournament</a>
+                              <a href="clube_coach.html" class="dropdown-item">My Coaches</a>
+                              <a href="clube_packages.html" class="dropdown-item">My Packages</a>
+                              <a href="clube_ad.html" class="dropdown-item">My Offers</a>
                             </div>
                         </div>
                         {% if request.user.is_authenticated %}
                         <li class="nav-item ms-3">
-                            <a class="nav-link custom-btn custom-border-btn custom-btn-bg-white btn" href="#">Welcome {{ request.user.username }}</a>
-                            <a  class="nav-link custom-btn custom-border-btn custom-btn-bg-white btn" href="{% url 'accounts:log_out' %}">Log Out</a>
+                            <a href="#" class="nav-item nav-link">Welcome {{ request.user.username }}</a>
+                            <a href="{% url 'accounts:log_out' %}" class="nav-item nav-link">Log Out</a>
                         </li>
 
-                        {% else %}
+                        {% else %}      <a href="{% url 'main_app:club_home' %}" class="nav-item nav-link">Club</a>
+
 
                        <a href="{% url 'accounts:sign_in' %}" class="nav-item nav-link">Sign in</a>
                           <a href="{% url 'accounts:sign_up' %}" class="nav-item nav-link">Sign Up</a>

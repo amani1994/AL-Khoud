@@ -48,9 +48,4 @@ urlpatterns = [
 
     path('Clubs/<club_id>/coaches/add/', views.add_coach, name='add_coach')
 
-   
-
-    path('Clubs/details/<club_id>', views.club_details, name='club_details'),
-    path("Clubs/<club_id>/review/add/", views.add_review, name="add_review"), 
-
 ]

@@ -23,9 +23,7 @@ class Club (models.Model):
     type = models.CharField(max_length=200 , default=None) # نغيرها إلى تشويس
     decription = models.TextField()
     city = models.CharField(max_length=200, default="Riyadh")
-    discrit = models.CharField(max_length=200, default=None)
     image = models.ImageField(upload_to="images/", default="images/default.jpg")
-    is_enrolled = models.BooleanField(default=False) # set to true if the club accept the subscriber.
 
 class Say (models.Model):
     name = models.CharField(max_length=200)

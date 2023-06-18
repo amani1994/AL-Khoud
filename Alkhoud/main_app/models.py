@@ -22,7 +22,7 @@ class Profile(models.Model):
 class Club (models.Model):
     #category = models.ForeignKey(Category,on_delete=models.CASCADE,default=None)
     type_choices = models.TextChoices("Club Type", ["Gym", "Self_defense ","Equestrian"])
-    #city_choices = models.TextChoices("Club Type", ["Riyadh", "Jeddah ","Hail", 'Dammam'])
+    city_choices = models.TextChoices("Club Type", ["Riyadh", "Jeddah ","Hail", 'Dammam'])
     name = models.CharField(max_length=200)
 <<<<<<< HEAD
     type = models.CharField(max_length=200 , default=None) # نغيرها إلى تشويس
@@ -35,9 +35,22 @@ class Club (models.Model):
 '''class Offers (models.Model):
 =======
     decription = models.TextField()
-    #city = models.CharField(max_length=64,default='Jeddah', choices=type_choices.choices)
+    city = models.CharField(max_length=64,default='Jeddah', choices=type_choices.choices)
     image = models.ImageField(upload_to="images/", default="images/default.jpg")
     type = models.CharField(max_length=64,default='Equestrian', choices=type_choices.choices)
+
+
+
+class Say (models.Model):
+    name = models.CharField(max_length=200)
+    decription = models.TextField()
+    image = models.ImageField(upload_to="images/", default="images/default.jpg")
+
+class Offers (models.Model):
+    name = models.CharField(max_length=200)
+    price = models.IntegerField()
+    discount = models.IntegerField()
+    description = models.TextField()
 
 '''
 class Offers (models.Model):

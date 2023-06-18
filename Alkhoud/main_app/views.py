@@ -33,11 +33,7 @@ def comment(request:HttpRequest):
 def service(request:HttpRequest):
     return render (request,'main_app/service.html')
 
-def sign_up(request:HttpRequest):
-    return render (request,'main_app/sign_up.html')
 
-def sign_in(request:HttpRequest):
-    return render (request,'main_app/sign_in.html')
 
 def clubs(request:HttpRequest):
     if "city" in request.GET:

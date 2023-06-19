@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpRequest
-from .models import Club, Say, Offers, Package
+from .models import Club, Say, Offers, Package, Comment
 
 #Review, Subscriber, Contact
 
@@ -178,17 +178,6 @@ def payment_page(request:HttpRequest):
 
 
 
-def club_details (request:HttpRequest, club_id):
-    club = Club.objects.get(id=club_id)
-    
-    try:
-        club = Club.objects.get(id=club_id)
-        all_offers = Offers.objects.filter(club=club)
-        packages = Package.objects.filter(club=club)
-    except:
-        return render(request, 'main_app/not_found.html')
-
-    return render(request, 'main_app/club_details.html', {"club" : club, "all_offers":all_offers, "packages":packages})
 
 
 def add_offer(request:HttpRequest, club_id):
@@ -225,7 +214,28 @@ def buy (request:HttpRequest):
 
 
 
+def club_details (request:HttpRequest, club_id):
+    club = Club.objects.get(id=club_id)
 
+    
+    try:
+        club = Club.objects.get(id=club_id)
+        all_offers = Offers.objects.filter(club=club)
+        packages = Package.objects.filter(club=club)
+        view_comment = Comment.objects.filter(club=club)
+        
+    except:
+        return render(request, 'main_app/not_found.html')
+
+    return render(request, 'main_app/club_details.html', {"club" : club, "all_offers":all_offers, "packages":packages, "view_comment":view_comment})
+
+def leave_comment(request:HttpRequest, club_id):
+    if request.method == "POST":
+            club_object = Club.objects.get(id=club_id)
+            add_comment = Comment(club = club_object, name = request.POST["name"], message = request.POST["message"])
+            add_comment.save() 
+            return redirect ('main_app:club_details', club_id = club_id)
+    return render (request,'main_app/clubs.html')
 
 
 

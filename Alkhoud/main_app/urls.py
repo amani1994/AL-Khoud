@@ -56,6 +56,10 @@ urlpatterns = [
     path('add_offer/<club_id>', views.add_offer, name='add_offer'),
     path("Clubs/<club_id>/Packages/delete/<pack_id>/", views.delete_package, name="delete_package"),
     path("Clubs/<club_id>/Offers/delete/<offer_id>/", views.delete_offer, name="delete_offer"),
+    path("leave_comment/<club_id>", views.leave_comment, name="leave_comment"),
+
+
+
 
 
 ]

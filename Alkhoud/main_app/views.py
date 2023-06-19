@@ -56,26 +56,14 @@ def club_self(request:HttpRequest):
     
 
 
-
-
-
-
-
-
-
-
 def club_equestrian(request:HttpRequest):
-    all_club = Club.objects.filter(type='Equestrian',  city = 'Riyadh')
+    if "city" in request.GET:
+        all_club = Club.objects.filter(type='Equestrian' , city = request.GET.get("city", "Riyadh"))
+    else:
+        all_club = Club.objects.filter(type='Equestrian')
+
     return render (request, "main_app/club_equestrian.html", {"all_club" : all_club})
-def club_equestrian_jeddah(request:HttpRequest):
-    all_club = Club.objects.filter(type='Equestrian',  city = 'Jeddah')
-    return render (request, "main_app/club_equestrian_jeddah.html", {"all_club" : all_club})
-def club_equestrian_hail(request:HttpRequest):
-    all_club = Club.objects.filter(type='Equestrian',  city = 'Hail')
-    return render (request, "main_app/club_equestrian_hail.html", {"all_club" : all_club})
-def club_equestrian_dammam(request:HttpRequest):
-    all_club = Club.objects.filter(type='Equestrian',  city = 'Dammam')
-    return render (request, "main_app/club_equestrian_dammam.html", {"all_club" : all_club})
+
 
 
 
@@ -116,11 +104,11 @@ def add_club(request:HttpRequest):
             if request.POST["type"] == "Gym" and request.POST["city"] == 'Riyadh':
                 return redirect("main_app:clubs")
             elif request.POST["type"] == "Gym" and request.POST["city"] == 'Hail':
-                return redirect("main_app:clubs_hail")
+                return redirect("main_app:clubs")
             elif request.POST["type"] == "Gym" and request.POST["city"] == 'Jeddah':
-                return redirect("main_app:clubs_jeddah")
+                return redirect("main_app:clubs")
             elif request.POST["type"] == "Gym" and request.POST["city"] == 'Dammam':
-                return redirect("main_app:clubs_dammam")  # خلصنا منها 
+                return redirect("main_app:clubs")  # خلصنا منها 
             
 
             elif request.POST["type"] == "Self_defense" and request.POST["city"] == 'Riyadh':
@@ -135,11 +123,11 @@ def add_club(request:HttpRequest):
             elif request.POST["type"] == "Equestrian" and request.POST["city"] == 'Riyadh':
                 return redirect("main_app:club_equestrian")
             elif request.POST["type"] == "Equestrian" and request.POST["city"] == 'Hail':
-                return redirect("main_app:club_equestrian_hail")
+                return redirect("main_app:club_equestrian")
             elif request.POST["type"] == "Equestrian" and request.POST["city"] == 'Jeddah':
-                return redirect("main_app:club_equestrian_jeddah")
+                return redirect("main_app:club_equestrian")
             elif request.POST["type"] == "Equestrian" and request.POST["city"] == 'Dammam':
-                return redirect("main_app:club_equestrian_dammam")# خلصنا منها 
+                return redirect("main_app:club_equestrian")# خلصنا منها 
             
     return render (request, "main_app/add_club.html")
 
@@ -223,6 +211,7 @@ def club_details (request:HttpRequest, club_id):
         all_offers = Offers.objects.filter(club=club)
         packages = Package.objects.filter(club=club)
         view_comment = Comment.objects.filter(club=club)
+       
         
     except:
         return render(request, 'main_app/not_found.html')
@@ -234,7 +223,10 @@ def leave_comment(request:HttpRequest, club_id):
             club_object = Club.objects.get(id=club_id)
             add_comment = Comment(club = club_object, name = request.POST["name"], message = request.POST["message"])
             add_comment.save() 
-            return redirect ('main_app:club_details', club_id = club_id)
+            for comments in Comment:   
+                calculat = comments + comments
+                x = print(calculat)
+            return redirect ('main_app:club_details', club_id = club_id, x = x)
     return render (request,'main_app/clubs.html')
 
 

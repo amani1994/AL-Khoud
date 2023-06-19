@@ -27,9 +27,7 @@ urlpatterns = [
 
 
     path('club_equestrian/',views.club_equestrian,name='club_equestrian'),
-    path('club_equestrian_jeddah/',views.club_equestrian_jeddah,name='club_equestrian_jeddah'),
-    path('club_equestrian_hail/',views.club_equestrian_hail,name='club_equestrian_hail'),
-    path('club_equestrian_dammam/',views.club_equestrian_dammam,name='club_equestrian_dammam'),
+  
 
 
     path('club_home/',views.club_home,name='club_home'),

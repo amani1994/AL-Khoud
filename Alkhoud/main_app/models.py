@@ -51,6 +51,7 @@ class Comment(models.Model):
     club = models.ForeignKey(Club,on_delete=models.CASCADE, default=1)
     name = models.CharField(max_length=100)
     message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
 
 
 

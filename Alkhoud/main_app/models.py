@@ -32,13 +32,15 @@ class Say (models.Model):
     image = models.ImageField(upload_to="images/", default="images/default.jpg")
 
 class Offers (models.Model):
+    club = models.ForeignKey(Club,on_delete=models.CASCADE, default=1)
     name = models.CharField(max_length=200)
     price = models.IntegerField()
     discount = models.IntegerField()
     description = models.TextField()
 
 class Package (models.Model):
-    type = models.CharField(max_length=200)
+    club = models.ForeignKey(Club,on_delete=models.CASCADE, default=1)
+    package_type = models.CharField(max_length=200)
     price = models.FloatField()
     description = models.TextField()
     duration = models.CharField(max_length=200)

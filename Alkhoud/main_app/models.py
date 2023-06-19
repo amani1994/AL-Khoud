@@ -36,13 +36,14 @@ class Offers (models.Model):
     price = models.IntegerField()
     discount = models.IntegerField()
     description = models.TextField()
-'''
+
 class Package (models.Model):
-    club = models.ForeignKey(Club, on_delete=models.CASCADE)
-    name = models.CharField(max_length=200)
+    type = models.CharField(max_length=200)
     price = models.FloatField()
-    details = models.TextField()
+    description = models.TextField()
     duration = models.CharField(max_length=200)
+
+'''
 
 class Subscriber(models.Model):
     club = models.ForeignKey(Club, on_delete=models.CASCADE)

@@ -33,13 +33,11 @@ urlpatterns = [
 
 
     path('club_home/',views.club_home,name='club_home'),
-    path('add_package/',views.add_package,name='add_package'),
     path('Clubs/<club_id>/coaches/add',views.add_coach,name='add_coach'),
     path('add_tournament/',views.add_tournament,name='add_tournament'),
     path('add_club/',views.add_club,name='add_club'),
     path('club_ad/',views.club_ad,name='club_ad'),
     path('add_offer', views.add_offer, name='add_offer'),
-    path('Packges/add-package/', views.add_package, name='add_package'),
     path('Subscribers/add-subscriber/', views.add_subscriber, name='add_subscriber'),
     path('payment/', views.payment_page, name='payment_page'),
 
@@ -52,5 +50,11 @@ urlpatterns = [
    
 
     path('Clubs/club_details/<club_id>', views.club_details, name='club_details'),
+    path('buy/', views.buy, name='buy'),
+   # path('add_package/', views.add_package, name='add_package'),
+    path('Clubs/<club_id>/add_package/add/', views.add_package, name='add_package'),
+
+
+
 
 ]

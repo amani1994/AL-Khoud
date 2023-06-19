@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpRequest
-from .models import Club, Say, Offers
+from .models import Club, Say, Offers, Package
 
 #Review, Subscriber, Contact
 
@@ -8,6 +8,7 @@ from .models import Club, Say, Offers
 # Create your views here.
 
 def home_page(request:HttpRequest):
+
     all_comment = Say.objects.all()
     all_offers = Offers.objects.all()
 
@@ -160,9 +161,17 @@ def add_coach(request:HttpRequest, club_id):
 
   
 
-def add_package(request:HttpRequest):
-    '''this method add package in each club'''
-    return render(request,'main_app/add_package.html')
+def add_package(request:HttpRequest, club_id):
+    if request.method == "POST":
+            package = Package(type=request.POST["type"], description=request.POST["description"],price=request.POST["price"],duration=request.POST["duration"])
+            package.save() 
+            return redirect ('main_app:club_details', club_id = club_id )
+    return render (request,'main_app/add_package.html')
+
+
+
+
+
 
 def add_subscriber(request:HttpRequest): #لا تنسين تربطينه باليوزر
     '''this method add a subscriber to the selected club'''
@@ -179,12 +188,13 @@ def payment_page(request:HttpRequest):
 
 def club_details (request:HttpRequest, club_id):
     all_offers = Offers.objects.all()
+    package = Package.objects.all()
     try:
         club_detail_id = Club.objects.get(id=club_id)
     except:
         return render(request, 'main_app/not_found.html')
 
-    return render(request, 'main_app/club_details.html', {"club_detail_id" : club_detail_id, "all_offers":all_offers})
+    return render(request, 'main_app/club_details.html', {"club_detail_id" : club_detail_id, "all_offers":all_offers, "package":package})
 
 
 def add_offer(request:HttpRequest):
@@ -195,6 +205,10 @@ def add_offer(request:HttpRequest):
     return render (request,'main_app/add_ad.html')
 
 
+def buy (request:HttpRequest):
+    all_offers = Offers.objects.all()
+
+    return render(request, 'main_app/buy.html', {"all_offers":all_offers})
 
 
 

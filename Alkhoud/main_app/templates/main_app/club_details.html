@@ -37,6 +37,7 @@
 
 
                     <!-- Price Start -->
+
                     <div class="price">
                         <div class="container">
                             <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
@@ -48,7 +49,7 @@
                                     <div class="price-item">
                                         <div class="price-header">
                                             <div class="price-title">
-                                                <h2>Basic</h2>
+                                                <h2>{{package.type}}</h2>
                                             </div>
                                             <div class="price-prices">
                                                 <h2><small>$</small>49<span>/ mo</span></h2>
@@ -168,7 +169,7 @@
                                         </div>
                                         <div class="price-footer">
                                             <div class="price-action">
-                                                <a class="btn" href="">Join Now</a>
+                                                <a class="btn" href="{% url 'main_app:buy'  %}">Join Now</a>
                                             </div>
                                         </div>
                                     </div>

@@ -41,7 +41,7 @@ class Offers (models.Model):
 class Package (models.Model):
     club = models.ForeignKey(Club,on_delete=models.CASCADE, default=1)
     package_type = models.CharField(max_length=200)
-    price = models.FloatField()
+    price = models.IntegerField()
     description = models.TextField()
     duration = models.CharField(max_length=200)
 

@@ -51,12 +51,11 @@ urlpatterns = [
     path('Clubs/club_details/<club_id>', views.club_details, name='club_details'),
     path('buy/', views.buy, name='buy'),
 
-    
+
     path('add_package/<club_id>', views.add_package, name='add_package'),
     path('add_offer/<club_id>', views.add_offer, name='add_offer'),
-
-
-
+    path("Clubs/<club_id>/Packages/delete/<pack_id>/", views.delete_package, name="delete_package"),
+    path("Clubs/<club_id>/Offers/delete/<offer_id>/", views.delete_offer, name="delete_offer"),
 
 
 ]

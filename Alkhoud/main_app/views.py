@@ -145,15 +145,15 @@ def add_club(request:HttpRequest):
             
     return render (request, "main_app/add_club.html")
 
-def add_coach(request:HttpRequest, club_id):
-    '''every club can add a new coach'''
+# def add_coach(request:HttpRequest, club_id):
+#     '''every club can add a new coach'''
 
-    if request.method == 'POST':
-        club_object = Club.objects.get(id=club_id)
-        new_coach = Coach(club=club_object, name=request.POST['name'], bio=request.POST['bio'], image=request.FILES['image'],social_account=request.POST['social_account'],experience=request.POST['experience'], phone_number=request.POST['phone_number'])
-        new_coach.save()
+#     if request.method == 'POST':
+#         club_object = Club.objects.get(id=club_id)
+#         new_coach = Coach(club=club_object, name=request.POST['name'], bio=request.POST['bio'], image=request.FILES['image'],social_account=request.POST['social_account'],experience=request.POST['experience'], phone_number=request.POST['phone_number'])
+#         new_coach.save()
 
-    return redirect ('main_app:add_coach', club_id=club_id) 
+#     return redirect ('main_app:add_coach', club_id=club_id) 
 
 
 

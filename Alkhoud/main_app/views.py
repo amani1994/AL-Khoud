@@ -83,8 +83,6 @@ def club_equestrian_dammam(request:HttpRequest):
 def club_home(request:HttpRequest):
     return render (request,'main_app/club_home.html')
 
-def add_package(request:HttpRequest):
-    return render (request,'main_app/add_package.html')
 
 def add_tournament(request:HttpRequest, club_id):
     '''every club can add a new coach'''
@@ -161,12 +159,6 @@ def add_club(request:HttpRequest):
 
   
 
-def add_package(request:HttpRequest, club_id):
-    if request.method == "POST":
-            package = Package(type=request.POST["type"], description=request.POST["description"],price=request.POST["price"],duration=request.POST["duration"])
-            package.save() 
-            return redirect ('main_app:club_details', club_id = club_id )
-    return render (request,'main_app/add_package.html')
 
 
 
@@ -187,22 +179,33 @@ def payment_page(request:HttpRequest):
 
 
 def club_details (request:HttpRequest, club_id):
-    all_offers = Offers.objects.all()
-    package = Package.objects.all()
+    club = Club.objects.get(id=club_id)
+    
     try:
-        club_detail_id = Club.objects.get(id=club_id)
+        club = Club.objects.get(id=club_id)
+        all_offers = Offers.objects.filter(club=club)
+        packages = Package.objects.filter(club=club)
     except:
         return render(request, 'main_app/not_found.html')
 
-    return render(request, 'main_app/club_details.html', {"club_detail_id" : club_detail_id, "all_offers":all_offers, "package":package})
+    return render(request, 'main_app/club_details.html', {"club" : club, "all_offers":all_offers, "packages":packages})
 
 
-def add_offer(request:HttpRequest):
+def add_offer(request:HttpRequest, club_id):
+    club = Club.objects.get(id=club_id)
     if request.method == "POST":
-            all_offers = Offers(name = request.POST["name"], price = request.POST['price'], discount = request.POST['discount'],description = request.POST["description"])
+            all_offers = Offers(club=club,name = request.POST["name"], price = request.POST['price'], discount = request.POST['discount'],description = request.POST["description"])
             all_offers.save() 
-            return redirect ('main_app:home_page')
+            return redirect ('main_app:club_details', club_id = club_id)
     return render (request,'main_app/add_ad.html')
+
+def add_package(request:HttpRequest, club_id):
+    club = Club.objects.get(id=club_id)
+    if request.method == "POST":
+            package = Package(club=club,package_type=request.POST["package_type"], description=request.POST["description"],price=request.POST["price"],duration=request.POST["duration"])
+            package.save()   
+            return redirect ('main_app:club_details', club_id = club_id)
+    return render (request,'main_app/add_package.html')
 
 
 def buy (request:HttpRequest):

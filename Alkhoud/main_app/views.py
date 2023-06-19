@@ -156,12 +156,7 @@ def add_coach(request:HttpRequest, club_id):
 
 
 
-def add_offer(request:HttpRequest):
-    if request.method == "POST":
-            all_offers = Offers(name = request.POST["name"], price = request.POST['price'], discount = request.POST['discount'],description = request.POST["description"])
-            all_offers.save() 
-            return redirect ('main_app:home_page')
-    return render (request,'main_app/add_ad.html')
+
 
   
 
@@ -178,14 +173,41 @@ def add_subscriber(request:HttpRequest): #لا تنسين تربطينه بال�
 def payment_page(request:HttpRequest):
     return render(request,'main_app/payment.html')
 
+
+
+
+
 def club_details (request:HttpRequest, club_id):
+    all_offers = Offers.objects.all()
     try:
-        club = Club.objects.get(id=club_id)
-        coaches = Coach.objects.filter(club=club)
+        club_detail_id = Club.objects.get(id=club_id)
     except:
         return render(request, 'main_app/not_found.html')
 
-    return render(request, 'main_app/club_detail.html', {"club" : club, "coaches" : coaches})
+    return render(request, 'main_app/club_details.html', {"club_detail_id" : club_detail_id, "all_offers":all_offers})
+
+
+def add_offer(request:HttpRequest):
+    if request.method == "POST":
+            all_offers = Offers(name = request.POST["name"], price = request.POST['price'], discount = request.POST['discount'],description = request.POST["description"])
+            all_offers.save() 
+            return redirect ('main_app:home_page')
+    return render (request,'main_app/add_ad.html')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 '''def add_review(request:HttpRequest, club_id): #sub_id
 

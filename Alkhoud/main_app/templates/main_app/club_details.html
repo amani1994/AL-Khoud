@@ -35,16 +35,16 @@
                         </div>
                     </div>
 
-
+              
         <!-- Packages -->
-        <div class="price-action">
-            <a class="btn" href="{% url 'main_app:add_package' club.id %}">Add Package</a>
-        </div>
+     
+       
                     <div class="price">
                         <div class="container">
                             <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
                                 <p>Club Package</p>
                                 <h2>Club Packages Plan</h2>
+                                <a href="{% url 'main_app:add_package' club.id %}"><p>Add Package</p></a>
                             </div>
                             <div class="row">
                                 {%for pack in packages%}
@@ -55,14 +55,15 @@
                                                 <h2>{{pack.package_type}}</h2>
                                             </div>
                                             <div class="price-prices">
-                                                <h2><small>$</small>49<span>/ mo</span></h2>
+                                                <h2><small>$</small>{{pack.price}}<span></span></h2>
+                                                <h2><span>{{pack.duration}}/ months</span></h2>
                                             </div>
                                         </div>
                                         <div class="price-body">
                                             <div class="price-description">
                                                 <ul>
-                                                    <li>Personal Trainer</li>
-                                                    <li>Special Class</li>
+                                                    <li>{{pack.description | slice:18}}</li>
+                                                    <li>{{pack.description | slice:"18:20" }}</li>
                                                     <li>Free Tutorials</li>
                                                     <li>Group Training</li>
                                                 </ul>
@@ -71,8 +72,10 @@
                                         <div class="price-footer">
                                             <div class="price-action">
                                                 <a class="btn" href="buy.html">Join Now</a>
+                                                <a class="btn" href="{% url 'main_app:delete_package' club.id pack.id %}">Delete </a>
                                             </div>
                                         </div>
+                      
                                         </div>
                                 </div>
                                 {%endfor%}
@@ -80,17 +83,14 @@
                         </div>
                     </div>
 
-
-
         <!-- Offers -->
-        <div class="price-action">
-            <a class="btn" href="{% url 'main_app:add_offer' club.id %}">Add Offer</a>
-        </div> 
                     <div class="price">
                         <div class="container">
                             <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
-                                <p>Club Package</p>
+                               <a href=""><p>Club Offers</p></a> 
                                 <h2>Discounts and Offers</h2>
+                                <a href="{% url 'main_app:add_offer' club.id %}"><p>Add Offer</p></a> 
+                        
                             </div>
                             <div class="row">
                                 {% for offer in all_offers%}
@@ -120,9 +120,11 @@
                                         <div class="price-footer">
                                             <div class="price-action">
                                                 <a class="btn" href="{% url 'main_app:buy'  %}">Join Now</a>
+                                                <a class="btn" href="{% url 'main_app:delete_offer' club.id offer.id %}">Delete </a>
                                             </div>
                                         </div>
-                                    </div>
+                                       
+                                        </div>
                                 </div>
                                 {%endfor%}
                             </div>

@@ -207,6 +207,16 @@ def add_package(request:HttpRequest, club_id):
             return redirect ('main_app:club_details', club_id = club_id)
     return render (request,'main_app/add_package.html')
 
+def delete_package(request:HttpRequest, pack_id, club_id):
+    package= Package.objects.get(id= pack_id)
+    package.delete()
+    return redirect("main_app:club_details", club_id = club_id)
+
+def delete_offer(request:HttpRequest, offer_id, club_id):
+    offer= Offers.objects.get(id= offer_id)
+    offer.delete()
+    return redirect("main_app:club_details", club_id = club_id)
+
 
 def buy (request:HttpRequest):
     all_offers = Offers.objects.all()

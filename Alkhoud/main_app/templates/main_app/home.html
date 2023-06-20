@@ -3,7 +3,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>{%block title%}{%endblock%}</title>
+        <title>{%block title%}AL-Khoud{%endblock%}</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="Free Website Template" name="keywords">
         <meta content="Free Website Template" name="description">
@@ -134,7 +134,7 @@ right: -46px !important;
                        <a href="{% url 'accounts:sign_in' %}" class="nav-item nav-link">Sign in</a>
                           <a href="{% url 'accounts:sign_up' %}" class="nav-item nav-link">Sign Up</a>
                         {%endif%}
-                  <a href="{% url 'main_app:contact_us' %}" class="nav-item nav-link">contact_us</a>
+                  <a href="{% url 'main_app:contact_us' %}" class="nav-item nav-link">contact us</a>
                     </div>
                 </div>
             </div>
@@ -305,14 +305,14 @@ right: -46px !important;
                                   <div class="price-body">
                                       <div class="price-description">
                                           <ul>
-                                              <li>{{offer.description}}</li>
-                                              <li>Group Training</li>
+                                            <li>{{offer.description | slice:14}}</li>
+                                            <li>{{offer.description | slice:"14:15" }}</li>
                                           </ul>
                                       </div>
                                   </div>
                                   <div class="price-footer">
                                       <div class="price-action">
-                                          <a class="btn" href="">Join Now</a>
+                                          <a class="btn" href="{% url 'main_app:club_details' offer.club.id %} ">Join Now</a>
                                       </div>
                                   </div>
                                 </div>
@@ -335,19 +335,18 @@ right: -46px !important;
                                 <div class="blog-item">
                                     {% for tournament in tournament%}
                                     <div class="blog-img">
-                                        <img src="img/blog-1.jpg" alt="Blog">
+                                        <img src="{{tournament.image.url}}" alt="Blog">
                                     </div>
                                     <div class="blog-text">
                                         <h2>{{tournament.tournament_name}}</h2>
                                         <div class="blog-meta">
-                                            <p><i class="far fa-list-alt"></i>Body Fitness</p>
-                                            <p><i class="far fa-calendar-alt"></i>01-Jan-2045</p>
-                                            <p><i class="far fa-comments"></i>5</p>
+                                            <p><i class="far fa-list-alt"></i>{{tournament.club.name}}</p>
+                                            <p><i class="far fa-calendar-alt"></i>{{tournament.start_date}}</p>
+                                            <p><i class="far fa-calendar-alt"></i>{{tournament.end_date}}</p>
                                         </div>
                                         <p>
-                                            Lorem ipsum dolor sit amet elit. Neca pretim miura bitur facili ornare velit non vulpte liqum metus tortor
-                                        </p>
-                                        <a class="btn" href="">Read More <i class="fa fa-angle-right"></i></a>
+                                            {{tournament.description}}                                        </p>
+                                        <a class="btn" href="{% url 'main_app:club_details' tournament.club.id %} ">Read More <i class="fa fa-angle-right"></i></a>
                                     </div>
                                     {%endfor%}
                                 </div>

@@ -12,11 +12,12 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12">
-                        <h2>Class</h2>
+                        <h2>{{club.name}} Details</h2>
                     </div>
                     <div class="col-12">
                         <a href="">Home</a>
-                        <a href="">Class</a>
+                        <a href="">Clubs</a>
+                        <a href="">{{club.name}} Details</a>
                     </div>
                 </div>
             </div>
@@ -140,7 +141,6 @@
                                                 <ul>
                                                     <li>{{offer.description | slice:14}}</li>
                                                     <li>{{offer.description | slice:"14:15" }}</li>
-                                                
                                                 </ul>
                                             </div>
                                         </div>
@@ -172,17 +172,17 @@
                                     <div class="blog-item">
                                         {% for tournament in tournaments%}
                                         <div class="blog-img">
-                                            <img src="img/blog-1.jpg" alt="Blog">
+                                            <img src="{{tournament.image.url}}" alt="Blog">
                                         </div>
                                         <div class="blog-text">
                                             <h2>{{tournament.tournament_name}}</h2>
                                             <div class="blog-meta">
-                                                <p><i class="far fa-list-alt"></i>Body Fitness</p>
-                                                <p><i class="far fa-calendar-alt"></i>01-Jan-2045</p>
-                                                <p><i class="far fa-comments"></i>5</p>
+                                                <p><i class="far fa-list-alt"></i>{{tournament.club.name}}</p>
+                                                <p><i class="far fa-calendar-alt"></i>{{tournament.start_date}}</p>
+                                                <p><i class="far fa-calendar-alt"></i>{{tournament.end_date}}</p>
                                             </div>
                                             <p>
-                                                Lorem ipsum dolor sit amet elit. Neca pretim miura bitur facili ornare velit non vulpte liqum metus tortor
+                                                {{tournament.description}}
                                             </p>
                                             <a class="btn" href="">Read More <i class="fa fa-angle-right"></i></a>
                                         </div>
@@ -204,16 +204,16 @@
                         <h2> Comments</h2>
                         <ul class="comment-list">
                             <li class="comment-item">
-                                {% for commen in view_comment %} 
+                                {% for comment in comments %} 
                                 <div class="comment-body">
                                     <div class="comment-img">
                                         <img src="{%static 'img/project-Logo.png'%}" />
                                     </div>
                                     <div class="comment-text">
-                                        <h3><a href="">{{commen.name}} {{commen.x}}</a></h3>
-                                        <span>{{commen.created_at}} at 12:00pm</span>
+                                        <h3><a href="">{{comment.name}} </a></h3>
+                                        <span>{{comment.created_at}}</span>
                                         <p>
-                                            {{commen.message}}
+                                            {{comment.message}}
                                         </p>
                                         <a class="btn" href="">Reply</a>
                                     </div>

@@ -77,6 +77,7 @@ class Coach (models.Model):
 class Tournament(models.Model):
     club = models.ForeignKey(Club, on_delete=models.CASCADE)
     tournament_name = models.CharField(max_length=200)
+    description = models.TextField(default="1")
     start_date = models.DateField()
     end_date = models.DateField()
     image = models.ImageField(upload_to="images/", default="images/default.jpg")

@@ -8,7 +8,6 @@ urlpatterns = [
     path('search/',views.search_page,name='search_page'),
     path('Clubs/add-club/', views.add_club, name='add_club'),
 
-    path('about/',views.about,name='about'),
 
     path('contact_us/',views.contact_us,name='contact_us'),
     path('comment/',views.comment,name='comment'),
@@ -65,6 +64,8 @@ urlpatterns = [
     path("Clubs/<club_id>/Packages/delete/<pack_id>/", views.delete_package, name="delete_package"),
     path("Clubs/<club_id>/Offers/delete/<offer_id>/", views.delete_offer, name="delete_offer"),
     path("leave_comment/<club_id>", views.leave_comment, name="leave_comment"),
+    path("success/", views.success, name="success"),
+
 
 
 

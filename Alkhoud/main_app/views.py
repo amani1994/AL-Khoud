@@ -132,11 +132,12 @@ def club_details (request:HttpRequest, club_id):
         packages = Package.objects.filter(club=club)
         coaches = Coach.objects.filter(club=club)
         tournaments = Tournament.objects.filter(club=club)
+        comments = Comment.objects.filter(club=club)
 
     except:
         return render(request, 'main_app/not_found.html')
 
-    return render(request, 'main_app/club_details.html', {"club" : club, "all_offers":all_offers, "packages":packages, "coaches": coaches, "tournaments":tournaments})
+    return render(request, 'main_app/club_details.html', {"club" : club, "all_offers":all_offers, "packages":packages, "coaches": coaches, "tournaments":tournaments, "comments":comments})
 
 
 def add_offer(request:HttpRequest, club_id):
@@ -170,7 +171,7 @@ def add_tournament(request:HttpRequest, club_id):
 
     club = Club.objects.get(id=club_id)
     if request.method == "POST":
-            tournament = Tournament(club=club,tournament_name=request.POST["tournament_name"],start_date=request.POST["start_date"], end_date=request.POST["end_date"],image=request.FILES["image"])
+            tournament = Tournament(club=club,tournament_name=request.POST["tournament_name"],start_date=request.POST["start_date"], end_date=request.POST["end_date"],description = request.POST["description"],image=request.FILES["image"])
             tournament.save()   
             return redirect ('main_app:club_details', club_id = club_id)
     return render (request,'main_app/add_tournament.html')
@@ -203,6 +204,9 @@ def buy (request:HttpRequest):
 
 
 def contact_us (request:HttpRequest):
+
+    
+
     if request.method == "POST":
         newContact = Contact(name=request.POST['name'],email=request.POST['email'],title=request.POST['title'],message=request.POST['message'])
         newContact.save()
@@ -222,31 +226,28 @@ def contact_us (request:HttpRequest):
 
         message = '''
             new message: {}
-            From: {}'''.format(data["message"], data["email"])
-        title = request.POST["title"]    
-        send_mail(title,message,'alkh0ud@outlook.com',['alkh0ud@outlook.com'])
+            From: {}'''.format(data["message"], data["email"])  
+        send_mail(title,data["message"],'alkh0ud@outlook.com',['alkh0ud@outlook.com'])
 
-        return redirect("main_app:contact_us") # لازم نطلع مسج لليوزر أن رسالته راحت
+
+        return redirect("main_app:success") # لازم نطلع مسج لليوزر أن رسالته راحت
     
-    return render (request, "main_app/contact.html")
+    return render (request, "main_app/contact.html" )
 
 
 def leave_comment(request:HttpRequest, club_id):
+    
     if request.method == "POST":
+            
             club_object = Club.objects.get(id=club_id)
             add_comment = Comment(club = club_object, name = request.POST["name"], message = request.POST["message"])
             add_comment.save() 
-            for comments in Comment:   
-                calculat = comments + comments
-                x = print(calculat)
-            return redirect ('main_app:club_details', club_id = club_id, x = x)
+            
+            return redirect ('main_app:club_details', club_id = club_id)
     return render (request,'main_app/clubs.html')
 
-
-
-
-
-
+def success(request:HttpRequest):
+    return render (request, "main_app/success.html" )
 
 
 

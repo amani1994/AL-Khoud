@@ -10,27 +10,23 @@ from .models import Club, Say, Offers, Package, Comment ,Coach ,Tournament, Cont
 # Create your views here.
 
 def home_page(request:HttpRequest):
-
     all_comment = Say.objects.all()
     all_offers = Offers.objects.all()
+    tournament = Tournament.objects.all()
 
 
-    
-    return render (request,'main_app/home.html', {"all_comment":all_comment, "all_offers":all_offers})
+    return render (request,'main_app/home.html', {"all_comment":all_comment, "all_offers":all_offers, "tournament":tournament})
 
-def about(request:HttpRequest):
-    return render (request,'main_app/about.html')
+
 
 def comment(request:HttpRequest):
     if request.method == "POST":
-            all_comment = Say(name=request.POST["name"], decription=request.POST["decription"], image = request.FILES['image'])
+            all_comment = Say(name=request.POST["name"], decription=request.POST["decription"])
             all_comment.save() 
             return redirect ('main_app:home_page')
     return render (request,'main_app/client_say.html')
 
 
-def service(request:HttpRequest):
-    return render (request,'main_app/service.html')
 
 
 
@@ -230,7 +226,7 @@ def contact_us (request:HttpRequest):
         title = request.POST["title"]    
         send_mail(title,message,'alkh0ud@outlook.com',['alkh0ud@outlook.com'])
 
-        return redirect("main_app:home_page") # لازم نطلع مسج لليوزر أن رسالته راحت
+        return redirect("main_app:contact_us") # لازم نطلع مسج لليوزر أن رسالته راحت
     
     return render (request, "main_app/contact.html")
 

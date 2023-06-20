@@ -115,31 +115,14 @@ right: -46px !important;
 
                        
                        <a href="{% url 'main_app:home_page' %}" class="nav-item nav-link active">Home</a></li>
-                       <a href="{% url 'main_app:about' %}" class="nav-item nav-link">About</a>
-                        <a href="{% url 'main_app:service' %}" class="nav-item nav-link">Service</a>
-                      <a href="{% url 'main_app:club_home' %}" class="nav-item nav-link">Club</a>
-
-                        
+                       <a href="{% block link%} #about {%endblock%}" class="nav-item nav-link">About</a>
+                        <a href="#service" class="nav-item nav-link">Service</a>
+                        <a href="#discounts" class="nav-item nav-link">Discounts</a>
+                        <a href="#tournament" class="nav-item nav-link">Tournament</a>
                         <div class="nav-item dropdown">
-                            
                           <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Add</a>
-                        
                             <div class="dropdown-menu">
-                               
-                                <a href="{% url 'main_app:add_tournament' %}" class="dropdown-item">Add Tournament</a>
                                 <a href="{% url 'main_app:add_club' %}" class="dropdown-item">Add Club</a></li>
-                            </div>
-                   
-                        </div>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">my Users</a>
-                            <div class="dropdown-menu">
-                              <a href="mytournament.html" class="dropdown-item">My Tournament</a>
-                              <a href="clubeSubscriper.html" class="dropdown-item">My subscriber</a>
-                              <a href="tournamentSubscriper.html" class="dropdown-item">My subscriber Tournament</a>
-                              <a href="clube_coach.html" class="dropdown-item">My Coaches</a>
-                              <a href="clube_packages.html" class="dropdown-item">My Packages</a>
-                              <a href="clube_ad.html" class="dropdown-item">My Offers</a>
                             </div>
                         </div>
                         {% if request.user.is_authenticated %}
@@ -147,20 +130,14 @@ right: -46px !important;
                             <a href="#" class="nav-item nav-link">Welcome {{ request.user.username }}</a>
                             <a href="{% url 'accounts:log_out' %}" class="nav-item nav-link">Log Out</a>
                         </li>
-
-                        {% else %}      <a href="{% url 'main_app:club_home' %}" class="nav-item nav-link">Club</a>
-
-
+                        {% else %}     
                        <a href="{% url 'accounts:sign_in' %}" class="nav-item nav-link">Sign in</a>
                           <a href="{% url 'accounts:sign_up' %}" class="nav-item nav-link">Sign Up</a>
-                  {%endif%}
-
-
+                        {%endif%}
+                  <a href="{% url 'main_app:contact_us' %}" class="nav-item nav-link">contact_us</a>
                     </div>
-
                 </div>
             </div>
-      
         </div>
         <!-- Nav Bar End -->
 
@@ -208,7 +185,7 @@ right: -46px !important;
 
 
                 <!-- About Start -->
-                <div class="about wow fadeInUp" data-wow-delay="0.1s">
+                <div data-wow-delay="0.1s" id="about" class="about wow fadeInUp" data-wow-delay="0.1s">
                     <div class="container">
                         <div class="row align-items-center">
                             <div class="col-lg-5 col-md-6">
@@ -227,7 +204,6 @@ right: -46px !important;
                                     <p>
                                       Your start to a new life starts from here, an extended destination that attracts athletes and horse enthusiasts
                                     </p>
-                                    <a class="btn" href="{% url 'main_app:about'%}">Learn More</a>
                                 </div>
                             </div>
                         </div>
@@ -237,9 +213,9 @@ right: -46px !important;
         
         
                 <!-- Service Start -->
-                <div class="service">
+                <div data-wow-delay="0.1s" class="service" id = service>
                     <div class="container">
-                        <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
+                        <div class="section-header text-center wow zoomIn" data-wow-delay="0.5s">
                             <p>What we do</p>
                             <h2>Our services</h2>
                         </div>
@@ -303,7 +279,7 @@ right: -46px !important;
         
         
                 <!-- Price Start -->
-                <div class="price">
+                <div id="discounts" data-wow-delay="0.1s" class="price">
                     <div class="container price-home">
                         <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
                             <p>Alkhoud Discounts </p>
@@ -348,115 +324,21 @@ right: -46px !important;
                 <!-- Price End -->
         
                 <!-- Blog Start -->
-                <div class="blog">
+                <div id="tournament" data-wow-delay="0.5s"  class="blog">
                     <div class="container">
                         <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
-                            <p>From Blog</p>
-                            <h2>Latest Yoga Articles</h2>
+                            <p>All Tournament</p>
+                            <h2>My Tournament</h2>
                         </div>
-                        <div class="row blog-page">
+                        <div  style="Width:1000px; "class="row blog-page">
                             <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.0s">
                                 <div class="blog-item">
+                                    {% for tournament in tournament%}
                                     <div class="blog-img">
-                                        <img src="{% static 'img/blog-1.jpg'%}" alt="Blog">
+                                        <img src="img/blog-1.jpg" alt="Blog">
                                     </div>
                                     <div class="blog-text">
-                                        <h2>Tournament name</h2>
-                                        <div class="blog-meta">
-                                            <p><i class="far fa-calendar-alt"></i> Start: 01-Jan-2045</p>
-                                            <p><i class="far fa-calendar-alt"></i>End: 01-Jan-2045</p>
-        
-                                        </div>
-                                        <p>
-                                            Lorem ipsum dolor sit amet elit. Neca pretim miura bitur facili ornare velit non vulpte liqum metus tortor
-                                        </p>
-                                        <a class="btn" href="">Read More <i class="fa fa-angle-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
-                                <div class="blog-item">
-                                    <div class="blog-img">
-                                        <img src="{% static 'img/blog-2.jpg'%}" alt="Blog">
-                                    </div>
-                                    <div class="blog-text">
-                                        <h2>Tournament name</h2>
-                                        <div class="blog-meta">
-                                            <p><i class="far fa-calendar-alt"></i> Start: 01-Jan-2045</p>
-                                            <p><i class="far fa-calendar-alt"></i>End: 01-Jan-2045</p>
-        
-                                        </div>
-                                        <p>
-                                            Lorem ipsum dolor sit amet elit. Neca pretim miura bitur facili ornare velit non vulpte liqum metus tortor
-                                        </p>
-                                        <a class="btn" href="">Read More <i class="fa fa-angle-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
-                                <div class="blog-item">
-                                    <div class="blog-img">
-                                        <img src="{% static 'img/blog-3.jpg'%}" alt="Blog">
-                                    </div>
-                                    <div class="blog-text">
-                                        <h2>Tournament name</h2>
-                                        <div class="blog-meta">
-                                            <p><i class="far fa-calendar-alt"></i> Start: 01-Jan-2045</p>
-                                            <p><i class="far fa-calendar-alt"></i>End: 01-Jan-2045</p>
-        
-                                        </div>
-                                        <p>
-                                            Lorem ipsum dolor sit amet elit. Neca pretim miura bitur facili ornare velit non vulpte liqum metus tortor
-                                        </p>
-                                        <a class="btn" href="">Read More <i class="fa fa-angle-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
-                                <div class="blog-item">
-                                    <div class="blog-img">
-                                        <img src="{% static 'img/blog-4.jpg'%}" alt="Blog">
-                                    </div>
-                                    <div class="blog-text">
-                                        <h2>Tournament name</h2>
-                                        <div class="blog-meta">
-                                            <p><i class="far fa-calendar-alt"></i> Start: 01-Jan-2045</p>
-                                            <p><i class="far fa-calendar-alt"></i>End: 01-Jan-2045</p>
-        
-                                        </div>
-                                        <p>
-                                            Lorem ipsum dolor sit amet elit. Neca pretim miura bitur facili ornare velit non vulpte liqum metus tortor
-                                        </p>
-                                        <a class="btn" href="">Read More <i class="fa fa-angle-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.8s">
-                                <div class="blog-item">
-                                    <div class="blog-img">
-                                        <img src="{% static 'img/blog-5.jpg'%}" alt="Blog">
-                                    </div>
-                                    <div class="blog-text">
-                                        <h2>Tournament name</h2>
-                                        <div class="blog-meta">
-                                            <p><i class="far fa-calendar-alt"></i> Start: 01-Jan-2045</p>
-                                            <p><i class="far fa-calendar-alt"></i>End: 01-Jan-2045</p>
-        
-                                        </div>
-                                        <p>
-                                            Lorem ipsum dolor sit amet elit. Neca pretim miura bitur facili ornare velit non vulpte liqum metus tortor
-                                        </p>
-                                        <a class="btn" href="">Read More <i class="fa fa-angle-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="1s">
-                                <div class="blog-item">
-                                    <div class="blog-img">
-                                        <img src="{% static 'img/blog-6.jpg'%}" alt="Blog">
-                                    </div>
-                                    <div class="blog-text">
-                                        <h2>Lorem ipsum dolor</h2>
+                                        <h2>{{tournament.tournament_name}}</h2>
                                         <div class="blog-meta">
                                             <p><i class="far fa-list-alt"></i>Body Fitness</p>
                                             <p><i class="far fa-calendar-alt"></i>01-Jan-2045</p>
@@ -467,10 +349,11 @@ right: -46px !important;
                                         </p>
                                         <a class="btn" href="">Read More <i class="fa fa-angle-right"></i></a>
                                     </div>
+                                    {%endfor%}
                                 </div>
                             </div>
                         </div>
-        
+
                     </div>
                 </div>
                 <!-- Blog End -->
@@ -482,12 +365,14 @@ right: -46px !important;
                         <div class="section-header text-center">
                             <p>Testimonial</p>
                             <h2>Our Client Say!</h2>
+                           <a href="{% url 'main_app:comment' %}"><p>Leave Comment</p></a> 
                         </div>
                         <div class="owl-carousel testimonials-carousel">
-                            {% for word in all_comment%}
+                            {% for word in all_comment %}
                             <div class="testimonial-item">
+                                
                                 <div class="testimonial-img">
-                                    <img src="{{word.image.url}}" alt="Image">
+                                    <img src="{% static 'img/project-Logo.png'%}" alt="Image">
                                 </div>
                                 <div class="testimonial-text">
                                     <p>
@@ -496,46 +381,10 @@ right: -46px !important;
                                     <h3> {{word.name}}</h3>
                                     <h4>Profession</h4>
                                 </div>
+                                
                             </div>
                             {%endfor%}
-                            <div class="testimonial-item">
-                                <div class="testimonial-img">
-                                <img src="img/project-Logo.png" alt="Image">
-                                </div>
-                                <div class="testimonial-text">
-                                    <p>
-                                        Lorem ipsum dolor sit amet consec adipis elit. Etiam accums lacus eget velit tincid, quis suscip justo dictum.
-                                    </p>
-                                    <h3>Customer Name</h3>
-                                    <h4>Profession</h4>
-                                </div>
-                            </div>
-                            <div class="testimonial-item">
-                                <div class="testimonial-img">
-                                <img src="img/project-Logo.png" alt="Image">
-                                </div>
-                                <div class="testimonial-text">
-                                    <p>
-                                        Lorem ipsum dolor sit amet consec adipis elit. Etiam accums lacus eget velit tincid, quis suscip justo dictum.
-                                    </p>
-                                    <h3>Customer Name</h3>
-                                    <h4>Profession</h4>
-                                </div>
-                            </div>
-                            <div class="testimonial-item">
-                                <div class="testimonial-img">
-                                </div>
-                                <div class="testimonial-text">
-                                    <p>
-                                        Lorem ipsum dolor sit amet consec adipis elit. Etiam accums lacus eget velit tincid, quis suscip justo dictum.
-                                    </p>
-                                    <h3>Customer Name</h3>
-                                    <h4>Profession</h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="hero-btn">
-                            <a class="btn" href="{% url 'main_app:comment' %}">Leave comments</a>
+
                         </div>
                     </div>
                 </div>
@@ -615,8 +464,8 @@ right: -46px !important;
                                         </div>
                                     </div>
                                     <div class="team-text">
-                                        <h2>Amani Alsobaie</h2>
-                                        <p>IT</p>
+                                        <h2>Amani AlSubaie</h2>
+                                        <p>Information Technology</p>
                                     </div>
                                 </div>
                             </div>

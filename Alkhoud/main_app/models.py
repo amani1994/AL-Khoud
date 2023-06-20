@@ -29,7 +29,6 @@ class Club (models.Model):
 class Say (models.Model):
     name = models.CharField(max_length=200)
     decription = models.TextField()
-    image = models.ImageField(upload_to="images/", default="images/default.jpg")
 
 class Offers (models.Model):
     club = models.ForeignKey(Club,on_delete=models.CASCADE, default=1)

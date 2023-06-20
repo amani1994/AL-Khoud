@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
 from django.http import HttpRequest
-from .models import Club, Say, Offers
+from django.core.mail import send_mail
 
-#Review, Subscriber, Contact
+from .models import Club, Say, Offers, Package, Comment ,Coach ,Tournament, Contact
+
+#Review, Subscriber, 
 
 
 # Create your views here.
@@ -10,27 +12,21 @@ from .models import Club, Say, Offers
 def home_page(request:HttpRequest):
     all_comment = Say.objects.all()
     all_offers = Offers.objects.all()
+    tournament = Tournament.objects.all()
 
 
-    
-    return render (request,'main_app/home.html', {"all_comment":all_comment, "all_offers":all_offers})
+    return render (request,'main_app/home.html', {"all_comment":all_comment, "all_offers":all_offers, "tournament":tournament})
 
-def about(request:HttpRequest):
-    return render (request,'main_app/about.html')
 
-def contact(request:HttpRequest):
-    return render (request,'main_app/contact.html')
 
 def comment(request:HttpRequest):
     if request.method == "POST":
-            all_comment = Say(name=request.POST["name"], decription=request.POST["decription"], image = request.FILES['image'])
+            all_comment = Say(name=request.POST["name"], decription=request.POST["decription"])
             all_comment.save() 
             return redirect ('main_app:home_page')
     return render (request,'main_app/client_say.html')
 
 
-def service(request:HttpRequest):
-    return render (request,'main_app/service.html')
 
 
 
@@ -54,43 +50,19 @@ def club_self(request:HttpRequest):
     return render (request, "main_app/club_self.html", {"all_club" : all_club})
     
 
-
-
-
-
-
-
-
-
-
 def club_equestrian(request:HttpRequest):
-    all_club = Club.objects.filter(type='Equestrian',  city = 'Riyadh')
-    return render (request, "main_app/club_equestrian.html", {"all_club" : all_club})
-def club_equestrian_jeddah(request:HttpRequest):
-    all_club = Club.objects.filter(type='Equestrian',  city = 'Jeddah')
-    return render (request, "main_app/club_equestrian_jeddah.html", {"all_club" : all_club})
-def club_equestrian_hail(request:HttpRequest):
-    all_club = Club.objects.filter(type='Equestrian',  city = 'Hail')
-    return render (request, "main_app/club_equestrian_hail.html", {"all_club" : all_club})
-def club_equestrian_dammam(request:HttpRequest):
-    all_club = Club.objects.filter(type='Equestrian',  city = 'Dammam')
-    return render (request, "main_app/club_equestrian_dammam.html", {"all_club" : all_club})
+    if "city" in request.GET:
+        all_club = Club.objects.filter(type='Equestrian' , city = request.GET.get("city", "Riyadh"))
+    else:
+        all_club = Club.objects.filter(type='Equestrian')
 
+    return render (request, "main_app/club_equestrian.html", {"all_club" : all_club})
 
 
 
 def club_home(request:HttpRequest):
     return render (request,'main_app/club_home.html')
 
-def add_package(request:HttpRequest):
-    return render (request,'main_app/add_package.html')
-
-def add_tournament(request:HttpRequest, club_id):
-    '''every club can add a new coach'''
-
-    if request.method == 'POST':
-        club_object = Club.objects.get(id=club_id)
-    return render (request,'main_app/clube_packages.html')
 
 def club_ad(request:HttpRequest):
     return render (request,'main_app/club_ad.html')
@@ -102,12 +74,7 @@ def search_page(request:HttpRequest):
 
     return render(request, "main_app/search.html", {"clubs" : clubs})
 
-'''
-def add_category(request:HttpRequest):
-    return render(request,'main_app/add_category.html')'''
-    #category = models.ForeignKey(Category,on_delete=models.CASCADE,default=None)
-    #category = models.ForeignKey(Category,on_delete=models.CASCADE,default=None)
-   # city_choices = models.TextChoices("Club Type", ["Riyadh", "Jeddah ","Hail", 'Dammam'])
+
 
 def add_club(request:HttpRequest):
 
@@ -117,11 +84,11 @@ def add_club(request:HttpRequest):
             if request.POST["type"] == "Gym" and request.POST["city"] == 'Riyadh':
                 return redirect("main_app:clubs")
             elif request.POST["type"] == "Gym" and request.POST["city"] == 'Hail':
-                return redirect("main_app:clubs_hail")
+                return redirect("main_app:clubs")
             elif request.POST["type"] == "Gym" and request.POST["city"] == 'Jeddah':
-                return redirect("main_app:clubs_jeddah")
+                return redirect("main_app:clubs")
             elif request.POST["type"] == "Gym" and request.POST["city"] == 'Dammam':
-                return redirect("main_app:clubs_dammam")  # خلصنا منها 
+                return redirect("main_app:clubs")  # خلصنا منها 
             
 
             elif request.POST["type"] == "Self_defense" and request.POST["city"] == 'Riyadh':
@@ -136,76 +103,151 @@ def add_club(request:HttpRequest):
             elif request.POST["type"] == "Equestrian" and request.POST["city"] == 'Riyadh':
                 return redirect("main_app:club_equestrian")
             elif request.POST["type"] == "Equestrian" and request.POST["city"] == 'Hail':
-                return redirect("main_app:club_equestrian_hail")
+                return redirect("main_app:club_equestrian")
             elif request.POST["type"] == "Equestrian" and request.POST["city"] == 'Jeddah':
-                return redirect("main_app:club_equestrian_jeddah")
+                return redirect("main_app:club_equestrian")
             elif request.POST["type"] == "Equestrian" and request.POST["city"] == 'Dammam':
-                return redirect("main_app:club_equestrian_dammam")# خلصنا منها 
+                return redirect("main_app:club_equestrian")# خلصنا منها 
             
     return render (request, "main_app/add_club.html")
 
-def add_coach(request:HttpRequest, club_id):
-    '''every club can add a new coach'''
-
-    if request.method == 'POST':
-        club_object = Club.objects.get(id=club_id)
-        new_coach = Coach(club=club_object, name=request.POST['name'], bio=request.POST['bio'], image=request.FILES['image'],social_account=request.POST['social_account'],experience=request.POST['experience'], phone_number=request.POST['phone_number'])
-        new_coach.save()
-
-    return redirect ('main_app:add_coach', club_id=club_id) 
 
 
 
-
-
-  
-
-def add_package(request:HttpRequest):
-    '''this method add package in each club'''
-    return render(request,'main_app/add_package.html')
 
 def add_subscriber(request:HttpRequest): #لا تنسين تربطينه باليوزر
     '''this method add a subscriber to the selected club'''
     return render(request,'main_app/add_subscriber.html')
 
 
-
 def payment_page(request:HttpRequest):
     return render(request,'main_app/payment.html')
 
 
-
-
-
 def club_details (request:HttpRequest, club_id):
-    all_offers = Offers.objects.all()
+
     try:
-        club_detail_id = Club.objects.get(id=club_id)
+        club = Club.objects.get(id=club_id)
+        all_offers = Offers.objects.filter(club=club)
+        packages = Package.objects.filter(club=club)
+        coaches = Coach.objects.filter(club=club)
+        tournaments = Tournament.objects.filter(club=club)
+        comments = Comment.objects.filter(club=club)
+
     except:
         return render(request, 'main_app/not_found.html')
 
-    return render(request, 'main_app/club_details.html', {"club_detail_id" : club_detail_id, "all_offers":all_offers})
+    return render(request, 'main_app/club_details.html', {"club" : club, "all_offers":all_offers, "packages":packages, "coaches": coaches, "tournaments":tournaments, "comments":comments})
 
 
-def add_offer(request:HttpRequest):
+def add_offer(request:HttpRequest, club_id):
+    club = Club.objects.get(id=club_id)
     if request.method == "POST":
-            all_offers = Offers(name = request.POST["name"], price = request.POST['price'], discount = request.POST['discount'],description = request.POST["description"])
+            all_offers = Offers(club=club,name = request.POST["name"], price = request.POST['price'], discount = request.POST['discount'],description = request.POST["description"])
             all_offers.save() 
-            return redirect ('main_app:home_page')
+            return redirect ('main_app:club_details', club_id = club_id)
     return render (request,'main_app/add_ad.html')
 
+def add_package(request:HttpRequest, club_id):
+    club = Club.objects.get(id=club_id)
+    if request.method == "POST":
+            package = Package(club=club,package_type=request.POST["package_type"], description=request.POST["description"],price=request.POST["price"],duration=request.POST["duration"])
+            package.save()   
+            return redirect ('main_app:club_details', club_id = club_id)
+    return render (request,'main_app/add_package.html')
+
+def add_coach(request:HttpRequest, club_id):
+    '''every club can add a new coach'''
+
+    club = Club.objects.get(id=club_id)
+    if request.method == "POST":
+            coaches = Coach(club=club,coach_name=request.POST["coach_name"],bio=request.POST["bio"],experience=request.POST["experience"],image=request.FILES["image"])
+            coaches.save()   
+            return redirect ('main_app:club_details', club_id = club_id)
+    return render (request,'main_app/add_coach.html')
 
 
+def add_tournament(request:HttpRequest, club_id):
+
+    club = Club.objects.get(id=club_id)
+    if request.method == "POST":
+            tournament = Tournament(club=club,tournament_name=request.POST["tournament_name"],start_date=request.POST["start_date"], end_date=request.POST["end_date"],description = request.POST["description"],image=request.FILES["image"])
+            tournament.save()   
+            return redirect ('main_app:club_details', club_id = club_id)
+    return render (request,'main_app/add_tournament.html')
+
+def delete_package(request:HttpRequest, pack_id, club_id):
+    package= Package.objects.get(id= pack_id)
+    package.delete()
+    return redirect("main_app:club_details", club_id = club_id)
+
+def delete_offer(request:HttpRequest, offer_id, club_id):
+    offer= Offers.objects.get(id= offer_id)
+    offer.delete()
+    return redirect("main_app:club_details", club_id = club_id)
+
+def delete_coach (request:HttpRequest, coach_id, club_id):
+    coach= Coach.objects.get(id= coach_id)
+    coach.delete()
+    return redirect("main_app:club_details", club_id = club_id)
+
+'''def delete_tournament (request:HttpRequest, tournament_id, club_id):
+    tournament = Tournament.objects.get(id= tournament_id)
+    tournament.delete()
+    return redirect("main_app:club_details", club_id = club_id)'''
 
 
+def buy (request:HttpRequest):
+    all_offers = Offers.objects.all()
+
+    return render(request, 'main_app/buy.html', {"all_offers":all_offers})
 
 
+def contact_us (request:HttpRequest):
+
+    
+
+    if request.method == "POST":
+        newContact = Contact(name=request.POST['name'],email=request.POST['email'],title=request.POST['title'],message=request.POST['message'])
+        newContact.save()
+        
+
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        title = request.POST.get('title')
+        message = request.POST.get('message')
+
+        data = {
+            'name':name,
+            'email': email,
+            'title' : title,
+            'message': message
+        }
+
+        message = '''
+            new message: {}
+            From: {}'''.format(data["message"], data["email"])  
+        send_mail(title,data["message"],'alkh0ud@outlook.com',['alkh0ud@outlook.com'])
 
 
+        return redirect("main_app:success") # لازم نطلع مسج لليوزر أن رسالته راحت
+    
+    return render (request, "main_app/contact.html" )
 
 
+def leave_comment(request:HttpRequest, club_id):
+    
+    if request.method == "POST":
+            
+            club_object = Club.objects.get(id=club_id)
+            add_comment = Comment(club = club_object, name = request.POST["name"], message = request.POST["message"])
+            add_comment.save() 
+            
+            return redirect ('main_app:club_details', club_id = club_id)
+    return render (request,'main_app/clubs.html')
 
-
+def success(request:HttpRequest):
+    return render (request, "main_app/success.html" )
 
 
 
@@ -218,13 +260,5 @@ def add_offer(request:HttpRequest):
         new_review.save()
 
     
-    return redirect("main_app:club_details", club_id=club_id)
+    return redirect("main_app:club_details", club_id=club_id)'''
 
-def contact_us (request:HttpRequest):
-    if request.method == 'POST': #لا تنسين تربطينه باليوزر
-        new_contact= Contact(title=request.POST['title'],name=request.POST['name'],email=request.POST['email'],message=request.POST['message'])
-        new_contact.save()
-
-        return redirect("main_app:home_page") # لازم نطلع مسج لليوزر أن رسالته راحت
-    
-    return render (request, "main_app/home.html")'''

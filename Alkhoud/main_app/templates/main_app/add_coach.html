@@ -15,8 +15,8 @@
                         <h2> Add Coach</h2>
                     </div>
                     <div class="col-12">
-                        <a href="">Home</a>
-                        <a href="">Club</a>
+                        <a href="{% url 'main_app:home_page' %}">Home</a>
+                        <a href="{% url 'main_app:club_home' %}">Clubs</a>
                         <a href="">Add Coach</a>
                     </div>
                 </div>
@@ -39,32 +39,27 @@
                     <div class="col-12 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="contact-form">
                             <div id="success"></div>
-                            <form action="{% url 'main_app:add_coach' club.id %}" method="POST" enctype="multipart/form-data">
+                            <form  method="POST" enctype="multipart/form-data">
                                 {% csrf_token %}
 
                                 <div class="control-group">
-                                    <input type="tect" class="form-control" id="name" placeholder=" Coach name" required="required" data-validation-required-message="coach Name" />
+                                    <input name="coach_name" type="tect" class="form-control" id="name" placeholder=" Coach name" required="required" data-validation-required-message="coach Name" />
                                 </div>
-                                <br> <br>
+                                <br> 
                                 <div class="control-group">
                                     <textarea name="bio" rows="8" cols="80" placeholder="Coach Bio"></textarea>
                                 </div>
+                                <br>
                                 <div class="control-group">
-                                    <input type="text" class="form-control" id="experience" placeholder="Years of Experience     " required="required" data-validation-required-message="Experience" />
+                                    <input type="text" class="form-control" id="experience" placeholder="Years of Experience" required="required" data-validation-required-message="Experience" name="experience" />
                                 </div>
-
+                                <br> 
                                 <div class="control-group">
-                                    <input type="file" name=" Coach image" class="form-control" />
+                                    <input type="file" name="image" class="form-control" />
                                 </div>
                                 <br> <br>
                   
-                                <div class="control-group">
-                                    <input type="text" class="form-control" id="descri   ption" placeholder="phone number" required="required" data-validation-required-message="Phone Number" />
-                                </div>
                                 <br>
-                                <div class="control-group">
-                                    <input type="tect" class="form-control" id="social_account" placeholder="social account" required="required" data-validation-required-message="social account" />
-                                </div>
                                <br>
                                 <div>
                                     <button class="btn" type="submit" value="Create Coach">Add Coach</button>

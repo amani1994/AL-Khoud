@@ -22,46 +22,61 @@ class Club (models.Model):
 class Say (models.Model):
     name = models.CharField(max_length=200)
     decription = models.TextField()
-    image = models.ImageField(upload_to="images/", default="images/default.jpg")
 
 class Offers (models.Model):
+    club = models.ForeignKey(Club,on_delete=models.CASCADE, default=1)
     name = models.CharField(max_length=200)
     price = models.IntegerField()
     discount = models.IntegerField()
     description = models.TextField()
-'''
+
 class Package (models.Model):
-    club = models.ForeignKey(Club, on_delete=models.CASCADE)
-    name = models.CharField(max_length=200)
-    price = models.FloatField()
-    details = models.TextField()
+    club = models.ForeignKey(Club,on_delete=models.CASCADE, default=1)
+    package_type = models.CharField(max_length=200)
+    price = models.IntegerField()
+    description = models.TextField()
     duration = models.CharField(max_length=200)
+
+
+
+class Comment(models.Model):
+    club = models.ForeignKey(Club,on_delete=models.CASCADE, default=1)
+    name = models.CharField(max_length=100)
+    message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
+
+
+
+
+
+'''
 
 class Subscriber(models.Model):
     club = models.ForeignKey(Club, on_delete=models.CASCADE)
     #user = models.ForeignKey(User, on_delete=models.CASCADE)
     age = models.CharField(max_length=200)
-    package = models.ForeignKey(Package, on_delete=models.CASCADE)
+    package = models.ForeignKey(Package, on_delete=models.CASCADE) '''
 
 class Coach (models.Model):
     #user = user = models.ForeignKey(User, on_delete=models.CASCADE)
     club = models.ForeignKey(Club, on_delete=models.CASCADE)
-    name = models.CharField(max_length=200)
+    coach_name = models.CharField(max_length=200)
     bio = models.TextField()
     image = models.ImageField(upload_to="images/", default="images/default.jpg")
-    social_account = models.CharField(max_length=200)
     experience = models.CharField(max_length=200) #عدد  سنوات الخبرة للمدرب
-    phone_number = models.IntegerField()
 
 class Tournament(models.Model):
     club = models.ForeignKey(Club, on_delete=models.CASCADE)
     tournament_name = models.CharField(max_length=200)
+    description = models.TextField(default="1")
     start_date = models.DateField()
     end_date = models.DateField()
     image = models.ImageField(upload_to="images/", default="images/default.jpg")
 
 
-
+'''
 class Enroll(models.Model):
     club = models.ForeignKey(Club, on_delete=models.CASCADE)
     subscriber = models.ForeignKey(Subscriber, on_delete=models.CASCADE)
@@ -84,10 +99,10 @@ class Review(models.Model):
     content = models.TextField()
     rating = models.FloatField()
 
+'''
 
 class Contact (models.Model):
-    #user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     name = models.CharField(max_length=200)
     email = models.EmailField()
-    message = models.TextField()'''
+    message = models.TextField()

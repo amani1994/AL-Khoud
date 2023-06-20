@@ -62,8 +62,9 @@ def club_equestrian(request:HttpRequest):
 
 
 def subscripe(request:HttpRequest):
+
     if request.method == "POST":
-            subscripers = Subscripe(goal=request.POST["goal"], awards=request.POST["awards"],other=request.POST["other"])
+            subscripers = Subscripe(user = request.user,goal=request.POST["goal"], awards=request.POST["awards"],other=request.POST["other"])
             subscripers.save() 
             return redirect ('main_app:club_subscripe')
     return render (request,'main_app/subscripe.html')
@@ -264,6 +265,25 @@ def leave_comment(request:HttpRequest, club_id):
 
 def success(request:HttpRequest):
     return render (request, "main_app/success.html" )
+
+
+
+
+def accept_subscriper(request:HttpRequest, subscriper_id):
+    from .models import Subscripe
+    subscripe = Subscripe.objects.get(id = subscriper_id)
+    subscripe.is_accepted=True
+    subscripe.save()
+    return redirect(request.META['HTTP_REFERER'])
+    #return render (request, "main_app/club_subscriper.html" )
+
+
+def accepted_subscriper(request:HttpRequest):
+    from .models import Subscripe
+    subscripe = Subscripe.objects.filter(is_accepted = True)
+    print(subscripe)
+    return render(request, "main_app/accepted_subscriper.html", {"subscripe":subscripe})
+
 
 
 

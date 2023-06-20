@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from accounts.models import Profile
 
 # Create your models here.
 
@@ -56,9 +57,12 @@ class Tournament(models.Model):
     image = models.ImageField(upload_to="images/", default="images/default.jpg")
 
 class Subscripe(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+    tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE, default=1)
     goal = models.TextField()
     awards = models.CharField(max_length=100)
     other = models.TextField(default="1")
+    is_accepted = models.BooleanField(default=False)
 
 
 

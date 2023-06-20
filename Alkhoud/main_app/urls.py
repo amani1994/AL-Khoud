@@ -68,6 +68,8 @@ urlpatterns = [
     path("Clubs/<club_id>/Offers/delete/<offer_id>/", views.delete_offer, name="delete_offer"),
     path("leave_comment/<club_id>", views.leave_comment, name="leave_comment"),
     path("success/", views.success, name="success"),
+    path("accept_subscriper/<subscriper_id>", views.accept_subscriper, name="accept_subscriper"),
+    path("accepted_subscriper/", views.accepted_subscriper, name="accepted_subscriper"),
 
 
 

@@ -42,8 +42,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                    {%for subscriper in subscripers%}
-                     {%if not subscriper.is_accepted %}
+                    {%for subscriper in subscripe%}
                   <tr>
                     <th scope="row"></th>
                     <td>{{subscriper.user.profile.user}}</td>
@@ -53,10 +52,8 @@
                       <td>{{subscriper.awards}}</td>
                       <td>{{subscriper.other}}</td>
                     <td>
-                      <a href="{%url 'main_app:accept_subscriper' subscriper.pk %}"><button type="button" class="btn btn-light"><span class="material-symbols-outlined">done</span></button></a>
-                      <button type="button" class="btn btn-light"><span class="material-symbols-outlined">close</span></button>
+                    
                     </td>
-                    {%endif%}
                     {%endfor%}
                   </tr>
                 

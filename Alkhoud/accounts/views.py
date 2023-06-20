@@ -58,13 +58,15 @@ def log_out(request: HttpRequest):
 
 
 def profile_page(request:HttpRequest, user_id):
+    from main_app.models import Subscripe
+  
+    profile = Profile.objects.get(user__id=user_id) # bring the related value in the model
+    subscripe = Subscripe.objects.filter(user= user_id)
+    print(subscripe)
+  
+        #return render(request, "main_app/not_found.html")
 
-    try:
-        profile = Profile.objects.get(user__id=user_id) # bring the related value in the model
-    except:
-        return render(request, "main_app/not_found.html")
-
-    return render(request, "accounts/profile.html", {"profile" : profile})
+    return render(request, "accounts/profile.html", {"profile" : profile, "subscripe":subscripe})
 
 
 

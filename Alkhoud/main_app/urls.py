@@ -31,7 +31,7 @@ urlpatterns = [
 
 
     path('club_home/',views.club_home,name='club_home'),
-    path('Clubs/<club_id>/coaches/add',views.add_coach,name='add_coach'),
+    # path('Clubs/<club_id>/coaches/add',views.add_coach,name='add_coach'),
     path('add_tournament/',views.add_tournament,name='add_tournament'),
     path('add_club/',views.add_club,name='add_club'),
     path('club_ad/',views.club_ad,name='club_ad'),
@@ -40,6 +40,10 @@ urlpatterns = [
 
     path('Clubs/club_details/<club_id>/', views.club_details, name='club_details'),
     path('buy/', views.buy, name='buy'),
+
+
+    # path('Clubs/<club_id>/coaches/add/', views.add_coach, name='add_coach'),
+
 
    
     path('add_coach/<club_id>/', views.add_coach, name='add_coach'),

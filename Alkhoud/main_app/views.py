@@ -19,9 +19,6 @@ def home_page(request:HttpRequest):
 def about(request:HttpRequest):
     return render (request,'main_app/about.html')
 
-def contact(request:HttpRequest):
-    return render (request,'main_app/contact.html')
-
 def comment(request:HttpRequest):
     if request.method == "POST":
             all_comment = Say(name=request.POST["name"], decription=request.POST["decription"], image = request.FILES['image'])
@@ -155,27 +152,13 @@ def add_club(request:HttpRequest):
 
 
 
-
-
-  
-
-
-
-
-
-
-
 def add_subscriber(request:HttpRequest): #لا تنسين تربطينه باليوزر
     '''this method add a subscriber to the selected club'''
     return render(request,'main_app/add_subscriber.html')
 
 
-
 def payment_page(request:HttpRequest):
     return render(request,'main_app/payment.html')
-
-
-
 
 
 def club_details (request:HttpRequest, club_id):
@@ -224,14 +207,14 @@ def buy (request:HttpRequest):
     return render(request, 'main_app/buy.html', {"all_offers":all_offers})
 
 
+def contact_us (request:HttpRequest):
+    if request.method == 'POST': #لا تنسين تربطينه باليوزر
+        new_contact= Contact(title=request.POST['title'],name=request.POST['name'],email=request.POST['email'],message=request.POST['message'])
+        new_contact.save()
 
-
-
-
-
-
-
-
+        return redirect("main_app:home_page") # لازم نطلع مسج لليوزر أن رسالته راحت
+    
+    return render (request, "main_app/home.html")
 
 
 
@@ -245,13 +228,5 @@ def buy (request:HttpRequest):
         new_review.save()
 
     
-    return redirect("main_app:club_details", club_id=club_id)
+    return redirect("main_app:club_details", club_id=club_id)'''
 
-def contact_us (request:HttpRequest):
-    if request.method == 'POST': #لا تنسين تربطينه باليوزر
-        new_contact= Contact(title=request.POST['title'],name=request.POST['name'],email=request.POST['email'],message=request.POST['message'])
-        new_contact.save()
-
-        return redirect("main_app:home_page") # لازم نطلع مسج لليوزر أن رسالته راحت
-    
-    return render (request, "main_app/home.html")'''

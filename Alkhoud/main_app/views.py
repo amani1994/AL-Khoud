@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpRequest
 from django.core.mail import send_mail
 
-from .models import Club, Say, Offers, Package, Comment ,Coach ,Tournament, Contact
+from .models import Club, Say, Offers, Package, Comment ,Coach ,Tournament, Contact, Subscripe
 
 #Review, Subscriber, 
 
@@ -57,6 +57,20 @@ def club_equestrian(request:HttpRequest):
         all_club = Club.objects.filter(type='Equestrian')
 
     return render (request, "main_app/club_equestrian.html", {"all_club" : all_club})
+
+
+
+def subscripe(request:HttpRequest):
+    if request.method == "POST":
+            all_comment = Subscripe(goal=request.POST["goal"], awards=request.POST["awards"],other=request.POST["other"])
+            all_comment.save() 
+            return redirect ('main_app:club_subscripe')
+    return render (request,'main_app/subscripe.html')
+
+
+def club_subscripe(request:HttpRequest):
+    subscripers = Subscripe.objects.all()
+    return render (request,'main_app/club_subscriper.html', {"subscripers":subscripers})
 
 
 
@@ -197,10 +211,11 @@ def delete_coach (request:HttpRequest, coach_id, club_id):
     return redirect("main_app:club_details", club_id = club_id)'''
 
 
-def buy (request:HttpRequest):
-    all_offers = Offers.objects.all()
+def buy (request:HttpRequest, club_id):
+    club = Club.objects.get(id=club_id)
+    packages = Package.objects.filter(club=club)
 
-    return render(request, 'main_app/buy.html', {"all_offers":all_offers})
+    return render(request, 'main_app/buy.html', {"packages":packages})
 
 
 def contact_us (request:HttpRequest):

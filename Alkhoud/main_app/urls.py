@@ -38,7 +38,10 @@ urlpatterns = [
     path('payment/', views.payment_page, name='payment_page'),
 
     path('Clubs/club_details/<club_id>/', views.club_details, name='club_details'),
-    path('buy/', views.buy, name='buy'),
+    path('buy/<club_id>', views.buy, name='buy'),
+    path('subscripe/', views.subscripe, name='subscripe'),
+    path('club_subscripe/', views.club_subscripe, name='club_subscripe'),
+
 
 
     # path('Clubs/<club_id>/coaches/add/', views.add_coach, name='add_coach'),

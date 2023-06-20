@@ -45,6 +45,11 @@ class Comment(models.Model):
     message = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 
+class Subscripe(models.Model):
+    #user
+    goal = models.TextField()
+    awards = models.CharField(max_length=100)
+    other = models.TextField(default="1")
 
 
 

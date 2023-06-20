@@ -98,7 +98,7 @@
                                         </div>
                                         <div class="price-footer">
                                             <div class="price-action">
-                                                <a class="btn" href="buy.html">Join Now</a>
+                                                <a class="btn" href="{% url 'main_app:buy' club.id%}">Buying</a>
                                                 <a class="btn" href="{% url 'main_app:delete_package' club.id pack.id %}">Delete </a>
                                             </div>
                                         </div>
@@ -147,7 +147,7 @@
 
                                         <div class="price-footer">
                                             <div class="price-action">
-                                                <a class="btn" href="{% url 'main_app:buy'  %}">Join Now</a>
+                                                <a class="btn" href="#">Join Now</a>
                                                 <a class="btn" href="{% url 'main_app:delete_offer' club.id offer.id %}">Delete </a>
                                             </div>
                                         </div>
@@ -184,7 +184,7 @@
                                             <p>
                                                 {{tournament.description}}
                                             </p>
-                                            <a class="btn" href="">Read More <i class="fa fa-angle-right"></i></a>
+                                            <a class="btn" href="{% url 'main_app:subscripe' %}">Subscripe<i class="fa fa-angle-right"></i></a>
                                         </div>
                                         {%endfor%}
                                     </div>

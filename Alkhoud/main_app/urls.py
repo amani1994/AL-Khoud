@@ -55,8 +55,4 @@ urlpatterns = [
     #path("Clubs/<club_id>/Tournaments/delete/<tournament_id>/", views.delete_tournament, name="delete_tournament"),
 
 
-
-
-
-
 ]

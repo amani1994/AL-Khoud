@@ -222,17 +222,6 @@ def buy (request:HttpRequest):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 '''def add_review(request:HttpRequest, club_id): #sub_id
 
     if request.method == "POST": #لا تنسين تربطينه باليوزر

@@ -70,13 +70,11 @@ class Subscriber(models.Model):
 class Coach (models.Model):
     #user = user = models.ForeignKey(User, on_delete=models.CASCADE)
     club = models.ForeignKey(Club, on_delete=models.CASCADE)
-    name = models.CharField(max_length=200)
+    coach_name = models.CharField(max_length=200)
     bio = models.TextField()
     image = models.ImageField(upload_to="images/", default="images/default.jpg")
-    social_account = models.CharField(max_length=200)
     experience = models.CharField(max_length=200) #عدد  سنوات الخبرة للمدرب
-    phone_number = models.IntegerField()
-'''
+
 class Tournament(models.Model):
     club = models.ForeignKey(Club, on_delete=models.CASCADE)
     tournament_name = models.CharField(max_length=200)
@@ -85,7 +83,7 @@ class Tournament(models.Model):
     image = models.ImageField(upload_to="images/", default="images/default.jpg")
 
 
-
+'''
 class Enroll(models.Model):
     club = models.ForeignKey(Club, on_delete=models.CASCADE)
     subscriber = models.ForeignKey(Subscriber, on_delete=models.CASCADE)

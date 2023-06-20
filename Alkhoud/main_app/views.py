@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpRequest
 
-from .models import Club, Say, Offers, Package, Comment ,Coach #Tournament
+from .models import Club, Say, Offers, Package, Comment ,Coach ,Tournament
 
 #Review, Subscriber, Contact
 
@@ -70,13 +70,6 @@ def club_home(request:HttpRequest):
     return render (request,'main_app/club_home.html')
 
 
-def add_tournament(request:HttpRequest, club_id):
-    '''every club can add a new coach'''
-
-    if request.method == 'POST':
-        club_object = Club.objects.get(id=club_id)
-    return render (request,'main_app/clube_packages.html')
-
 def club_ad(request:HttpRequest):
     return render (request,'main_app/club_ad.html')
 
@@ -87,12 +80,7 @@ def search_page(request:HttpRequest):
 
     return render(request, "main_app/search.html", {"clubs" : clubs})
 
-'''
-def add_category(request:HttpRequest):
-    return render(request,'main_app/add_category.html')'''
-    #category = models.ForeignKey(Category,on_delete=models.CASCADE,default=None)
-    #category = models.ForeignKey(Category,on_delete=models.CASCADE,default=None)
-   # city_choices = models.TextChoices("Club Type", ["Riyadh", "Jeddah ","Hail", 'Dammam'])
+
 
 def add_club(request:HttpRequest):
 
@@ -140,19 +128,18 @@ def payment_page(request:HttpRequest):
 
 
 def club_details (request:HttpRequest, club_id):
-    club = Club.objects.get(id=club_id)
-    
+
     try:
         club = Club.objects.get(id=club_id)
         all_offers = Offers.objects.filter(club=club)
         packages = Package.objects.filter(club=club)
         coaches = Coach.objects.filter(club=club)
-        #tournaments = Tournament.objects.filter(club=club)
+        tournaments = Tournament.objects.filter(club=club)
 
     except:
         return render(request, 'main_app/not_found.html')
 
-    return render(request, 'main_app/club_details.html', {"club" : club, "all_offers":all_offers, "packages":packages, "coaches": coaches})
+    return render(request, 'main_app/club_details.html', {"club" : club, "all_offers":all_offers, "packages":packages, "coaches": coaches, "tournaments":tournaments})
 
 
 def add_offer(request:HttpRequest, club_id):
@@ -176,20 +163,20 @@ def add_coach(request:HttpRequest, club_id):
 
     club = Club.objects.get(id=club_id)
     if request.method == "POST":
-            coach = Coach(club=club,name=request.POST["name"],social_account=request.POST["social_account"], bio=request.POST["bio"],phone_number=request.POST["price"],experience=request.POST["experience"],image=request.FILES["image"])
-            coach.save()   
+            coaches = Coach(club=club,coach_name=request.POST["coach_name"],bio=request.POST["bio"],experience=request.POST["experience"],image=request.FILES["image"])
+            coaches.save()   
             return redirect ('main_app:club_details', club_id = club_id)
     return render (request,'main_app/add_coach.html')
 
 
-'''def add_tournament(request:HttpRequest, club_id):
+def add_tournament(request:HttpRequest, club_id):
 
     club = Club.objects.get(id=club_id)
     if request.method == "POST":
             tournament = Tournament(club=club,tournament_name=request.POST["tournament_name"],start_date=request.POST["start_date"], end_date=request.POST["end_date"],image=request.FILES["image"])
             tournament.save()   
             return redirect ('main_app:club_details', club_id = club_id)
-    return render (request,'main_app/add_tournament.html')'''
+    return render (request,'main_app/add_tournament.html')
 
 def delete_package(request:HttpRequest, pack_id, club_id):
     package= Package.objects.get(id= pack_id)
@@ -219,21 +206,6 @@ def buy (request:HttpRequest):
 
 
 
-def club_details (request:HttpRequest, club_id):
-    club = Club.objects.get(id=club_id)
-
-    
-    try:
-        club = Club.objects.get(id=club_id)
-        all_offers = Offers.objects.filter(club=club)
-        packages = Package.objects.filter(club=club)
-        view_comment = Comment.objects.filter(club=club)
-       
-        
-    except:
-        return render(request, 'main_app/not_found.html')
-
-    return render(request, 'main_app/club_details.html', {"club" : club, "all_offers":all_offers, "packages":packages, "view_comment":view_comment})
 
 def leave_comment(request:HttpRequest, club_id):
     if request.method == "POST":

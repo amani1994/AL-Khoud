@@ -159,22 +159,23 @@
                         </div>
                     </div>
                     <!-- Offers End -->
-
                     <!-- Blog Start -->
                     <div class="blog">
                         <div class="container">
                             <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
                                 <p>All Tournament</p>
                                 <h2>My Tournament</h2>
+                                <a href="{% url 'main_app:add_tournament' club.id %}"><p>Add Tournament</p></a> 
                             </div>
                             <div  style="Width:1000px; "class="row blog-page">
                                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.0s">
                                     <div class="blog-item">
+                                        {% for tournament in tournaments%}
                                         <div class="blog-img">
                                             <img src="img/blog-1.jpg" alt="Blog">
                                         </div>
                                         <div class="blog-text">
-                                            <h2>Lorem ipsum dolor</h2>
+                                            <h2>{{tournament.tournament_name}}</h2>
                                             <div class="blog-meta">
                                                 <p><i class="far fa-list-alt"></i>Body Fitness</p>
                                                 <p><i class="far fa-calendar-alt"></i>01-Jan-2045</p>
@@ -185,6 +186,7 @@
                                             </p>
                                             <a class="btn" href="">Read More <i class="fa fa-angle-right"></i></a>
                                         </div>
+                                        {%endfor%}
                                     </div>
                                 </div>
                             </div>
@@ -327,14 +329,15 @@
                                         </div>
                                         
                                         
-                                    {% for coach in coaches%}
-                                        <div id="popular" class="container tab-pane fade">
+                                    {% for coach in coaches %}
+                                        
+                                        <div id="popular" class="container tab-pane ">
                                             <div class="post-item">
                                                 <div class="post-img">
                                                     <img src="{{coach.image.url}}" />
                                                 </div>
-                                                <div class="post-text">
-                                                    <h3>{{coach.name}}</h3>
+                                                <div class="post-text text-black">
+                                                    <h3>{{coach.coach_name}}</h3>
                                                     <a href="">{{coach.bio}}</a>
                                                     <div class="post-meta">
                                                         <p>{{coach.experience}}</p>

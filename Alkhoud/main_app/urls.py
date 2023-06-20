@@ -38,13 +38,12 @@ urlpatterns = [
     path('Subscribers/add-subscriber/', views.add_subscriber, name='add_subscriber'),
     path('payment/', views.payment_page, name='payment_page'),
 
-    path('Clubs/club_details/<club_id>', views.club_details, name='club_details'),
+    path('Clubs/club_details/<club_id>/', views.club_details, name='club_details'),
     path('buy/', views.buy, name='buy'),
 
-    path('add_package/<club_id>/', views.add_package, name='add_package'),
-    path('add_offer/<club_id>/', views.add_offer, name='add_offer'),
+   
     path('add_coach/<club_id>/', views.add_coach, name='add_coach'),
-    #path('add_tournament/<club_id>/', views.add_tournament, name='add_tournament'),
+    path('add_tournament/<club_id>/', views.add_tournament, name='add_tournament'),
 
 
     path("Clubs/<club_id>/Packages/delete/<pack_id>/", views.delete_package, name="delete_package"),
@@ -57,6 +56,8 @@ urlpatterns = [
 
     path('add_package/<club_id>', views.add_package, name='add_package'),
     path('add_offer/<club_id>', views.add_offer, name='add_offer'),
+    path('add_coach/<club_id>/', views.add_coach, name='add_coach'),
+
     path("Clubs/<club_id>/Packages/delete/<pack_id>/", views.delete_package, name="delete_package"),
     path("Clubs/<club_id>/Offers/delete/<offer_id>/", views.delete_offer, name="delete_offer"),
     path("leave_comment/<club_id>", views.leave_comment, name="leave_comment"),

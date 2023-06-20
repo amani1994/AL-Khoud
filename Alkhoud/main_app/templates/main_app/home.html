@@ -9,7 +9,7 @@
         <meta content="Free Website Template" name="description">
 
         <!-- Favicon -->
-        <link href="{% static 'img/project-Logo.png'%}" rel="icon">
+        <link href="{% static 'img/logo.png'%}" rel="icon">
 
         <!-- Google Font -->
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -55,11 +55,6 @@ transform: rotate(45deg);
                     <div class="col-md-8">
                         <div class="top-bar-left">
                             <div class="text">
-                                <i class="far fa-clock"></i>
-                                <h2>8:00 - 9:00</h2>
-                                <p>Mon - Fri</p>
-                            </div>
-                            <div class="text">
                                 <i class="fa fa-phone-alt"></i>
                                 <h2>+123 456 7890</h2>
                                 <p>For Appointment</p>
@@ -84,7 +79,7 @@ transform: rotate(45deg);
         <!-- Nav Bar Start -->
         <div class="navbar navbar-expand-lg bg-dark navbar-dark">
             <div class="container-fluid">
-                <a href="{% url 'main_app:home_page'%}" class="navbar-brand"><img src="{%static 'img/project-Logo.png'%}" alt="logo"></a>
+                <a href="{% url 'main_app:home_page'%}" class="navbar-brand"><img src="{%static 'img/logo.png'%}" style="height: auto; width: auto;" alt="logo"></a>
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -94,10 +89,11 @@ transform: rotate(45deg);
                     <div class="navbar-nav ml-auto">
 
                        
-                       <a href="{% url 'main_app:home_page' %}" class="nav-item nav-link active">Home</a></li>
-                       <a href="{% url 'main_app:about' %}" class="nav-item nav-link">About</a>
+                        <a href="{% url 'main_app:home_page' %}" class="nav-item nav-link active">Home</a></li>
+                        <a href="{% url 'main_app:about' %}" class="nav-item nav-link">About</a>
                         <a href="{% url 'main_app:service' %}" class="nav-item nav-link">Service</a>
-                      <a href="{% url 'main_app:club_home' %}" class="nav-item nav-link">Club</a>
+                        <a href="{% url 'main_app:club_home' %}" class="nav-item nav-link">Club</a>
+                        <a href="{% url 'accounts:profile_page' request.user.id %}" class="nav-item nav-link">Profile</a>
 
                         
                         <div class="nav-item dropdown">
@@ -538,7 +534,7 @@ transform: rotate(45deg);
                             {%endfor%}
                             <div class="testimonial-item">
                                 <div class="testimonial-img">
-                                <img src="img/project-Logo.png" alt="Image">
+                                <img src="img/logo.png" alt="Image">
                                 </div>
                                 <div class="testimonial-text">
                                     <p>
@@ -550,7 +546,7 @@ transform: rotate(45deg);
                             </div>
                             <div class="testimonial-item">
                                 <div class="testimonial-img">
-                                <img src="img/project-Logo.png" alt="Image">
+                                <img src="img/logo.png" alt="Image">
                                 </div>
                                 <div class="testimonial-text">
                                     <p>

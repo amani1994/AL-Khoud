@@ -3,13 +3,6 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
-'''class Profile(models.Model):
-     
-     #user = models.OneToOneField(User, on_delete=models.CASCADE)
-     avatar = models.ImageField(upload_to="images/", default="images/default.jpg")
-     level = models.IntegerField()
-     age = models.IntegerField()
-     city = models.CharField(max_length=200)'''
      
 '''class Category(models.Model):
     name = models.CharField(max_length=200)

@@ -9,7 +9,7 @@
         <meta content="Free Website Template" name="description">
 
         <!-- Favicon -->
-        <link href="{% static 'img/project-Logo.png'%}" rel="icon">
+        <link href="{% static 'img/logo.png'%}" rel="icon">
 
         <!-- Google Font -->
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -75,11 +75,6 @@ right: -46px !important;
                     <div class="col-md-8">
                         <div class="top-bar-left">
                             <div class="text">
-                                <i class="far fa-clock"></i>
-                                <h2>8:00 - 9:00</h2>
-                                <p>Mon - Fri</p>
-                            </div>
-                            <div class="text">
                                 <i class="fa fa-phone-alt"></i>
                                 <h2>+123 456 7890</h2>
                                 <p>For Appointment</p>
@@ -104,7 +99,7 @@ right: -46px !important;
         <!-- Nav Bar Start -->
         <div class="navbar navbar-expand-lg bg-dark navbar-dark">
             <div class="container-fluid">
-                <a href="{% url 'main_app:home_page'%}" class="navbar-brand"><img src="{%static 'img/project-Logo.png'%}" alt="logo"></a>
+                <a href="{% url 'main_app:home_page'%}" class="navbar-brand"><img src="{%static 'img/logo.png'%}" style="height: auto; width: auto;" alt="logo"></a>
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -114,11 +109,16 @@ right: -46px !important;
                     <div class="navbar-nav ml-auto">
 
                        
-                       <a href="{% url 'main_app:home_page' %}" class="nav-item nav-link active">Home</a></li>
-                       <a href="{% block link%} #about {%endblock%}" class="nav-item nav-link">About</a>
+
+                        <a href="{% url 'main_app:home_page' %}" class="nav-item nav-link active">Home</a></li>
+                        <a href="{% block link%} #about {%endblock%}" class="nav-item nav-link">About</a>
                         <a href="#service" class="nav-item nav-link">Service</a>
                         <a href="#discounts" class="nav-item nav-link">Discounts</a>
                         <a href="#tournament" class="nav-item nav-link">Tournament</a>
+                        <a href="{% url 'accounts:profile_page' request.user.id %}" class="nav-item nav-link">Profile</a>
+
+                        
+
                         <div class="nav-item dropdown">
                           <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Add</a>
                             <div class="dropdown-menu">
@@ -383,6 +383,45 @@ right: -46px !important;
                                 
                             </div>
                             {%endfor%}
+
+                            <div class="testimonial-item">
+                                <div class="testimonial-img">
+                                <img src="img/logo.png" alt="Image">
+                                </div>
+                                <div class="testimonial-text">
+                                    <p>
+                                        Lorem ipsum dolor sit amet consec adipis elit. Etiam accums lacus eget velit tincid, quis suscip justo dictum.
+                                    </p>
+                                    <h3>Customer Name</h3>
+                                    <h4>Profession</h4>
+                                </div>
+                            </div>
+                            <div class="testimonial-item">
+                                <div class="testimonial-img">
+                                <img src="img/logo.png" alt="Image">
+                                </div>
+                                <div class="testimonial-text">
+                                    <p>
+                                        Lorem ipsum dolor sit amet consec adipis elit. Etiam accums lacus eget velit tincid, quis suscip justo dictum.
+                                    </p>
+                                    <h3>Customer Name</h3>
+                                    <h4>Profession</h4>
+                                </div>
+                            </div>
+                            <div class="testimonial-item">
+                                <div class="testimonial-img">
+                                </div>
+                                <div class="testimonial-text">
+                                    <p>
+                                        Lorem ipsum dolor sit amet consec adipis elit. Etiam accums lacus eget velit tincid, quis suscip justo dictum.
+                                    </p>
+                                    <h3>Customer Name</h3>
+                                    <h4>Profession</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hero-btn">
+                            <a class="btn" href="{% url 'main_app:comment' %}">Leave comments</a>
 
                         </div>
                     </div>

@@ -40,23 +40,24 @@
                 <div class="row">
                     <div class="col-12">
                         <ul id="class-filter">
-                            <a href="{% url 'main_app:club_equestrian' %}"><li class="filter-active"  data-filter=".filter-1">Riyadh</li></a>
-                            <a href="{% url 'main_app:club_equestrian_jeddah' %}"> <li data-filter=".filter-2">Jeddah</li></a>
-                            <a href="{% url 'main_app:club_equestrian_hail' %}"><li data-filter=".filter-3">Hail</li></a>
-                            <a href="{% url 'main_app:club_equestrian_dammam' %}"><li  data-filter=".filter-4">Dammam</li></a>
+                            <a href="{% url 'main_app:club_equestrian' %}"><li  class="{% if request.GET.city == 'clubs' %}filter-active{% endif%}" data-filter=".filter-1">All Cities</li></a>
+                            <a href="{% url 'main_app:club_equestrian' %}?city=Riyadh"><li  class="{% if request.GET.city == 'Riyadh' %}filter-active{% endif%}" data-filter=".filter-1">Riyadh</li></a>
+                            <a href="{% url 'main_app:club_equestrian' %}?city=Jeddah"> <li class="{% if request.GET.city == 'Jeddah' %}filter-active{% endif%}"  data-filter=".filter-2">Jeddah</li></a>
+                            <a href="{% url 'main_app:club_equestrian' %}?city=Hail"><li class="{% if request.GET.city == 'Hail' %}filter-active{% endif%}" data-filter=".filter-3">Hail</li></a>
+                            <a href="{% url 'main_app:club_equestrian' %}?city=Dammam"><li class="{% if request.GET.city == 'Dammam' %}filter-active{% endif%}" data-filter=".filter-4">Dammam</li></a>
                         </ul>
                     </div>
                 </div>
                 <div class="row class-container">
                     {% for club in all_club %}
+
                     <div class="col-lg-4 col-md-6 col-sm-12 class-item filter-1 wow fadeInUp" data-wow-delay="0.0s">
                         <div class="class-wrap">
-                           
                             <div class="class-img">
                                 <a href="#"><img src="{{club.image.url}}" alt="Image"></a>
                             </div>
                             <div class="class-text">
-                              <a href="single.html"> <h2>{{club.name}}</h2></a>
+                              <a href="{% url 'main_app:club_details' club.id%}"> <h2>{{club.name}}</h2></a>
                               <a href="single.html"> <h2>{{club.city}}</h2></a>
                                 <div class="class-meta">
                                     <p><i class="far fa-calendar-alt"></i>Sun, Tue, Thu</p>
@@ -65,9 +66,11 @@
                             </div>
                         </div>
                     </div>
-
                     {%endfor%}
+
                 </div>
+               
+
             </div>
         </div>
         <!-- Class End -->

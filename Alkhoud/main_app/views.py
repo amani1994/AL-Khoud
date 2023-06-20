@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from django.http import HttpRequest
+from django.core.mail import send_mail
 
-from .models import Club, Say, Offers, Package, Comment ,Coach ,Tournament
+from .models import Club, Say, Offers, Package, Comment ,Coach ,Tournament, Contact
 
-#Review, Subscriber, Contact
+#Review, Subscriber, 
 
 
 # Create your views here.
@@ -206,13 +207,32 @@ def buy (request:HttpRequest):
 
 
 def contact_us (request:HttpRequest):
-    if request.method == 'POST': #لا تنسين تربطينه باليوزر
-        new_contact= Contact(title=request.POST['title'],name=request.POST['name'],email=request.POST['email'],message=request.POST['message'])
-        new_contact.save()
+    if request.method == "POST":
+        newContact = Contact(name=request.POST['name'],email=request.POST['email'],title=request.POST['title'],message=request.POST['message'])
+        newContact.save()
+        
+
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        title = request.POST.get('title')
+        message = request.POST.get('message')
+
+        data = {
+            'name':name,
+            'email': email,
+            'title' : title,
+            'message': message
+        }
+
+        message = '''
+            new message: {}
+            From: {}'''.format(data["message"], data["email"])
+        title = request.POST["title"]    
+        send_mail(title,message,'alkh0ud@outlook.com',['alkh0ud@outlook.com'])
 
         return redirect("main_app:home_page") # لازم نطلع مسج لليوزر أن رسالته راحت
     
-    return render (request, "main_app/home.html")
+    return render (request, "main_app/contact.html")
 
 
 def leave_comment(request:HttpRequest, club_id):

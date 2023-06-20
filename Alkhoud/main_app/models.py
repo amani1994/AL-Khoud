@@ -45,8 +45,17 @@ class Comment(models.Model):
     message = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 
+
+
+class Tournament(models.Model):
+    club = models.ForeignKey(Club, on_delete=models.CASCADE)
+    tournament_name = models.CharField(max_length=200)
+    description = models.TextField(default="1")
+    start_date = models.DateField()
+    end_date = models.DateField()
+    image = models.ImageField(upload_to="images/", default="images/default.jpg")
+
 class Subscripe(models.Model):
-    #user
     goal = models.TextField()
     awards = models.CharField(max_length=100)
     other = models.TextField(default="1")
@@ -72,13 +81,7 @@ class Coach (models.Model):
     image = models.ImageField(upload_to="images/", default="images/default.jpg")
     experience = models.CharField(max_length=200) #عدد  سنوات الخبرة للمدرب
 
-class Tournament(models.Model):
-    club = models.ForeignKey(Club, on_delete=models.CASCADE)
-    tournament_name = models.CharField(max_length=200)
-    description = models.TextField(default="1")
-    start_date = models.DateField()
-    end_date = models.DateField()
-    image = models.ImageField(upload_to="images/", default="images/default.jpg")
+
 
 
 '''

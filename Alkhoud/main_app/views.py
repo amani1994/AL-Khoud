@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpRequest
 from django.core.mail import send_mail
 
+
 from .models import Club, Say, Offers, Package, Comment ,Coach ,Tournament, Contact, Subscripe
 
 #Review, Subscriber, 
@@ -62,8 +63,8 @@ def club_equestrian(request:HttpRequest):
 
 def subscripe(request:HttpRequest):
     if request.method == "POST":
-            all_comment = Subscripe(goal=request.POST["goal"], awards=request.POST["awards"],other=request.POST["other"])
-            all_comment.save() 
+            subscripers = Subscripe(goal=request.POST["goal"], awards=request.POST["awards"],other=request.POST["other"])
+            subscripers.save() 
             return redirect ('main_app:club_subscripe')
     return render (request,'main_app/subscripe.html')
 

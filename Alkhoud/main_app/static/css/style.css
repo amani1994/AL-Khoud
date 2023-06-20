@@ -234,7 +234,7 @@ a:focus {
 
     .navbar.nav-sticky {
         padding: 10px 60px;
-        background: #343148 !important;
+        background:#343148 !important;
     }
 
     .navbar a.nav-link {
@@ -891,18 +891,8 @@ a:focus {
     text-align: right;
 }
 
-.price .price-status span {
-    position: relative;
-    display: inline-block;
-    height: 30px;
-    right: -30px;
-    padding: 7px 10px;
-    text-align: center;
-    color: #343148;
-    font-size: 14px;
-    line-height: 14px;
-    background: #F7CAC9;
-}
+
+
 
 .price .price-title h2 {
     font-size: 25px;

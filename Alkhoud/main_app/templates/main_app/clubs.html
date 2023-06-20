@@ -40,6 +40,7 @@
                 <div class="row">
                     <div class="col-12">
                         <ul id="class-filter">
+                            <a href="{% url 'main_app:clubs' %}"><li  class="{% if request.GET.city == 'clubs' %}filter-active{% endif%}" data-filter=".filter-1">All Cities</li></a>
                             <a href="{% url 'main_app:clubs' %}?city=Riyadh"><li  class="{% if request.GET.city == 'Riyadh' %}filter-active{% endif%}" data-filter=".filter-1">Riyadh</li></a>
                             <a href="{% url 'main_app:clubs' %}?city=Jeddah"> <li class="{% if request.GET.city == 'Jeddah' %}filter-active{% endif%}"  data-filter=".filter-2">Jeddah</li></a>
                             <a href="{% url 'main_app:clubs' %}?city=Hail"><li class="{% if request.GET.city == 'Hail' %}filter-active{% endif%}" data-filter=".filter-3">Hail</li></a>
@@ -64,7 +65,6 @@
                                 </div>
                             </div>
                         </div>
-                        
                     </div>
                     {%endfor%}
 

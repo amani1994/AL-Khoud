@@ -1,7 +1,7 @@
 {% extends 'main_app/home.html' %}
 {% load static %}
 
-{%block title%}About{%endblock%}
+{%block title%}Contact us{%endblock%}
 
 
 {% block content %}
@@ -59,21 +59,22 @@
                     <div class="col-12 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="contact-form">
                             <div id="success"></div>
-                            <form name="sentMessage" id="contactForm" novalidate="novalidate">
+                            <form  method="POST">
+                                {% csrf_token %}
                                 <div class="control-group">
-                                    <input type="text" class="form-control" id="name" placeholder="Your Name" required="required" data-validation-required-message="Please enter your name" />
+                                    <input type="text" class="form-control" placeholder="Your Name" required="required" data-validation-required-message="Please enter your name" name="name" />
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="control-group">
-                                    <input type="email" class="form-control" id="email" placeholder="Your Email" required="required" data-validation-required-message="Please enter your email" />
+                                    <input type="email" class="form-control"  placeholder="Your Email" required="required" data-validation-required-message="Please enter your email" name="email" />
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="control-group">
-                                    <input type="text" class="form-control" id="subject" placeholder="Subject" required="required" data-validation-required-message="Please enter a subject" />
+                                    <input type="text" class="form-control"  placeholder="Title" required="required" data-validation-required-message="Please enter a subject" name="title" />
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="control-group">
-                                    <textarea class="form-control" id="message" placeholder="Message" required="required" data-validation-required-message="Please enter your message"></textarea>
+                                    <textarea class="form-control"  placeholder="Message" required="required" data-validation-required-message="Please enter your message" name="message"></textarea>
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div>
@@ -86,57 +87,6 @@
             </div>
         </div>
         
-        <section class="contact section container" id="contact">                
-            <div class="contact__container grid">
-                <div class="contact__box">
-                    <h2 class="section__title">
-                        Reach out to us today <br> via any of the given <br> information
-                    </h2>
-
-                    <div class="contact__data">
-                        <div class="contact__information">
-                            <h3 class="contact__subtitle">Call us for instant support</h3>
-                            <span class="contact__description">
-                                <i class="ri-phone-line contact__icon"></i>
-                                +999 888 777
-                            </span>
-                        </div>
-                        <div class="contact__information">
-                            <h3 class="contact__subtitle">Write us by mail</h3>
-                            <span class="contact__description">
-                                <i class="ri-mail-line contact__icon"></i>
-                                alkhoud-0@hotmail.com
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <form action="" class="contact__form">
-                    <div class="contact__inputs">
-                        <div class="contact__content">
-                            <input type="email" placeholder=" " class="contact__input">
-                            <label for="" class="contact__label">Email</label>
-                        </div>
-
-                        <div class="contact__content">
-                            <input type="text" placeholder=" " class="contact__input">
-                            <label for="" class="contact__label">Subject</label>
-                        </div>
-
-                        <div class="contact__content contact__area">
-                            <textarea name="message" placeholder=" " class="contact__input"></textarea>                              
-                            <label for="" class="contact__label">Message</label>
-                        </div>
-                    </div>
-
-                    <button class="button button--flex">
-                        Send Message
-                        <i class="ri-arrow-right-up-line button__icon"></i>
-                    </button>
-                </form>
-            </div>
-        </section>
-    </main>
-        <!-- Contact End -->
+        
 
 {%endblock%}

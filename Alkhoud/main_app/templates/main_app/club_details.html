@@ -34,7 +34,7 @@
 
     <div class="single">
         <div class="container">
-            <div class="row">
+            <div class="row" style="margin-top:55px;">
                 <div class="col-lg-8">
                     <div class="single-content wow fadeInUp">
                         <img src="{{club.image.url}}" />
@@ -159,18 +159,6 @@
                         </div>
                     </div>
                     <!-- Offers End -->
-
-
-
-
-
-
-
-
-
-
-
-
 
                     <!-- Blog Start -->
                     <div class="blog">
@@ -316,15 +304,14 @@
                                             <div class="post-img">
                                                 <img src="img/post-1.jpg" />
                                             </div>
+                                            
                                             <div class="post-text">
-                                                <h3>Coach Name</h3>
-                                                <a href="">Coach Description</a>
-                                                <div class="post-meta">
-                                                    <p><a href="">Type Training</a></p>
-                                                    <p><a href="">Experinece</a></p>
-                                                </div>
-                                            </div>
-                                        </div>
+                                                <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
+                                                    <p>Club Coaches</p>
+                                                     <h5>All our coaches are trained and certified</h5>
+                                                     <a href="{% url 'main_app:add_coach' club.id %}"><p>Add Coach</p></a> 
+                                                 </div>
+                                            
                                         <div class="post-item">
                                             <div class="post-img">
                                                 <img src="img/post-2.jpg" />
@@ -338,61 +325,24 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="post-item">
-                                            <div class="post-img">
-                                                <img src="img/post-3.jpg" />
-                                            </div>
-                                            <div class="post-text">
-                                                <h3>Coach Name</h3>
-                                                <a href="">Coach Description</a>
-                                                <div class="post-meta">
-                                                    <p><a href="">Type Training</a></p>
-                                                    <p><a href="">Experinece</a></p>
+                                        
+                                        
+                                    {% for coach in coaches%}
+                                        <div id="popular" class="container tab-pane fade">
+                                            <div class="post-item">
+                                                <div class="post-img">
+                                                    <img src="{{coach.image.url}}" />
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="post-item">
-                                            <div class="post-img">
-                                                <img src="img/post-4.jpg" />
-                                            </div>
-                                            <div class="post-text">
-                                                <h3>Coach Name</h3>
-                                                <a href="">Coach Description</a>
-                                                <div class="post-meta">
-                                                    <p><a href="">Type Training</a></p>
-                                                    <p><a href="">Experinece</a></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="post-item">
-                                            <div class="post-img">
-                                                <img src="img/post-5.jpg" />
-                                            </div>
                                                 <div class="post-text">
-                                                <h3>Coach Name</h3>
-                                                    <a href="">Coach Description</a>
+                                                    <h3>{{coach.name}}</h3>
+                                                    <a href="">{{coach.bio}}</a>
                                                     <div class="post-meta">
-                                                    <p><a href="">Type Training</a></p>
-                                                    <p><a href="">Experinece</a></p>
+                                                        <p>{{coach.experience}}</p>
                                                     </div>
                                                 </div>
-                                            </div>
-                                    <div id="popular" class="container tab-pane fade">
-                                        <div class="post-item">
-                                            <div class="post-img">
-                                                <img src="img/post-1.jpg" />
-                                            </div>
-                                            <div class="post-text">
-                                                <h3>Coach Name</h3>
-                                                <a href="">Coach Description</a>
-                                                <div class="post-meta">
-                                                    <p><a href="">Type Training</a></p>
-                                                    <p><a href="">Experinece</a></p>
-                                                </div>
-                                            </div>
                                         </div>
 
-
+                                        {%endfor%}
                                     </div>
                                     <div id="latest" class="container tab-pane fade">
                                         <div class="post-item">

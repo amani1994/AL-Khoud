@@ -106,10 +106,10 @@ class Review(models.Model):
     content = models.TextField()
     rating = models.FloatField()
 
+'''
 
 class Contact (models.Model):
-    #user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     name = models.CharField(max_length=200)
     email = models.EmailField()
-    message = models.TextField()'''
+    message = models.TextField()

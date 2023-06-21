@@ -40,8 +40,6 @@
                             <div id="success"></div>
                             <form method="POST" role="form" enctype="multipart/form-data">
                                 {% csrf_token %}
-
-
                                 <div class="form-group">
                                   <label for="exampleFormControlInput1">Name</label>
                                   <input type="text" class="form-control" id="exampleFormControlInput1" name="name" placeholder="name">
@@ -62,7 +60,6 @@
                                     <option value="Equestrian">Equestrian</option>
                                   </select>
                                 </div>
-                              
                                   <div class="form-group">
                                     <label for="exampleFormControlSelect1">Cities</label>
                                     <select class="form-control" id="exampleFormControlSelect1" name="city">
@@ -75,9 +72,6 @@
                                     <div class="hero-btn">
                                         <button type="submit" class="btn">Add</button>
                                     </div>
-                           
-                              
-                          
                                 </div>
                             </form>
                         </div>
@@ -86,7 +80,4 @@
             </div>
         </div>
     </div>
-
-
-
 {%endblock%}

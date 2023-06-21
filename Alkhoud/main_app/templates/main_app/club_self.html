@@ -7,19 +7,9 @@
 {% block content %}
 
         <!-- Page Header Start -->
-        <div class="page-header">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <h2>Class</h2>
-                    </div>
-                    <div class="col-12">
-                        <a href="">Home</a>
-                        <a href="">Class</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <video style=" opacity: 0.9;" class="w-100" autoplay loop muted>
+            <source src="{% static 'img/judo.mp4' %}" type="video/mp4" />
+          </video>
         <!-- Page Header End -->
 
 
@@ -54,7 +44,7 @@
                     <div class="col-lg-4 col-md-6 col-sm-12 class-item filter-1 wow fadeInUp" data-wow-delay="0.0s">
                         <div class="class-wrap">
                             <div class="class-img">
-                                <a href="#"><img src="{{club.image.url}}" alt="Image"></a>
+                                <a href="#"><img  src="{{club.image.url}}" alt="Image"></a>
                             </div>
                             <div class="class-text">
                               <a href="{% url 'main_app:club_details' club.id%}"> <h2>{{club.name}}</h2></a>

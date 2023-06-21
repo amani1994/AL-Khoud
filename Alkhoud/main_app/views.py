@@ -284,6 +284,11 @@ def accepted_subscriper(request:HttpRequest):
     print(subscripe)
     return render(request, "main_app/accepted_subscriper.html", {"subscripe":subscripe})
 
+def delete_subscriper(request:HttpRequest, subscriper_id):
+    subscripe = Subscripe.objects.get(id = subscriper_id)
+    subscripe.delete()
+    return redirect(request.META['HTTP_REFERER'])
+
 
 
 

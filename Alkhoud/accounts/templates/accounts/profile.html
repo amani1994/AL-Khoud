@@ -196,6 +196,12 @@ body{
                                                 <p>{{profile.phone_number}}</p>
                                             </div>
                                         </div>
+                                        {%for subscriper in subscripe%}
+                                        <div class="col-md-6">
+                                            <p>{{subscriper.tournament.tournament_name}}</p>
+                                        </div>
+                                        {%endfor%}
+                                    </div>
 
                             </div>
                             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">

@@ -112,7 +112,7 @@ right: -46px !important;
 
                         <a href="{% url 'main_app:home_page' %}" class="nav-item nav-link active">Home</a></li>
                         <a href="{% block link%} #about {%endblock%}" class="nav-item nav-link">About</a>
-                        <a href="#service" class="nav-item nav-link">Service</a>
+                        <a href="#service" class="nav-item nav-link">Clubs</a>
                         <a href="#discounts" class="nav-item nav-link">Discounts</a>
                         <a href="#tournament" class="nav-item nav-link">Tournament</a>
                         <a href="{% url 'accounts:profile_page' request.user.id %}" class="nav-item nav-link">Profile</a>
@@ -143,8 +143,11 @@ right: -46px !important;
 
 {% block content %}
                 <!-- Hero Start -->
-                <div class="hero">
-                    <div class="container-fluid">
+                <div class="hero position-relative">
+                    <video style=" opacity: 0.9;" class="w-100" autoplay loop muted>
+                        <source src="{% static 'img/hourse.mp4' %}" type="video/mp4" />
+                      </video>  
+                    <div class="container-fluid hero-desc">
                         <div class="row align-items-center">
                             <div class="col-sm-12 col-md-6">
                                 <div class="hero-text">
@@ -161,15 +164,11 @@ right: -46px !important;
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-6 d-none d-md-block">
-                                <div class="hero-image">
-                                 <img src="{% static 'img/hero.png'%}" alt="Hero Image">-
-                                  <div class="hero-image">
+                              
                                     <br>
                                     <br>
                                     <br>
-                                    <!--  <video style="border-radius: 5%;" class="w-100" autoplay loop muted>
-                                        <source src="{% static ' img/ videoplayback.webm' %}" type="video/mp4" />
-                                      </video>   -->                             
+                                                          
                                      </div>
                                      </div>
                             </div>
@@ -190,7 +189,7 @@ right: -46px !important;
                         <div class="row align-items-center">
                             <div class="col-lg-5 col-md-6">
                                 <div class="about-img">
-                                    <img src="{% static 'img/aboutus.jpeg'%}" alt="Image">
+                                    <img style="border-radius: 10px;" src="{% static 'img/aboutus.jpeg'%}" alt="Image">
                                 </div>
                             </div>
                             <div class="col-lg-7 col-md-6">
@@ -331,9 +330,10 @@ right: -46px !important;
                             <h2>My Tournament</h2>
                         </div>
                         <div  style="Width:1000px; "class="row blog-page">
+                            {% for tournament in tournament%}
                             <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.0s">
+
                                 <div class="blog-item">
-                                    {% for tournament in tournament%}
                                     <div class="blog-img">
                                         <img src="{{tournament.image.url}}" alt="Blog">
                                     </div>
@@ -348,9 +348,10 @@ right: -46px !important;
                                             {{tournament.description}}                                        </p>
                                         <a class="btn" href="{% url 'main_app:club_details' tournament.club.id %} ">Read More <i class="fa fa-angle-right"></i></a>
                                     </div>
-                                    {%endfor%}
                                 </div>
                             </div>
+                            {%endfor%}
+
                         </div>
 
                     </div>
@@ -371,54 +372,17 @@ right: -46px !important;
                             <div class="testimonial-item">
                                 
                                 <div class="testimonial-img">
-                                    <img src="{% static 'img/project-Logo.png'%}" alt="Image">
+                                    <img src="{% static 'img/logo.png'%}" alt="Image">
                                 </div>
                                 <div class="testimonial-text">
                                     <p>
                                         {{word.decription}}
                                     </p>
                                     <h3> {{word.name}}</h3>
-                                    <h4>Profession</h4>
                                 </div>
                                 
                             </div>
                             {%endfor%}
-
-                            <div class="testimonial-item">
-                                <div class="testimonial-img">
-                                <img src="img/logo.png" alt="Image">
-                                </div>
-                                <div class="testimonial-text">
-                                    <p>
-                                        Lorem ipsum dolor sit amet consec adipis elit. Etiam accums lacus eget velit tincid, quis suscip justo dictum.
-                                    </p>
-                                    <h3>Customer Name</h3>
-                                    <h4>Profession</h4>
-                                </div>
-                            </div>
-                            <div class="testimonial-item">
-                                <div class="testimonial-img">
-                                <img src="img/logo.png" alt="Image">
-                                </div>
-                                <div class="testimonial-text">
-                                    <p>
-                                        Lorem ipsum dolor sit amet consec adipis elit. Etiam accums lacus eget velit tincid, quis suscip justo dictum.
-                                    </p>
-                                    <h3>Customer Name</h3>
-                                    <h4>Profession</h4>
-                                </div>
-                            </div>
-                            <div class="testimonial-item">
-                                <div class="testimonial-img">
-                                </div>
-                                <div class="testimonial-text">
-                                    <p>
-                                        Lorem ipsum dolor sit amet consec adipis elit. Etiam accums lacus eget velit tincid, quis suscip justo dictum.
-                                    </p>
-                                    <h3>Customer Name</h3>
-                                    <h4>Profession</h4>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>

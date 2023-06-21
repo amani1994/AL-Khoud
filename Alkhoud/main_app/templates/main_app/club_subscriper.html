@@ -46,15 +46,15 @@
                      {%if not subscriper.is_accepted %}
                   <tr>
                     <th scope="row"></th>
-                    <td>{{subscriper.user.profile.user}}</td>
+                    <td>{{subscriper.user.profile.user.username}}</td>
                     <td>{{subscriper.user.profile.age}}</td>
-                    <td></td>
+                    <td>{{subscriper.user.profile.level}}</td>
                       <td>{{subscriper.goal}}</td>
                       <td>{{subscriper.awards}}</td>
                       <td>{{subscriper.other}}</td>
                     <td>
-                      <a href="{%url 'main_app:accept_subscriper' subscriper.pk %}"><button type="button" class="btn btn-light"><span class="material-symbols-outlined">done</span></button></a>
-                      <button type="button" class="btn btn-light"><span class="material-symbols-outlined">close</span></button>
+                      <a href="{%url 'main_app:accept_subscriper' subscriper.pk %}"><button type="button" class="btn btn-light"><span class="material-symbols-outlined">Accept</span></button></a>
+                      <a href="{%url 'main_app:delete_subscriper' subscriper.pk %}"><button type="button" class="btn btn-light"><span class="material-symbols-outlined">Refuse</span></button></a>
                     </td>
                     {%endif%}
                     {%endfor%}

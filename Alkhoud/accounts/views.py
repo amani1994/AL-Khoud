@@ -3,6 +3,7 @@ from django.http import HttpRequest, HttpResponse
 from django.contrib.auth.models import User 
 from .models import Profile
 from django.contrib.auth import authenticate, login, logout
+from main_app.models import Subscripe
 
 # Create your views here.
 
@@ -103,3 +104,9 @@ def update_profile_page(request:HttpRequest, user_id):
 def no_permission_page(request: HttpRequest):
 
     return render(request, "accounts/no_permission_page.html")
+
+
+def my_subscriptions(request: HttpRequest):
+    subscripe = Subscripe.objects.filter(user = request.user)
+    print(subscripe)
+    return render(request, "accounts/my_subscriptions.html", {"subscripe":subscripe})

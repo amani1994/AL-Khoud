@@ -301,14 +301,14 @@ a:focus {
 }
 
 .hero .hero-text h1 {
-    color: #343148;
+    color: #ffffff;
     font-size: 60px;
     font-weight: 700;
     margin-bottom: 20px;
 }
 
 .hero .hero-text p {
-    color: #343148;
+    color: #ffffff;
     font-size: 18px;
     margin-bottom: 25px;
 }
@@ -703,7 +703,7 @@ a:focus {
 .class .class-img img {
     position: relative;
     width: 100%;
-    height: 100%;
+    height: 150px;
     object-fit: cover;
 }
 
@@ -1303,6 +1303,14 @@ a:focus {
 
 .blog .pagination .disabled .page-link {
     color: #999999;
+}
+
+
+.hero-desc {
+    position: absolute;
+    top:0px;
+    left:0px;
+    margin-top:200px;
 }
 
 

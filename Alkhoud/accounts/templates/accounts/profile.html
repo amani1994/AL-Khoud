@@ -6,15 +6,15 @@
 
 {% block content %}
 
-
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
+<head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
 <style media="screen">
 
 body{
-    background: -webkit-linear-gradient(left, #e4650ad2, #b0e779);
+    background: -webkit-linear-gradient(left, #e4650ad2, #fa89ce);
 
 }
 .emp-profile{
@@ -39,7 +39,7 @@ body{
     border: none;
     border-radius: 0;
     font-size: 15px;
-    background: #1b3513e3;
+    background: #eccdbce3;
 }
 .profile-img .file input {
     position: absolute;
@@ -48,10 +48,10 @@ body{
     top: 0;
 }
 .profile-head h5{
-    color: #333;
+    color: #3e2e2e;
 }
 .profile-head h6{
-    color: #29621c;
+    color: #514043;
 }
 .profile-edit-btn{
     border: none;
@@ -81,7 +81,7 @@ body{
 }
 .profile-head .nav-tabs .nav-link.active{
     border: none;
-    border-bottom:2px solid rgb(105, 231, 193) ;
+    border-bottom:2px solid rgb(253, 166, 189) ;
 }
 .profile-work{
     padding: 14%;
@@ -142,8 +142,8 @@ body{
                             </ul>
                         </div>
                     </div>
-                    <div class="col-md-2">
-                        <a href="{% url 'accounts:update_profile_page' request.user.id %}" input type="submit" class="profile-edit-btn" name="btnAddMore" style="color: #29621c;" value="Edit Profile">Edit Profile</a>
+                    <div class="col-md-2 active">
+                        <a href="{% url 'accounts:update_profile_page' request.user.id %}" input type="submit" class="profile-edit-btn" name="btnAddMore"style="color:#f0788a" value="Edit Profile">Edit Profile</a>
                     </div>
                 </div>
                 <div class="row">
@@ -152,12 +152,6 @@ body{
                             <p>WORK LINKS</p>
                             <a href="{{profile.instagram_link}}" class="fab fa-instagram"> Instagram</a><br/>
                             <a href="{{profile.twitter_link}}" class="fab fa-twitter"> Twitter</a><br/>
-                            <!-- <p>SKILLS</p>
-                            <a href="">Web Designer</a><br/>
-                            <a href="">Web Developer</a><br/>
-                            <a href="">WordPress</a><br/>
-                            <a href="">WooCommerce</a><br/>
-                            <a href="">PHP, .Net</a><br/> -->
                         </div>
                     </div>
                     <div class="col-md-8">
@@ -165,7 +159,7 @@ body{
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>User Id</label>
+                                                <label>Username</label>
                                             </div>
                                             <div class="col-md-6">
                                                 <p>{{profile.user.username}}</p>
@@ -197,7 +191,7 @@ body{
                                         </div>
 
                             </div>
-                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <!-- <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label>Experience</label>
@@ -211,7 +205,7 @@ body{
                                         <label>Your Bio</label><br/>
                                         <p>Your detail description</p>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>

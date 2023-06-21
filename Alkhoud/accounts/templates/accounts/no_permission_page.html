@@ -29,7 +29,7 @@ h1 {
   border-radius: 5px;
   width: 55px;
   height: 45px;
-  background-color: #3d5e14;
+  background-color: #7c543a;
   animation: dip 1s;
   animation-delay: 1.5s;
 }
@@ -89,9 +89,18 @@ h1 {
 }
 </style>
 
-<div class="lock"></div>
-<div class="message">
-  <h1>Access to this page is restricted</h1>
-  <p>Please check with the site admin if you believe this is a mistake.</p>
-</div>
+<body>
+    <div class="lock"></div>
+    <div class="message">
+        <h1>Access to this page is restricted</h1>
+        <p>Please get in touch with us if you believe this is a mistake.</p>
+    </div>
+    <br>
+    <a href="{% url 'main_app:home_page' %}" class="btn btn-secondary btn-lg active " role="button" aria-pressed="true">Home</a>
 
+    <!-- Bootstrap links -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+
+</body>

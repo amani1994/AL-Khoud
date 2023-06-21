@@ -6,8 +6,6 @@
 
 {% block content %}
 
-
-
 <style media="screen">
     body {
       color: #000;
@@ -163,6 +161,8 @@
       }
   }
   </style>
+
+
         <!-- Page Header Start -->
         <div class="page-header">
             <div class="container">
@@ -183,16 +183,15 @@
         <div class="container px-4 py-5 mx-auto">
             <div class="row d-flex justify-content-center">
                 <div class="col-5">
-                    <h4 class="heading">Shopping Bag</h4>
+                    <h4 class="heading"> Package</h4>
                 </div>
                 <div class="col-7">
-                    {% for offer in all_offers%}
                     <div class="row text-right">
                         <div class="col-4">
                             <h6 class="mt-2">Package Type</h6>
                         </div>
                         <div class="col-4">
-                            <h6 class="mt-2">Quantity</h6>
+                            <h6 class="mt-2">Duration</h6>
                         </div>
                         <div class="col-4">
                             <h6 class="mt-2">Price</h6>
@@ -202,38 +201,36 @@
             </div>
 
             <div class="row d-flex justify-content-center border-top">
+                {%for package in packages%}
                 <div class="col-5">
                     <div class="row d-flex">
                         <div class="book">
-                            <img src="" class="book-img">
+                            <img src="{%static 'img/package.png'%}" class="book-img">
                         </div>
                         <div class="my-auto flex-column d-flex pad-left">
-                            <h6 class="mob-text">{{offer.name}} : -------- </h6>
-                            <p class="mob-text"></p>
+                            <p class="mob-text">* Features:</p>
+                            <p style="color: #F7CAC9;" class="mob-text">- {{package.description | slice:14}}</p>
+                            <p style="color: #F7CAC9;" class="mob-text">- {{package.description | slice:"14:28 " }}</p>
+                  
                         </div>
                     </div>
                 </div>
                 <div class="my-auto col-7">
                     <div class="row text-right">
                         <div class="col-4">
-                            <p class="mob-text">Standard</p>
+                            <p style="color: #F7CAC9;" class="mob-text">{{package.package_type}}</p>
                         </div>
                         <div class="col-4">
-                            <div class="row d-flex justify-content-end px-3">
-                                <p class="mb-0" id="cnt1">1</p>
-                                <div class="d-flex flex-column plus-minus">
-                                    <span class="vsm-text plus">+</span>
-                                    <span class="vsm-text minus">-</span>
-                                </div>
-                            </div>
+                            <h6 style="color: #F7CAC9;" class="mob-text">{{package.duration}}/ months</h6>
                         </div>
                         <div class="col-4">
-                            <h6 class="mob-text">$9.99</h6>
+                            <h6 style="color: #F7CAC9;" class="mob-text">${{package.price}}</h6>
                         </div>
                     </div>
                 </div>
-            </div>
-{%endfor%}
+                {%endfor%}
+                </div>
+
             </div>
 
             <div class="row justify-content-center">

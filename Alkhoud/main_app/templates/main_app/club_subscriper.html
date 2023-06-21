@@ -1,0 +1,70 @@
+{% extends 'main_app/home.html' %}
+{% load static %}
+
+{%block title%}Add Club{%endblock%}
+{% block link%} {% url 'main_app:home_page' %}{%endblock%}
+
+{% block content %}
+
+        <!-- Page Header Start -->
+        <div class="page-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2> Subscription requests </h2>
+                    </div>
+                    <div class="col-12">
+                        <a href="">Home</a>
+                        <a href="">Clube</a>
+                        <a href="">Subscription requests </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Page Header End -->
+
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">Level</th>
+                    <th scope="col">goal</th>
+                    <th scope="col">awards</th>
+                    <th scope="col">other</th>
+                    <th scope="col">status</th>
+
+
+                  </tr>
+                </thead>
+                <tbody>
+                    {%for subscriper in subscripers%}
+                     {%if not subscriper.is_accepted %}
+                  <tr>
+                    <th scope="row"></th>
+                    <td>{{subscriper.user.profile.user}}</td>
+                    <td>{{subscriper.user.profile.age}}</td>
+                    <td></td>
+                      <td>{{subscriper.goal}}</td>
+                      <td>{{subscriper.awards}}</td>
+                      <td>{{subscriper.other}}</td>
+                    <td>
+                      <a href="{%url 'main_app:accept_subscriper' subscriper.pk %}"><button type="button" class="btn btn-light"><span class="material-symbols-outlined">done</span></button></a>
+                      <button type="button" class="btn btn-light"><span class="material-symbols-outlined">close</span></button>
+                    </td>
+                    {%endif%}
+                    {%endfor%}
+                  </tr>
+                
+                </tbody>
+
+              </table>
+            </div>
+          </div>
+        </div>
+
+        {%endblock%}

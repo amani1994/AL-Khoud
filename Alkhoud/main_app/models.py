@@ -1,15 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
+from accounts.models import Profile
 
 # Create your models here.
 
-'''class Profile(models.Model):
-     
-     #user = models.OneToOneField(User, on_delete=models.CASCADE)
-     avatar = models.ImageField(upload_to="images/", default="images/default.jpg")
-     level = models.IntegerField()
-     age = models.IntegerField()
-     city = models.CharField(max_length=200)'''
      
 '''class Category(models.Model):
     name = models.CharField(max_length=200)
@@ -29,7 +23,6 @@ class Club (models.Model):
 class Say (models.Model):
     name = models.CharField(max_length=200)
     decription = models.TextField()
-    image = models.ImageField(upload_to="images/", default="images/default.jpg")
 
 class Offers (models.Model):
     club = models.ForeignKey(Club,on_delete=models.CASCADE, default=1)
@@ -55,6 +48,23 @@ class Comment(models.Model):
 
 
 
+class Tournament(models.Model):
+    club = models.ForeignKey(Club, on_delete=models.CASCADE)
+    tournament_name = models.CharField(max_length=200)
+    description = models.TextField(default="1")
+    start_date = models.DateField()
+    end_date = models.DateField()
+    image = models.ImageField(upload_to="images/", default="images/default.jpg")
+
+class Subscripe(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+    tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE, default=1)
+    goal = models.TextField()
+    awards = models.CharField(max_length=100)
+    other = models.TextField(default="1")
+    is_accepted = models.BooleanField(default=False)
+
+
 
 
 
@@ -70,22 +80,15 @@ class Subscriber(models.Model):
 class Coach (models.Model):
     #user = user = models.ForeignKey(User, on_delete=models.CASCADE)
     club = models.ForeignKey(Club, on_delete=models.CASCADE)
-    name = models.CharField(max_length=200)
+    coach_name = models.CharField(max_length=200)
     bio = models.TextField()
     image = models.ImageField(upload_to="images/", default="images/default.jpg")
-    social_account = models.CharField(max_length=200)
     experience = models.CharField(max_length=200) #عدد  سنوات الخبرة للمدرب
-    phone_number = models.IntegerField()
+
+
+
+
 '''
-class Tournament(models.Model):
-    club = models.ForeignKey(Club, on_delete=models.CASCADE)
-    tournament_name = models.CharField(max_length=200)
-    start_date = models.DateField()
-    end_date = models.DateField()
-    image = models.ImageField(upload_to="images/", default="images/default.jpg")
-
-
-
 class Enroll(models.Model):
     club = models.ForeignKey(Club, on_delete=models.CASCADE)
     subscriber = models.ForeignKey(Subscriber, on_delete=models.CASCADE)
@@ -108,10 +111,10 @@ class Review(models.Model):
     content = models.TextField()
     rating = models.FloatField()
 
+'''
 
 class Contact (models.Model):
-    #user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     name = models.CharField(max_length=200)
     email = models.EmailField()
-    message = models.TextField()'''
+    message = models.TextField()

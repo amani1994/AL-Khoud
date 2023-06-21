@@ -2,86 +2,126 @@
 {% extends 'main_app/home.html' %}
 {% load static %}
 
-{%block title%}About{%endblock%}
+{%block title%}Sign Up{%endblock%}
 
 
 {% block content %}
 
-      <!-- Nav Bar End -->
+<div class="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2>Sign Up</h2>
+            </div>
+            <div class="col-12">
+                <a href="">Home</a>
+                <a href="">Contact</a>
+            </div>
+        </div>
+    </div>
+</div>
 
 
-        <!-- Page Header Start -->
-        <div class="page-header">
-            <div class="container">
+<!-- Contact Start -->
+<div class="contact">
+    <div class="container">
+        <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
+            <p>Sign Up Page</p>
+            <h2>Sign Up</h2>
+        </div>
+        <div class="row">
+            <div class="col-12">
                 <div class="row">
-                    <div class="col-12">
-                        <h2>Sign In</h2>
-                    </div>
-                    <div class="col-12">
-                        <a href="">Home</a>
-                        <a href="">Contact</a>
-                    </div>
+            </div>
+            <div class="col-12 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="contact-form">
+                    <div id="success"></div>
+                    <form novalidate="novalidate" action="{% url 'accounts:sign_up' %}" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="control-group">
+                            <input type="name" class="form-control" name="username" id="name" placeholder="user name" required="required" data-validation-required-message="Please enter your Name" />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required="required" data-validation-required-message="Please enter your email" />
+                            <p class="help-block text-danger"></p>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="name">First name</label>
+                            <input type="text" class="form-control" id="name" placeholder="First name" name="first_name">
+                        </div>
+        
+                        <div class="form-group">
+                            <label for="name">Last name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Last name" name="last_name">
+                        </div>
+
+                        <div class="control-group">
+                            <label for="floatingAvatar">Your Fitness Level</label>
+                            <br>
+                            <select class="form-select form-select-lg mb-3 w-50" aria-label=".form-select-lg example" name="level">
+                                <option selected>choose one</option>
+                                <option value="Beginner">Beginner</option>
+                                <option value="Intermediate">Intermediate</option>
+                                <option value="Advanced">Advanced</option>
+                            </select>
+                        </div>
+
+                        <div class="form-floating">
+                            <label for="age">Age</label>
+                            <input type="number" class="form-control" id="age" placeholder="Age" name="age">
+                        </div>
+
+                        <br>
+                        
+                        <div class="form-floating">
+                            <label for="floatingInput">Twitter</label>
+                            <input type="url" class="form-control" id="floatingInput" placeholder="twitter_link" name="twitter_link">
+                        </div>
+
+                        <div class="form-floating">
+                            <label for="floatingInput">Instagram</label>
+                            <input type="url" class="form-control" id="floatingInput" placeholder="instagram_link" name="instagram_link">
+                        </div>
+
+                        <div class="form-floating">
+                            <label for="floatingInput">About</label>
+                            <textarea  class="form-control" id="floatingInput" placeholder="about" name="about"></textarea>
+                        </div>
+
+                        <div class="form">
+
+                            <label for="floatingAvatar">Your Avatar</label>
+                            <input type="file" accept="image/png, image/jpg" class="form-control" id="floatingAvatar" placeholder="avatar" name="avatar">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input class="form-control" type="password" name="password" id="password" placeholder="********" required data-validation-required-message="Please enter your passowrd" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="passwordRepeat">Repeat Password</label>
+                            <input class="form-control" type="password" name="passwordRepeat" id="passwordRepeat" placeholder="********" required />
+                        </div>
+
+                        <div class="control-group">
+                            <input type="text" class="form-control" name="phone_number" id="phonenumber" placeholder="Your number" required="required" data-validation-required-message="Please enter a phone number" />
+                            <p class="help-block text-danger"></p>
+                        </div>
+
+                        <div>
+                            <button class="btn" type="submit" >Sign Up</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-        <!-- Page Header End -->
-
-
-        <!-- Contact Start -->
-        <div class="contact">
-            <div class="container">
-                <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
-                    <p>Sign In Page</p>
-                    <h2>Sign In</h2>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="row">
-                    </div>
-                    <div class="col-12 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="contact-form">
-                            <div id="success"></div>
-
-    <h2>Sign Up </h2>
-    <form class="d-flex flex-column gap-3 w-50" action="{% url 'accounts:sign_up' %}" method="POST">
-        {% csrf_token %}
-        
-    
-        <div class="form-floating">
-          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email">
-          <label for="floatingInput">Email address</label>
-        </div>
-
-        <div class="form-floating">
-            <input type="text" class="form-control" id="floatingInput" placeholder="username" name="username">
-            <label for="floatingInput">User name</label>
-        </div>
-
-        <div class="form-floating">
-            <input type="text" class="form-control" id="floatingInput" placeholder="First name" name="first_name">
-            <label for="floatingInput">First name</label>
-        </div>
-
-        <div class="form-floating">
-            <input type="text" class="form-control" id="floatingInput" placeholder="Last name" name="last_name">
-            <label for="floatingInput">Last name</label>
-        </div>
-
-        <div class="form-floating">
-          <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
-          <label for="floatingPassword">Password</label>
-        </div>
-    
-
-        <button class="btn btn-primary w-100 py-2" type="submit">Sign up</button>
-        <p class="mt-5 mb-3 text-body-secondary">© 2017–2023</p>
-      </form>
-
     </div>
 </div>
-</div>
-</div>
-</div>
-<!-- Contact End -->
 
 {%endblock%}
+
+
+

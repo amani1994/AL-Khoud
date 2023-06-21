@@ -1,7 +1,7 @@
 {% extends 'main_app/home.html' %}
 {% load static %}
 
-{%block title%} Club details {%endblock%}
+{%block title%} {{club.name}} Details {%endblock%}
 
 {%block content%}
     <!-- Single Post Start-->
@@ -24,15 +24,6 @@
         </div>
         <!-- Page Header End -->
 
-
-
-
-
-
-
-
-
-
     <div class="single">
         <div class="container">
             <div class="row" style="margin-top:55px;">
@@ -52,9 +43,9 @@
                                 <p>
                                     {{club.city}}
                                 </p>
-                                <h3>Time Work</h3>
+                                <h3>Working Time</h3>
                                 <p>
-
+                                    9:00 am - 10:00 pm
                                 </p>
                                 <h3>Sport Type</h3>
                                 <p>{{club.type}}</p>
@@ -246,38 +237,8 @@
                         </form>
                     </div>
                     <!-- Review End -->
-
-                
-                
-                
-                
-                
-
-
-
-
-
-
                 
                 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                 <div class="col-lg-4">
                     <div class="sidebar">

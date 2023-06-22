@@ -34,7 +34,6 @@
                     </div>
                     <div class="single-bio wow fadeInUp">
                         <div class="single-bio-text">
-                
                                 <h3 style="color: #F7CAC9;">Description</h3>
                                 <p>
                                     {{club.decription}}
@@ -61,7 +60,6 @@
                             <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
                                 <p>Club Package</p>
                                 <h2>Club Packages Plan</h2>
-                                <a href="{% url 'main_app:add_package' club.id %}"><p>Add Package</p></a>
                             </div>
                             <div class="row">
                                 {%for pack in packages%}
@@ -88,15 +86,21 @@
                                         <div class="price-footer">
                                             <div class="price-action">
                                                 <a class="btn" href="{% url 'main_app:buy' club.id%}">Subscribe</a>
+                                                {% if perms.main_app.delete_package%}
                                                 <a class="btn" href="{% url 'main_app:delete_package' club.id pack.id %}">Delete </a>
+                                                {%endif%}
                                             </div>
                                         </div>
-                      
                                         </div>
                                 </div>
                                 {%endfor%}
                             </div>
                         </div>
+                        {% if perms.main_app.add_package%}
+                        <div class="price-action">
+                            <button  class="btn btn-light"><a href="{% url 'main_app:add_package' club.id %}">Add Package</a></button>
+                        </div>
+                        {%endif%}
                     </div>
 
         <!-- Offers -->
@@ -105,7 +109,6 @@
                             <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
                                <a href=""><p>Club Offers</p></a> 
                                 <h2>Discounts and Offers</h2>
-                                <a href="{% url 'main_app:add_offer' club.id %}"><p>Add Offer</p></a> 
                         
                             </div>
                             <div class="row">
@@ -128,24 +131,31 @@
                                         <div class="price-body">
                                             <div class="price-description">
                                                 <ul>
-                                                    <li>{{offer.description | slice:14}}</li>
-                                                    <li>{{offer.description | slice:"14:15" }}</li>
+                                                    <li>{{offer.description | slice:13}}</li>
+                                                    <li>{{offer.description | slice:"13:24" }}</li>
                                                 </ul>
                                             </div>
                                         </div>
 
                                         <div class="price-footer">
                                             <div class="price-action">
-                                                <a class="btn" href="#">Join Now</a>
+                                                <a class="btn" href="#">Subscribe</a>
+                                                {% if perms.main_app.delete_offer%}
                                                 <a class="btn" href="{% url 'main_app:delete_offer' club.id offer.id %}">Delete </a>
+                                                {%endif%}
                                             </div>
                                         </div>
                                        
-                                        </div>
+                                 </div>
                                 </div>
                                 {%endfor%}
                             </div>
                         </div>
+                        {% if perms.main_app.add_offer%}
+                        <div class="price-action">
+                            <button  class="btn btn-light"><a href="{% url 'main_app:add_offer' club.id %}">Add Offer</a></button>
+                        </div>
+                        {%endif%}
                     </div>
                     <!-- Offers End -->
                     <!-- Blog Start -->
@@ -154,7 +164,6 @@
                             <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
                                 <p>All Tournament</p>
                                 <h2>My Tournament</h2>
-                                <a href="{% url 'main_app:add_tournament' club.id %}"><p>Add Tournament</p></a> 
                             </div>
                             <div  style="Width:1000px; "class="row blog-page">
                                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.0s">
@@ -173,13 +182,15 @@
                                             <p>
                                                 {{tournament.description}}
                                             </p>
-                                            <a class="btn" href="{% url 'main_app:subscripe' %}">Subscripe<i class="fa fa-angle-right"></i></a>
+                                            <a class="btn" href="{% url 'main_app:subscripe' tournament.pk %}">Join<i class="fa fa-angle-right"></i></a>
                                         </div>
                                         {%endfor%}
                                     </div>
                                 </div>
                             </div>
-
+                        </div>
+                        <div class="price-action">
+                            <button  class="btn btn-light"><a href="{% url 'main_app:add_tournament' club.id %}">Add Tournament</a></button>
                         </div>
                     </div>
                     <!-- Blog End -->
@@ -196,7 +207,7 @@
                                 {% for comment in comments %} 
                                 <div class="comment-body">
                                     <div class="comment-img">
-                                        <img src="{%static 'img/project-Logo.png'%}" />
+                                        <img src="{% static 'img/logo.png'%}" />
                                     </div>
                                     <div class="comment-text">
                                         <h3><a href="">{{comment.name}} </a></h3>
@@ -219,6 +230,7 @@
 
 
                      <!-- Review start -->
+                     {% if perms.main_app.view_say and perms.main_app.view_comment%}
                     <div class="comment-form wow fadeInUp">
                         <h2>Leave a comment</h2>
                         <form  method="POST" action="{% url 'main_app:leave_comment' club.id %}" class="flex-grow-1 ms-3" enctype="multipart/form-data">
@@ -236,6 +248,7 @@
                             </div>
                         </form>
                     </div>
+                    {%endif%}
                     <!-- Review End -->
                 
                 </div>
@@ -251,29 +264,20 @@
                             </div>
                         </div>
                         <div class="sidebar-widget wow fadeInUp">
-
                         </div>
-
                         <div class="sidebar-widget wow fadeInUp">
                             <div class="tab-post">
                                 <ul class="nav nav-pills nav-justified">
                                 </ul>
-
                                 <div class="tab-content">
                                     <div id="featured" class="container tab-pane active">
-                                        <div class="post-item">
-                                   
-                                            
-                                            <div class="post-text">
-                                                <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
+                                        <div class="post-item">  
+                                        <div class="post-text">
+                                        <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
                                                     <p>Club Coaches</p>
                                                      <h5>All our coaches are trained and certified</h5>
-                                                     <a href="{% url 'main_app:add_coach' club.id %}"><p>Add Coach</p></a> 
-                                                 </div>
-                          
-                                        
-                                        
-                                        
+                                                    
+                                         </div>
                                         <div id="popular" class="container tab-pane ">
                                             {% for coach in coaches %}
                                             <div class="post-item">
@@ -285,22 +289,28 @@
                                                     <br>
                                                     <a href="">{{coach.bio}}</a>
                                                     <div class="post-meta">
-                                                        <p>{{coach.experience}} Years</p>
+                                                        <p>Experince: {{coach.experience}} Years</p>
                                                     </div>
                                                 </div>
                                             </div>
                                             {%endfor%}
                                         </div>
-
-                                  
+                                        {% if perms.main_app.add_coach%}
+                                        <div class="price-action">
+                                            <button  class="btn btn-light"><a href="{% url 'main_app:add_coach' club.id %}">Add Coach</a></button>
+                                        </div>
+                                        {%endif%}
+                                        </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
+
+
+            </div> </div> </div>
     <!-- Single Post End-->
 
 {%endblock%}

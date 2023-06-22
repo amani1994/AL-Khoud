@@ -1,0 +1,53 @@
+{% extends 'main_app/home.html' %}
+{% load static %}
+
+{%block title%}Contact us{%endblock%}
+
+
+{% block content %}
+
+        <!-- Page Header Start -->
+        <div class="page-header">
+            <div class="container">
+                <div class="row">
+                  
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Page Header End -->
+
+
+        <!-- Contact Start -->
+        <div class="contact">
+            <div class="container">
+                <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
+                    <p>Data of club subscribers</p>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-md-4 contact-item wow zoomIn" data-wow-delay="0.2s">
+                                <i class="fa fa-check"></i>
+                                <div class="contact-text">
+                                    <a href="{% url 'main_app:club_subscripe' %}"><h2>Pending Subscripers</h2></a>
+                                    <p></p>
+                                </div>
+                            </div>
+                            <div class="col-md-4 contact-item wow zoomIn" data-wow-delay="0.4s">
+                                <i class="fa fa-check"></i>
+                                <div class="contact-text">
+                                    <a href="{% url 'main_app:accepted_subscriper' %}"><h2>Accepted subscripers</h2></a>
+                                    <p></p>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+
+{%endblock%}

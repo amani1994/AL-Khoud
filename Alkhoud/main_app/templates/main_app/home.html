@@ -116,26 +116,36 @@ right: -46px !important;
                         <a href="#discounts" class="nav-item nav-link">Discounts</a>
                         <a href="#tournament" class="nav-item nav-link">Tournament</a>
                         <a href="{% url 'accounts:profile_page' request.user.id %}" class="nav-item nav-link">Profile</a>
-
-                        
-
+                        {% if perms.main_app.add_club%}
                         <div class="nav-item dropdown">
                           <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Add</a>
                             <div class="dropdown-menu">
                                 <a href="{% url 'main_app:add_club' %}" class="dropdown-item">Add Club</a></li>
                             </div>
                         </div>
+                        {%endif%}
+
                         {% if request.user.is_authenticated %}
-                        <li class="nav-item ms-3">
-                            <a href="#" class="nav-item nav-link">Welcome {{ request.user.username }}</a>
-                            <a href="{% url 'accounts:log_out' %}" class="nav-item nav-link">Log Out</a>
-                        </li>
-                        {% else %}     
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Welcome {{ request.user.username }}</a>
+                              <div class="dropdown-menu">
+                                  <a href="{% url 'accounts:log_out' %}" class="dropdown-item">Log Out</a></li>
+                              </div>
+                          </div>
+                          {% else %}     
+
                        <a href="{% url 'accounts:sign_in' %}" class="nav-item nav-link">Sign in</a>
                           <a href="{% url 'accounts:sign_up' %}" class="nav-item nav-link">Sign Up</a>
                         {%endif%}
                   <a href="{% url 'main_app:contact_us' %}" class="nav-item nav-link">contact us</a>
+                  {% if perms.main_app.view_subscripe%}
+                  <a href="{% url 'main_app:all_subscripers' %}" class="nav-item nav-link">My Subscripers</a>
+                  {%endif%}
                     </div>
+                {% if request.user.is_authenticated and request.user.staff_statuse == false%}
+                    <a href="{% url 'main_app:accepted_subscriper' %}" class="nav-item nav-link">My Subscriptions</a>
+                      </div>
+                      {%endif%}
                 </div>
             </div>
         </div>
@@ -304,8 +314,8 @@ right: -46px !important;
                                   <div class="price-body">
                                       <div class="price-description">
                                           <ul>
-                                            <li>{{offer.description | slice:14}}</li>
-                                            <li>{{offer.description | slice:"14:15" }}</li>
+                                            <li>{{offer.description | slice:13}}</li>
+                                            <li>{{offer.description | slice:"13:24" }}</li>
                                           </ul>
                                       </div>
                                   </div>

@@ -1,7 +1,7 @@
 {% extends 'main_app/home.html' %}
 {% load static %}
 
-{%block title%}About{%endblock%}
+{%block title%}Subscripe{%endblock%}
 
 
 {% block content %}
@@ -221,11 +221,11 @@ body {
             <div class="container">
                 <div class="row">
                     <div class="col-12">
-                        <h2>Puy Page</h2>
+                        <h2>Subscribe Info</h2>
                     </div>
                     <div class="col-12">
                         <a href="">Home</a>
-                        <a href="">buy Page</a>
+                        <a href="">Subscribe Info</a>
                     </div>
                 </div>
             </div>
@@ -242,32 +242,32 @@ body {
             {% csrf_token %}
             <!-- progressbar -->
             <ul id="progressbar">
-                <li class="active">Personal Details</li>
-                <li>Social Profiles</li>
-                <li>Account Setup</li>
+                <li class="active">Personal Goal</li>
+                <li>Personal Award</li>
+                <li>Addition Other</li>
             </ul>
             <!-- fieldsets -->
             <fieldset>
-                <h2 class="fs-title">Personal Details</h2>
-                <h3 class="fs-subtitle">Tell us something more about you</h3>
+                <h2 class="fs-title">Your goal</h2>
+                <h3 class="fs-subtitle">Tell us something more about you?</h3>
                 <input type="text" name="goal" placeholder="goal"/>
                 <input type="button" class="next action-button" value="Next"/>
             </fieldset>
             <fieldset>
-                <h2 class="fs-title">Social Profiles</h2>
-                <h3 class="fs-subtitle">Your presence on the social network</h3>
+                <h2 class="fs-title">Personal Award</h2>
+                <h3 class="fs-subtitle">Your goal to participate in the contest?</h3>
                 <input type="text" name="awards" placeholder="awards"/>
                
                 <input type="button"  class="previous action-button-previous" value="Previous"/>
                 <input type="button" class="next action-button" value="Next"/>
             </fieldset>
             <fieldset>
-                <h2 class="fs-title">Create your account</h2>
-                <h3 class="fs-subtitle">Fill in your credentials</h3>
+                <h2 class="fs-title">Addition Other</h2>
+                <h3 class="fs-subtitle">Anything else you would like to add</h3>
                 <input type="text" name="other" placeholder="other"/>
                 <input type="button"  class="previous action-button-previous" value="Previous"/>
                 <div class="hero-btn">
-                    <button type="submit" class="btn">Add</button>
+                    <button type="submit" class="btn">Sbscribtions</button>
                 </div>
             </fieldset>
         </form>

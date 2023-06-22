@@ -34,13 +34,12 @@ urlpatterns = [
     path('add_tournament/',views.add_tournament,name='add_tournament'),
     path('add_club/',views.add_club,name='add_club'),
     path('club_ad/',views.club_ad,name='club_ad'),
-    path('Subscribers/add-subscriber/', views.add_subscriber, name='add_subscriber'),
-    path('payment/', views.payment_page, name='payment_page'),
 
     path('Clubs/club_details/<club_id>/', views.club_details, name='club_details'),
     path('buy/<club_id>', views.buy, name='buy'),
-    path('subscripe/', views.subscripe, name='subscripe'),
+    path('subscripe/<tour_id>', views.subscripe, name='subscripe'),
     path('club_subscripe/', views.club_subscripe, name='club_subscripe'),
+    path('all_subscripers/',views.all_subscripers,name='all_subscripers'),
 
 
 

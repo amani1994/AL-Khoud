@@ -61,13 +61,7 @@ def club_equestrian(request:HttpRequest):
 
 
 
-def subscripe(request:HttpRequest):
 
-    if request.method == "POST":
-            subscripers = Subscripe(user = request.user,goal=request.POST["goal"], awards=request.POST["awards"],other=request.POST["other"])
-            subscripers.save() 
-            return redirect ('main_app:club_subscripe')
-    return render (request,'main_app/subscripe.html')
 
 
 def club_subscripe(request:HttpRequest):
@@ -127,17 +121,6 @@ def add_club(request:HttpRequest):
             
     return render (request, "main_app/add_club.html")
 
-
-
-
-
-def add_subscriber(request:HttpRequest): #لا تنسين تربطينه باليوزر
-    '''this method add a subscriber to the selected club'''
-    return render(request,'main_app/add_subscriber.html')
-
-
-def payment_page(request:HttpRequest):
-    return render(request,'main_app/payment.html')
 
 
 def club_details (request:HttpRequest, club_id):
@@ -267,7 +250,13 @@ def success(request:HttpRequest):
     return render (request, "main_app/success.html" )
 
 
-
+def subscripe(request:HttpRequest,tour_id):
+    if request.method == "POST":
+            tournament = Tournament.objects.get(id = tour_id)
+            subscripers = Subscripe(tournament = tournament,user = request.user,goal=request.POST["goal"], awards=request.POST["awards"],other=request.POST["other"])
+            subscripers.save() 
+            return redirect ('main_app:club_subscripe')
+    return render (request,'main_app/subscripe.html')
 
 def accept_subscriper(request:HttpRequest, subscriper_id):
     from .models import Subscripe
@@ -288,6 +277,11 @@ def delete_subscriper(request:HttpRequest, subscriper_id):
     subscripe = Subscripe.objects.get(id = subscriper_id)
     subscripe.delete()
     return redirect(request.META['HTTP_REFERER'])
+
+
+
+def all_subscripers(request:HttpRequest):
+    return render (request,'main_app/all_subscribers.html')
 
 
 

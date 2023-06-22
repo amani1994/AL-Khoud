@@ -29,7 +29,6 @@
               <table class="table table-bordered">
                 <thead>
                   <tr>
-                    <th scope="col">Id</th>
                     <th scope="col">Name</th>
                     <th scope="col">Age</th>
                     <th scope="col">Level</th>
@@ -45,7 +44,6 @@
                     {%for subscriper in subscripers%}
                      {%if not subscriper.is_accepted %}
                   <tr>
-                    <th scope="row"></th>
                     <td>{{subscriper.user.profile.user.username}}</td>
                     <td>{{subscriper.user.profile.age}}</td>
                     <td>{{subscriper.user.profile.level}}</td>
